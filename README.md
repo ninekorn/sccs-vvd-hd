@@ -8,10 +8,13 @@ In the meantime while i produce my next revision, you can watch the current stat
 Last revision that i had released under MIT:
 
 https://www.microsoft.com/en-us/wdsi/submission/d5de0d70-55ab-4bb6-af8c-213cf4b9b442
+
 https://www.microsoft.com/en-us/wdsi/submission/47b8a5b1-6678-4220-9d4b-0bf002ee2024
 
 New revision that i will release under Apache 2.0:
 
 https://www.microsoft.com/en-us/wdsi/submission/70925aec-07f1-4f36-b73e-99b9a829edd4
+
 https://www.microsoft.com/en-us/wdsi/submission/ba49e49d-4c97-4265-b858-4daf4fea9636
+
 https://www.microsoft.com/en-us/wdsi/submission/930977cd-8c0e-48b1-bfcf-572caf1cb567
