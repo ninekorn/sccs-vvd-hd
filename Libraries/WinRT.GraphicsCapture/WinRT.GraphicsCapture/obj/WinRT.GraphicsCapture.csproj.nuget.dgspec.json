@@ -1,0 +1,92 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\WinRT.GraphicsCapture\\WinRT.GraphicsCapture\\WinRT.GraphicsCapture.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\Win32.Shared\\Win32.Shared\\Win32.Shared.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\Win32.Shared\\Win32.Shared\\Win32.Shared.csproj",
+        "projectName": "Win32.Shared",
+        "projectPath": "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\Win32.Shared\\Win32.Shared\\Win32.Shared.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\WinRT.GraphicsCapture\\WinRT.GraphicsCapture\\WinRT.GraphicsCapture.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\WinRT.GraphicsCapture\\WinRT.GraphicsCapture\\WinRT.GraphicsCapture.csproj",
+        "projectName": "WinRT.GraphicsCapture",
+        "projectPath": "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\WinRT.GraphicsCapture\\WinRT.GraphicsCapture\\WinRT.GraphicsCapture.csproj",
+        "packagesPath": "C:\\Users\\steve\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\WinRT.GraphicsCapture\\WinRT.GraphicsCapture\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\steve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\Win32.Shared\\Win32.Shared\\Win32.Shared.csproj": {
+                "projectPath": "C:\\Users\\steve\\Documents\\GitHub\\sccs-vvd-hd\\Libraries\\Win32.Shared\\Win32.Shared\\Win32.Shared.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "Microsoft.Windows.SDK.Contracts": {
+              "target": "Package",
+              "version": "[10.0.22621.755, )"
+            },
+            "SharpDX.Desktop": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.Direct2D1": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "SharpDX.Direct3D11": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
