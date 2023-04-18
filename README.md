@@ -1,3 +1,4 @@
+
 # sccs-vvd-hd
 Re-Release of my sccs-heightmaps-virtualdesktop-SharpDX11.1 repository as it was and 2 other repos, filled with garbage cookies leftovers spywares/adwares/viruses/malware and i felt it was the time to finally restart from scratch as i do not have any sofware that "cleans" steganography from my files at my disposition. I am trying to clean the best way as i go and will try and release my softwares without those goddamn maleficent cookie leftovers or copy paste steganography from using as reference code on the internet?
 
@@ -18,3 +19,6 @@ https://www.microsoft.com/en-us/wdsi/submission/70925aec-07f1-4f36-b73e-99b9a829
 https://www.microsoft.com/en-us/wdsi/submission/ba49e49d-4c97-4265-b858-4daf4fea9636
 
 https://www.microsoft.com/en-us/wdsi/submission/930977cd-8c0e-48b1-bfcf-572caf1cb567
+
+EDIT2023AVRIL17 - I released my solution REV1312. Now i am naming my solutions sccsvvdhd instead of sccsr14forms or sccsr15-16-17 etc... but those revision numbers will reappear when i make backups of my solution and release them as i did in this current repository with my first release.
+
