@@ -1,7 +1,7 @@
 [![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs-vvd-hd/total.svg)]() 
 [![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs-vvd-hd)]()
 
-UPLOADED UNDER APACHE 2.0 LICENSE
+UPLOADED UNDER APACHE 2.0 LICENSE and all of the other licenses included in the folder Licenses.
 
 # sccs-vvd-hd
 Re-Release of my sccs-heightmaps-virtualdesktop-SharpDX11.1 repository as it was and 2 other repos, filled with garbage cookies leftovers spywares/adwares/viruses/malware and i felt it was the time to finally restart from scratch as i do not have any sofware that "cleans" steganography from my files at my disposition. I am trying to clean the best way as i go and will try and release my softwares without those goddamn maleficent cookie leftovers or copy paste steganography from using as reference code on the internet?
