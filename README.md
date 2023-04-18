@@ -1,3 +1,6 @@
+[![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs-vvd-hd/total.svg)]() 
+[![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs-vvd-hd)]()
+
 UPLOADED UNDER APACHE 2.0 LICENSE
 
 # sccs-vvd-hd
