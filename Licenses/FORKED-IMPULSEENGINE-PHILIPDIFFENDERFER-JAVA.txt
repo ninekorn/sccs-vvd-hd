@@ -1,0 +1,2 @@
+Impulse engine made by randy gaul in C++ and converted to java by Philip Diffenderfer and to c# by me Steve Chassé. Randy Gaul
+used a custom OpenSource License, and Philip Diffenderfer forked it. I forked from Philip Diffenderfer.
