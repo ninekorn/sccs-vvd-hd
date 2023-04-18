@@ -1,3 +1,4 @@
+UPLOADED UNDER APACHE 2.0 LICENSE
 
 # sccs-vvd-hd
 Re-Release of my sccs-heightmaps-virtualdesktop-SharpDX11.1 repository as it was and 2 other repos, filled with garbage cookies leftovers spywares/adwares/viruses/malware and i felt it was the time to finally restart from scratch as i do not have any sofware that "cleans" steganography from my files at my disposition. I am trying to clean the best way as i go and will try and release my softwares without those goddamn maleficent cookie leftovers or copy paste steganography from using as reference code on the internet?
@@ -20,5 +21,7 @@ https://www.microsoft.com/en-us/wdsi/submission/ba49e49d-4c97-4265-b858-4daf4fea
 
 https://www.microsoft.com/en-us/wdsi/submission/930977cd-8c0e-48b1-bfcf-572caf1cb567
 
+----------------------------------------------------------------------RELEASE--------------------------------------------------------------------------------------
 EDIT2023AVRIL17 - I released my solution REV1312. Now i am naming my solutions sccsvvdhd instead of sccsr14forms or sccsr15-16-17 etc... but those revision numbers will reappear when i make backups of my solution and release them as i did in this current repository with my first release. I wanted to remake from scratch my solutions WinRT.GraphicsCapture and Win32.Shared and Win32.DWMSharedSurface before releasing and so i did. Those a freshly "rewritten scripts from c# by using my sccsscriptrewrite utility solution", where i don't even know if it works, and also rebuilt solutions from scratch using visual studio 2022 and the framework 4.7.2 for those as using the framework 4.8 or net6.0 wasn't working.
+----------------------------------------------------------------------RELEASE--------------------------------------------------------------------------------------
 
