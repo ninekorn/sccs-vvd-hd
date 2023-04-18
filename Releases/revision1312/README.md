@@ -1,6 +1,6 @@
 # sccs-vvd-hd
 
-Current revision:
+Current revision1312:
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-18%20131104.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-18%20131216.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-17%20224840.jpg" border="0">
 
