@@ -10,7 +10,7 @@ In order to fix the objects appearing in the wrong layer in the scene through th
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-16%20170904.jpg" border="0">
 
-The hands and fingers sizes are set with the alternate voxel size value in my sccsiklimbs.cs script but i will try and make it work as a whole in the future with one change of setting changes the size of the whole ik rig:
+The hands and fingers sizes are set with the alternate voxel size value in my sccsikvoxellimbs.cs script but i will try and make it work as a whole in the future with one change of setting changes the size of the whole ik rig:
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-17%20201824.jpg" border="0">
 
