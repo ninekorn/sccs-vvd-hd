@@ -1,4 +1,4 @@
-# revision 13128 - dashboard voxel human ik rig
+# revision 13128 - "dashboard figurine" mini voxel human ik rig pointing at the mouse cursor.
 
 i wanted to make the voxel human ik rig walk on the voxel virtual desktop surface but that is more complicated to code, and it had been a while that i hadn't touched inverse kinematics so i decided to practice by re-incorporating my ik development and tested for camera corners "dashboard figurines" and after a couple days of work i have a result.
 
