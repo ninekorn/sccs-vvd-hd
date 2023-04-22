@@ -12,6 +12,10 @@ Final Results. Only using 2 ik rig bottom left and right pointing their arms whe
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-22%20110431.jpg" border="0">
 
+I will work on trying to incorporate a slider to increase the size of the voxel human ik rig "dashboard figurines" soon:
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-22%20130846.jpg" border="0">
+
+
 Also, i have cleaned a little bit the console debug, and it is more precise to know now what is happening during the loading process:
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-22%20122726.jpg" border="0">
@@ -19,6 +23,8 @@ Also, i have cleaned a little bit the console debug, and it is more precise to k
 I modified a little bit my perceptron code development using the broloff perceptron, in order to re-use my old code of vector2.dot instead of vector3.dot and also now the rotation of the stick only happens on the yaw and pitch as i never fixed it to work on 3 axis, but at least, when the user is standing in the front of the screen and moves backwards away from the screen, the stick/pencil doesn't go crazy in a rotation frenzy anymore.
 
 Something didn't feel right with my vertex shader z position displacement as some rows were missing from the virtual desktop initial zero on the z axis, and we could see the missing rows way back as if they were sent to infinity... I think i fixed it but i am unsure as the last row at the bottom was also giving me issues until somehow it stopped after a few modifications and a solution rebuild. 
+
+
 
 
 
