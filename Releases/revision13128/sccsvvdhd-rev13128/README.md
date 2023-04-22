@@ -16,5 +16,7 @@ Also, i have cleaned a little bit the console debug, and it is more precise to k
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-22%20122726.jpg" border="0">
 
+I modified a little bit my perceptron code development using the broloff perceptron, in order to re-use my old code of vecto2.dot instead of vector3.dot and also now the rotation of the stick only happens on the yaw and pitch as i never fixed it to work on 3 axis, but at least, when the user is standing in the front of the screen and moves backwards away from the screen, the stick/pencil doesn't go crazy in a rotation frenzy anymore.
+
 
 
