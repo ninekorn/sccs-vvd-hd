@@ -8,7 +8,7 @@ The voxel human ik rig arms are pointing where the mouse cursor is on the virtua
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-19%20194657.jpg" border="0">
 
-Final Results. Only using 2 ik rig bottom left and right:
+Final Results. Only using 2 ik rig bottom left and right pointing their arms where the mouse cursor is. The right wrist of the ik character is clenching when you press the left mouse button but the voxel ik rig is too small for you to notice unless maybe you have a big screen... but the hands are inverted so i will look into that later:
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-22%20110431.jpg" border="0">
 
