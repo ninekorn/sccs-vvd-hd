@@ -1,0 +1,8 @@
+﻿$title_all_items:                 Полный список
+$title_hulls:                     Корпуса
+$title_equipment:                 Экипировка
+$title_weapons:                   Орудия
+$title_modules:                   Устройства
+$title_boosters:                  Усилители
+$title_consumables:               Расходники
+$title_resources_and_goods:       Ресурсы и товары

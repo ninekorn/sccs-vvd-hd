@@ -1,0 +1,70 @@
+﻿$complete_fanatics_title:                       Victory of Mind
+$complete_fanatics_description:                 Complete the game for the Fanatics faction.
+$complete_freedom_title:                        Victory of Freedom
+$complete_freedom_description:                  Complete the game for the Freedom faction.
+$complete_hardcore_title:                       Hardcore
+$complete_hardcore_description:                 Win the game while playing in hardcore mode.
+$complete_joe_quest_title:                      The beginning
+$complete_joe_quest_description:                Complete Joe's quest.
+$complete_order_title:                          Victory of Power
+$complete_order_description:                    Complete the game for the Order faction.
+$complete_solo_title:                           Victory of You!
+$complete_solo_description:                     Leave VoidExpanse behind and return to the Federation systems alone.
+$complete_tutorial_title:                       Educated
+$complete_tutorial_description:                 Complete the tutorial from start to finish.
+$deal_5000_damage_title:                        Boom!
+$deal_5000_damage_description:                  Deal 5000 damage in a single shot.
+$die_10_times_title:                            Not fun
+$die_10_times_description:                      Die 10 times.
+$have_99999_money_title:                        Shiny!
+$have_99999_money_description:                  Have 99999 or more money.
+$join_fanatics_title:                           Reign of madness
+$join_fanatics_description:                     Join the Fanatics faction.
+$join_freedom_title:                            Wings of freedom
+$join_freedom_description:                      Join the Freedom faction.
+$join_order_title:                              Fist of the order
+$join_order_description:                        Join the Order faction.
+$kill_1000_ships_title:                         Domination!
+$kill_1000_ships_description:                   Destroy a total of 1000 ships or more!
+$kill_enemy_75_levels_higher_title:             Impossible
+$kill_enemy_75_levels_higher_description:       Kill an enemy that is 75 levels higher than you.
+$kill_enemy_with_low_hp_title:                  Tough stuff
+$kill_enemy_with_low_hp_description:            Kill an enemy while having less than 100 structure of your ship remaining.
+$kill_friendly_npc_title:                       Innocent blood
+$kill_friendly_npc_description:                 Kill a friendly NPC.
+$kill_player_title:                             Your way
+$kill_player_description:                       Kill another player in a multiplayer game.
+$kill_xengatarn_title:                          Quick judgement
+$kill_xengatarn_description:                    Kill at least one Xengatarn ship.
+$leave_starting_system_title:                   Time for an adventure
+$leave_starting_system_description:             Leave the starting system!
+$loot_crate_title:                              Loot a crate
+$loot_crate_description:                        Loot a crate. There is definitely something good inside!
+$mine_asteroids_title:                          Drilling billy
+$mine_asteroids_description:                    Mine lots of asteroids (100 mining cycles to be precise)!
+$play_24_hours_title:                           A life
+$play_24_hours_description:                     Play a total of 24 hours or more.
+$play_multiplayer_title:                        All together
+$play_multiplayer_description:                  Try multiplayer at least once.
+$play_singleplayer_title:                       All alone
+$play_singleplayer_description:                 Try single player at least once.
+$play_with_10_people_title:                     Big party!
+$play_with_10_people_description:               Play on a server with 10 or more people.
+$player_level_05_title:                         Scrambled eggs
+$player_level_05_description:                   Reach character level 5.
+$player_level_15_title:                         Fried shrimp
+$player_level_15_description:                   Reach character level 15.
+$player_level_30_title:                         Tough cookie
+$player_level_30_description:                   Reach character level 30.
+$player_level_45_title:                         Seasoned veteran
+$player_level_45_description:                   Reach character level 45.
+$player_level_90_title:                         Balls of steel
+$player_level_90_description:                   Reach character level 90.
+$visit_capital_system_title:                    New government
+$visit_capital_system_description:              Visit a capital system of any faction.
+$hack_1_title:                                  ICE
+$hack_1_description:                            Hack level 1 terminal.
+$hack_2_title:                                  Decker
+$hack_2_description:                            Hack level 2 terminal.
+$hack_3_title:                                  45100
+$hack_3_description:                            Hack level 3 terminal.

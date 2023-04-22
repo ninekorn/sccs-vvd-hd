@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>sounds_ui</id>
+	</header>
+
+	<data>
+		<sounds>
+			<!-- button / default -->
+			<default_button_click>ui/default_button_click.ogg</default_button_click>
+			<default_button_enter>ui/default_button_enter.ogg</default_button_enter>
+			<default_button_leave><!--ui/default_button_leave.ogg--></default_button_leave>
+			
+			<!-- checkbox / default -->
+			<default_checkbox_click>ui/default_checkbox_click.ogg</default_checkbox_click>
+			<default_checkbox_enter>ui/default_checkbox_enter.ogg</default_checkbox_enter>
+			<default_checkbox_leave><!--i/default_checkbox_leave.ogg--></default_checkbox_leave>
+			
+			<!-- dropdown / default -->
+			<default_drop_down_click>ui/default_drop_down_click.ogg</default_drop_down_click>
+			<default_drop_down_enter>ui/default_drop_down_enter.ogg</default_drop_down_enter>
+			<default_drop_down_leave><!--ui/default_drop_down_leave.ogg--></default_drop_down_leave>
+			
+			<!-- tab / default -->
+			<default_tab_switched>ui/default_tab_switched.ogg</default_tab_switched>
+			
+			<!-- slider default / default -->
+			<slider_mouse_down>ui/slider_mouse_down.ogg</slider_mouse_down>
+			<slider_mouse_up>ui/slider_mouse_up.ogg</slider_mouse_up>
+			<slider_enter>ui/slider_enter.ogg</slider_enter>
+			<slider_leave><!--ui/slider_leave.ogg--></slider_leave>
+			
+			<!-- button / main menu -->
+			<main_menu_button_click>ui/main_menu_button_click.ogg</main_menu_button_click>
+			<main_menu_button_enter>ui/main_menu_button_enter.ogg</main_menu_button_enter>
+			<main_menu_button_leave><!--ui/default_button_leave.ogg--></main_menu_button_leave>
+			
+			<!-- inventory item -->
+			<item_pick>ui/item_pick.ogg</item_pick>
+			<item_drop>ui/item_drop.ogg</item_drop>
+			
+			<!-- hotbar -->
+			<hotbar_use>ui/hotbar_use.ogg</hotbar_use>
+			<hotbar_ready>ui/hotbar_ready.ogg</hotbar_ready>
+			
+			<!-- skills page -->
+			<skills_pick>ui/skills_pick.ogg</skills_pick>
+			
+			<action_failed>ui/action_failed.ogg</action_failed>
+			
+			<!-- this sound used in current system info text (when entering star system) per character -->
+			<char_sound>ui/char_sound.ogg</char_sound>
+			
+			<window_opened>ui/open_menu.ogg</window_opened>
+			
+			<window_closed>ui/close_menu.ogg</window_closed>
+		</sounds>
+	</data>
+</root>

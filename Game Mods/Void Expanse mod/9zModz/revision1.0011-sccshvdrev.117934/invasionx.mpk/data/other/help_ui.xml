@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>help_ui</id>
+	</header>
+
+	<data>
+		<!-- Removed -->
+		<!--<keyboard_layout_texture>ui/help/keyboard_layout.png</keyboard_layout_texture>-->
+	</data>
+</root>

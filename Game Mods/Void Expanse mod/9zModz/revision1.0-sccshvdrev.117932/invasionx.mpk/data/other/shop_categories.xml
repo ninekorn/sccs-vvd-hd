@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>shop_categories</id>
+	</header>
+
+	<data>
+		<category>
+			<title>$title_all_items</title>
+			<icon>shop_categories/all.png</icon>
+			<filter>
+				<!-- all -->
+			</filter>
+		</category>
+
+		<category>
+			<title>$title_hulls</title>
+			<icon>shop_categories/hulls.png</icon>
+			<filter>
+				<item_type>1</item_type>
+			</filter>
+		</category>
+
+		<category>
+			<title>$title_equipment</title>
+			<icon>shop_categories/equipment.png</icon>
+			<filter>
+				<item_type>2</item_type>
+				<item_type>3</item_type>
+				<item_type>4</item_type>
+				<item_type>5</item_type>
+				<item_type>6</item_type>
+				<item_type>7</item_type>
+				<item_type>8</item_type>
+			</filter>
+		</category>
+
+		<category>
+			<title>$title_weapons</title>
+			<icon>shop_categories/weapons.png</icon>
+			<filter>
+				<item_type>11</item_type>
+			</filter>
+		</category>
+		
+		<category>
+			<title>$title_modules</title>
+			<icon>shop_categories/modules.png</icon>
+			<filter>
+				<item_type>9</item_type>
+			</filter>
+		</category>
+		
+		<category>
+			<title>$title_boosters</title>
+			<icon>shop_categories/boosters.png</icon>
+			<filter>
+				<item_type>10</item_type>
+			</filter>
+		</category>
+		
+		<category>
+			<title>$title_consumables</title>
+			<icon>shop_categories/consumables.png</icon>
+			<filter>
+				<item_type>101</item_type>
+			</filter>
+		</category>
+		
+		<category>
+			<title>$title_resources_and_goods</title>
+			<icon>shop_categories/goods.png</icon>
+			<filter>
+				<item_type>200</item_type>
+				<item_type>100</item_type>
+			</filter>
+		</category>
+
+	</data>
+</root>

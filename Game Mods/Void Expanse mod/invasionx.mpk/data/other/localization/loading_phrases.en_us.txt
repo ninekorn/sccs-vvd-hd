@@ -1,0 +1,12 @@
+﻿$phrases:       "Don't forget to use cruise mode to travel faster. Usually activated by [C].",
+                "Use [Space] to stop your ship.",
+                "In your inventory you can bind weapons equipped on your ship to different weapon groups.",
+                "Join a faction to acquire unique perks a particular faction has to offer.",
+                "Make sure your ship is equipped with hull repair consumables.",
+                "You can jump forward by double-tapping forward key.",
+                "You can use lasers and other beam weapons to destroy incoming missiles.",
+                "Different ships have different maneuverability and speed properties.",
+                "Unlike other items, you can equip consumables without visiting a space station.",
+                "You can use autopilot to make long journeys easier.",
+                "Your game is saved automatically from time to time, as well as whenever you travel do a different system or dock to a station."
+

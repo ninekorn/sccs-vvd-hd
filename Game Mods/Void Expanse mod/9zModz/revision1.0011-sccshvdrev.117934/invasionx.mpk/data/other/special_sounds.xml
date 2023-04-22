@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>special_sounds</id>
+	</header>
+
+	<data>
+		
+		<!-- voices -->
+		<voices>
+			<voices_default_folder_path>$voices_default_folder_path_format</voices_default_folder_path>			
+		</voices>
+
+		<!-- other sounds -->
+		<on_level_up>special/character_level_up.ogg</on_level_up>
+		<on_ship_jump_ready>special/ship_jump_ready.ogg</on_ship_jump_ready>
+		<on_solar_radiation>special/solar_radiation.ogg</on_solar_radiation>
+		<on_container_open>special/container_open.ogg</on_container_open>
+		<on_container_close>special/container_close.ogg</on_container_close>
+
+		<!-- ship related -->
+		<on_docking>special/station_docking.ogg</on_docking>
+		<on_undocking>special/station_undocking.ogg</on_undocking>
+
+		<on_collision_hull>special/collision_hull.ogg</on_collision_hull>
+		<on_collision_shield>special/collision_shield.ogg</on_collision_shield>	
+
+		<on_shield_collapse>special/shield_collapse.ogg</on_shield_collapse>
+		<on_shield_raise>special/shield_raised.ogg</on_shield_raise>
+
+		<on_ship_jump>special/ship_jump.ogg</on_ship_jump>	
+
+		<station_refuel>special/station_refuel.ogg</station_refuel>
+		<station_repair>special/station_repair.ogg</station_repair>
+
+		<item_equip>special/item_equip.ogg</item_equip>
+
+		<select_faction>special/select_faction.ogg</select_faction>
+
+		<trade_transaction>special/trade_transaction.ogg</trade_transaction>
+
+	</data>
+</root>

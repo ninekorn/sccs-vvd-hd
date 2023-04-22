@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>npc_greetings</id>
+	</header>
+
+	<data>
+	
+		<phrases>
+			<id>default</id>
+			<no_topics>
+				$default_no_topics
+			</no_topics>
+			<has_topics>
+				$default_has_topics
+			</has_topics>
+		</phrases>
+		
+		<phrases>
+			<id>terminal</id>
+			<no_topics>
+				$terminal_no_topics
+			</no_topics>
+			<has_topics>
+				$terminal_has_topics
+			</has_topics>
+		</phrases>
+		
+	</data>
+</root>

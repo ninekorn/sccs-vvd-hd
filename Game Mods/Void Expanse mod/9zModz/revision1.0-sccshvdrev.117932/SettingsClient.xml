@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings version="20">
+  <clientaudios>
+    <volume_master>1</volume_master>
+    <volume_music>0</volume_music>
+    <volume_sound>0.5</volume_sound>
+    <volume_sound_ui>0.5</volume_sound_ui>
+    <volume_voice>0.75</volume_voice>
+  </clientaudios>
+  <clientcontrolss>
+    <controls>
+      <ThrottleForward key="W" alt_key="UpArrow" />
+      <ThrottleBackward key="S" alt_key="DownArrow" />
+      <RotateLeft key="A" alt_key="LeftArrow" />
+      <RotateRight key="D" alt_key="RightArrow" />
+      <CruiseForward key="C" />
+      <StrafeLeft key="Q" />
+      <StrafeRight key="E" />
+      <Brake key="Space" />
+      <TargetLock key="R" />
+      <LShiftModifier key="LeftShift" />
+      <FireFirstWeapons key="Mouse0" />
+      <FireSecondWeapons key="Mouse1" />
+      <FireThirdWeapons key="Mouse2" />
+      <Action key="F" />
+      <ToggleControlScheme key="Z" />
+      <ToggleAutopilot key="X" />
+      <ActivateSlot1 key="Alpha1" />
+      <ActivateSlot2 key="Alpha2" />
+      <ActivateSlot3 key="Alpha3" />
+      <ActivateSlot4 key="Alpha4" />
+      <ActivateSlot5 key="Alpha5" />
+      <ActivateSlot6 key="Alpha6" />
+      <ActivateSlot7 key="Alpha7" />
+      <ActivateSlot8 key="Alpha8" />
+      <ActivateSlot9 key="Alpha9" />
+      <ToggleOnlineUsers key="Tab" />
+      <DebugToggleUIStatsDisplay key="F9" />
+      <DebugToggleUI key="F10" />
+      <CaptureScreenshot key="F12" />
+      <OpenChat key="Return" alt_key="T" />
+      <Inventory key="I" />
+      <Skills key="U" />
+      <SystemMap key="M" />
+      <GalaxyMap key="N" />
+      <QuestsJournal key="J" />
+      <Factions key="B" />
+      <RadarZoomIn key="Plus" alt_key="Equals" />
+      <RadarZoomOut key="Minus" />
+      <Console key="BackQuote" />
+      <StationOverview key="O" />
+      <StationDecks key="G" />
+      <StationShop key="Y" />
+    </controls>
+  </clientcontrolss>
+  <clientgames>
+    <auto_pause_singleplayer>1</auto_pause_singleplayer>
+    <background_brightness>Vibrant</background_brightness>
+    <color_blind_mode>Off</color_blind_mode>
+    <dialog_speed>Fast</dialog_speed>
+    <savegame_interval>IntervalMinutes15</savegame_interval>
+    <screenshot_quality>Jpg90</screenshot_quality>
+    <!-- Display console for the local game server (0/1) -->
+    <show_console_for_local_game_server>1</show_console_for_local_game_server>
+    <static_camera>0</static_camera>
+    <uiscale>1</uiscale>
+    <weapon_aim_line_opacity>0.5</weapon_aim_line_opacity>
+  </clientgames>
+  <clientgraphicss>
+    <anti_aliasing>MSAAx4</anti_aliasing>
+    <anti_aliasing_ui>MSAA</anti_aliasing_ui>
+    <background>Level0</background>
+    <display>0</display>
+    <fps_limit>VSync</fps_limit>
+    <gamma>0.5</gamma>
+    <post_effects>0</post_effects>
+    <quality_setting>Level0</quality_setting>
+    <screen_dpi>Normal</screen_dpi>
+    <screen_resolution>1920x1080</screen_resolution>
+    <stardust>Level0</stardust>
+    <sun_effects>0</sun_effects>
+    <trails>Level0</trails>
+    <windowed>Fullscreen</windowed>
+  </clientgraphicss>
+  <clients>
+    <!-- Shown acknowledgment screens for installed Expansions (never reset) -->
+    <expansions_acknowledgment_shown_list>core,DLC1</expansions_acknowledgment_shown_list>
+    <!-- The comma-separated list of explicitly deactivated DLCs (because all DLCs are automatically activated) -->
+    <explicitly_deactivated_dlcs></explicitly_deactivated_dlcs>
+    <ignore_update_to_version></ignore_update_to_version>
+    <input_send_cursor_update_rate_per_second>20</input_send_cursor_update_rate_per_second>
+    <physics_fps>20</physics_fps>
+    <servers_custom_list></servers_custom_list>
+    <servers_favorite_list></servers_favorite_list>
+    <servers_history_list></servers_history_list>
+    <!-- Enable tutorials for singleplayer game mode (reset automatically upon new game start) (0/1) -->
+    <tutorials_enabled>0</tutorials_enabled>
+    <!-- Shown tutorials screens list (reset automatically upon new game start) -->
+    <tutorials_finished_list>welcome</tutorials_finished_list>
+  </clients>
+  <misc>
+    <!-- Current language: en_us, ru_ru, etc... -->
+    <language>en_us</language>
+    <!-- Min logging level: Debug, Info, Important, Error -->
+    <min_log_severity>Important</min_log_severity>
+  </misc>
+</settings>

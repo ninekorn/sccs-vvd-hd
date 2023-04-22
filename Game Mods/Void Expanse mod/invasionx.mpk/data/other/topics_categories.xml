@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>topics_categories</id>
+	</header>
+
+	<data>
+		<category>
+			<id>quests</id>
+			<title>$quests_title</title>
+			<order>10</order>
+		</category>
+		
+		<category>
+			<id>services</id>
+			<title>$services_title</title>
+			<order>20</order>
+		</category>
+
+		<category>
+			<id>order</id>
+			<title>$order_title</title>
+			<order>30</order>
+		</category>
+		
+		<category>
+			<id>personal</id>
+			<title>$personal_title</title>
+			<order>40</order>
+		</category>
+		
+		<category>
+			<id>advice</id>
+			<title>$advice_title</title>
+			<order>50</order>
+		</category>
+
+		<category>
+			<id>factions</id>
+			<title>$factions_title</title>
+			<order>60</order>
+		</category>
+		
+		<category>
+			<id>races</id>
+			<title>$races_title</title>
+			<order>70</order>
+		</category>
+		
+		<category>
+			<id>locations</id>
+			<title>$locations_title</title>
+			<order>80</order>
+		</category>
+		
+		<category>
+			<id>technology</id>
+			<title>$technology_title</title>
+			<order>90</order>
+		</category>
+		
+		<category>
+			<id>industry</id>
+			<title>$industry_title</title>
+			<order>100</order>
+		</category>
+		
+		<category>
+			<id>business</id>
+			<title>$business_title</title>
+			<order>110</order>
+		</category>
+		
+		<category>
+			<id>history</id>
+			<title>$history_title</title>
+			<order>120</order>
+		</category>
+		
+		<category>
+			<id>people</id>
+			<title>$people_title</title>
+			<order>130</order>
+		</category>
+		
+	</data>
+</root>

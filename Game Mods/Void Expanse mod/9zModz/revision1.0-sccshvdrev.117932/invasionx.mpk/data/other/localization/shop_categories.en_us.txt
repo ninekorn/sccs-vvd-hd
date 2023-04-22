@@ -1,0 +1,8 @@
+﻿$title_all_items:                 All items
+$title_hulls:                     Hulls
+$title_equipment:                 Equipment
+$title_weapons:                   Weapons
+$title_modules:                   Devices
+$title_boosters:                  Boosters
+$title_consumables:               Consumables
+$title_resources_and_goods:       Resources & Goods

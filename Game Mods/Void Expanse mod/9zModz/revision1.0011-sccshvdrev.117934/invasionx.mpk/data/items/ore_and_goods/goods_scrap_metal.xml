@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>goods_scrap_metal</id>
+		<title>goods_scrap_metal</title>
+		<description>Electronics are the basis of the modern economy as everything depends on them. Electronics are always in high demand in many places.</description>
+		<enabled>1</enabled>
+	</header>
+
+	<gfx>
+		<icon>items/ore_and_goods/goods_scrap_metal.jpg</icon>
+	</gfx>
+
+	<data>
+		<type>200</type>
+		
+		<shops>
+			<shops_level>10</shops_level>
+			<faction_filter></faction_filter>
+			<price>200</price>
+		</shops>
+		
+		<upgrades_max>0</upgrades_max>
+		<upgrades>
+			<!-- none -->
+		</upgrades>
+
+		<requirements>
+			<!-- none -->
+		</requirements>
+
+		<effects>
+			<!-- none -->
+		</effects>
+
+		<item_data>
+			<base_quantity_production>50</base_quantity_production>
+			<base_quantity_neutral>20</base_quantity_neutral>
+			<base_quantity_consumption>10</base_quantity_consumption>
+			<production_chance>0.3</production_chance>
+			<consumption_chance>0.4</consumption_chance>
+		</item_data>
+	</data>
+</root>

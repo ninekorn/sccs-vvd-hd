@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>game</id>
+	</header>
+
+	<data>	
+		<!-- female population coefficient [0-1] (please note this applies only to generic characters) -->
+		<femalization>0.3</femalization> 
+		
+		<sun_radiation_distance>50</sun_radiation_distance>
+		<sun_radiation_damage_multiplier>2.5</sun_radiation_damage_multiplier>
+
+		<npc_damage_leveled_coef>0.5;0.8</npc_damage_leveled_coef>		
+		
+		<!-- this damage coef will be used when game restarted after finishing -->
+		<npc_damage_leveled_coef_hardmode>1;1.4</npc_damage_leveled_coef_hardmode>
+	</data>
+</root>

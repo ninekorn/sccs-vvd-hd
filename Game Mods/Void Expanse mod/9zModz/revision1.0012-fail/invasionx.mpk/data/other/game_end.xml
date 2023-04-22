@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>game_end</id>
+	</header>
+
+	<!-- HEY PAL! YOU ARE SPOILING THE FUN! Finish the game by yourself and don't read this stuff!!! -->
+
+	<data>
+		<end_screens>
+
+			<end_screen>
+				<id>order</id>
+				<image>game_end/order.jpg</image>
+				<playlist>playlist_special_game_end</playlist>
+				<is_victory>1</is_victory>
+				<text>$order_text</text>
+			</end_screen>
+
+			<end_screen>
+				<id>fanatics</id>
+				<image>game_end/fanatics.jpg</image>
+				<playlist>playlist_special_game_end</playlist>
+				<is_victory>1</is_victory>
+				<text>$fanatics_text</text>
+			</end_screen>
+
+			<end_screen>
+				<id>freedom</id>
+				<image>game_end/freedom.jpg</image>
+				<playlist>playlist_special_game_end</playlist>
+				<is_victory>1</is_victory>
+				<text>$freedom_text</text>
+			</end_screen>
+
+			<end_screen>
+				<id>solo</id>
+				<image>game_end/solo.jpg</image>
+				<playlist>playlist_special_game_end</playlist>
+				<is_victory>0</is_victory>
+				<text>$solo_text</text>
+			</end_screen>
+
+		</end_screens>
+	</data>
+</root>

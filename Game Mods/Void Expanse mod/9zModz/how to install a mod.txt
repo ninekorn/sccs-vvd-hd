@@ -1,0 +1,5 @@
+Original Atomic torch tutorial:
+https://wiki.atomictorch.com/VoidExpanse/installing_mods
+
+The tutorial i made for void expanse modding and that i uploaded to youtube:
+https://www.youtube.com/watch?v=c-qHWtr8Om0&ab_channel=SteveChass%C3%A9

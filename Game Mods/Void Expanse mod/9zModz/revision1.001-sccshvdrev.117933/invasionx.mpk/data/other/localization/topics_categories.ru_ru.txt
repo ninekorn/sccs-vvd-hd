@@ -1,0 +1,13 @@
+﻿$quests_title:           Квесты
+$services_title:         Услуги
+$order_title:            Приказы
+$personal_title:         Личное
+$advice_title:           Советы
+$factions_title:         Фракции
+$races_title:            Расы
+$locations_title:        Места
+$technology_title:       Технологии
+$industry_title:         Индустрия
+$business_title:         Бизнес
+$history_title:          История
+$people_title:           Люди

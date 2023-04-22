@@ -1,0 +1,70 @@
+﻿$complete_fanatics_title:                       Победа разума
+$complete_fanatics_description:                 Закончи игру за фракцию Фанатиков.
+$complete_freedom_title:                        Победа свободы
+$complete_freedom_description:                  Закончи игру за фракцию Свобода.
+$complete_hardcore_title:                       Хардкор
+$complete_hardcore_description:                 Закончи игру играя в хардкор режиме.
+$complete_joe_quest_title:                      Начало
+$complete_joe_quest_description:                Выполни квест Одноглазого Джо.
+$complete_order_title:                          Победа силы
+$complete_order_description:                    Закончи игру за фракцию Порядок.
+$complete_solo_title:                           Победа?
+$complete_solo_description:                     Покинь \"Cектор Пустоты\" и вернись в системы Федерации в одиночку.
+$complete_tutorial_title:                       Грамотный
+$complete_tutorial_description:                 Закончи обучения от начала до конца.
+$deal_5000_damage_title:                        Бабах!
+$deal_5000_damage_description:                  Нанеси 5000 повреждений другому кораблю за один выстрел.
+$die_10_times_title:                            Не весело
+$die_10_times_description:                      Умри 10 раз...
+$have_99999_money_title:                        Капитал!
+$have_99999_money_description:                  Накопи 99999 или более денег.
+$join_fanatics_title:                           Власть безумия
+$join_fanatics_description:                     Присоединись ко фракции Фанатиков.
+$join_freedom_title:                            Крылья свободы
+$join_freedom_description:                      Присоединись ко фракции Свободы.
+$join_order_title:                              Кулак порядка
+$join_order_description:                        Присоединись ко фракции Порядок.
+$kill_1000_ships_title:                         Господство!
+$kill_1000_ships_description:                   Уничтожь 1000 или больше кораблей.
+$kill_enemy_75_levels_higher_title:             Невозможно
+$kill_enemy_75_levels_higher_description:       Уничтожь противника на 75 уровней выше тебя.
+$kill_enemy_with_low_hp_title:                  Сложная задача
+$kill_enemy_with_low_hp_description:            Уничтожь противника, имея при этом меньше 100 единиц обшивки своего корабля.
+$kill_friendly_npc_title:                       Невинная кровь
+$kill_friendly_npc_description:                 Уничтожь дружественный корабль-NPC.
+$kill_player_title:                             Твой путь
+$kill_player_description:                       Уничтожь другого игрока в режиме сетевой игры.
+$kill_xengatarn_title:                          Быстрый суд
+$kill_xengatarn_description:                    Уничтожь корабль Ксенгатарнов.
+$leave_starting_system_title:                   Время приключений
+$leave_starting_system_description:             Покинь стартовую систему.
+$loot_crate_title:                              Добыча
+$loot_crate_description:                        Обыщи контейнер.
+$mine_asteroids_title:                          Забуримся по полной
+$mine_asteroids_description:                    Пробури кучу астероидов (100 циклов добычи, если быть точным).
+$play_24_hours_title:                           Жизнь?
+$play_24_hours_description:                     Суммарное время игры 24 или больше часов.
+$play_multiplayer_title:                        Все вместе
+$play_multiplayer_description:                  Попробуй сетевую игру хотя бы раз.
+$play_singleplayer_title:                       Пройду сам
+$play_singleplayer_description:                 Попробуй одиночную игру хотя бы раз.
+$play_with_10_people_title:                     Тусовка
+$play_with_10_people_description:               Поиграй на сервере, где как минимум 10 игроков.
+$player_level_05_title:                         Омлет
+$player_level_05_description:                   Достигни пятого уровня персонажа.
+$player_level_15_title:                         Жареная креветка
+$player_level_15_description:                   Достигни пятнадцатого уровня персонажа.
+$player_level_30_title:                         Тёртый калач
+$player_level_30_description:                   Достигни тридцатого уровня персонажа.
+$player_level_45_title:                         Ветеран
+$player_level_45_description:                   Достигни сорок пятого уровня персонажа.
+$player_level_90_title:                         Авторитет
+$player_level_90_description:                   Достигни девяностого уровня персонажа.
+$visit_capital_system_title:                    Новое правительство
+$visit_capital_system_description:              Посети столицу любой фракции.
+$hack_1_title:                                  ICE
+$hack_1_description:                            Взломать терминал первого уровня.
+$hack_2_title:                                  Декер
+$hack_2_description:                            Взломать терминал второго уровня.
+$hack_3_title:                                  45100
+$hack_3_description:                            Взломать терминал третьего уровня.

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings version="20">
+  <misc>
+    <!-- Current language: en_us, ru_ru, etc... -->
+    <language>en_us</language>
+    <!-- Min logging level: Debug, Info, Important, Error -->
+    <min_log_severity>Important</min_log_severity>
+  </misc>
+  <network>
+    <compression>none</compression>
+    <!-- Is this a public server (if it should be displayed in the public servers list). (0/1) -->
+    <is_public_server>1</is_public_server>
+    <port>5000</port>
+    <!-- Declared public server host name. Master server will verify it and if it's matches the server IP address, it will be provided to clients (leave it empty if you want clients to simply connect to the server IP address). -->
+    <public_server_host_name></public_server_host_name>
+    <!-- Server private GUID (do NOT share it: it's used to identify your server by Master Server regardless of the IP address) -->
+    <server_private_guid></server_private_guid>
+  </network>
+  <server>
+    <!-- Auto-save interval (in minutes) for multiplayer mode. -->
+    <autosave_interval>30</autosave_interval>
+    <!-- How often should the server do a backup of the game world (in minutes) for multiplayer mode. -->
+    <backup_save_interval>60</backup_save_interval>
+    <!-- Should the player lose all of his inventory upon death. (0/1) -->
+    <death_inventory_loss>1</death_inventory_loss>
+    <!-- Amount of money in percent, that players will lose when they die. (0-100) -->
+    <death_money_loss>10</death_money_loss>
+    <!-- Should the player lose his ship and equipment upon death. (0/1) -->
+    <death_ship_loss>0</death_ship_loss>
+    <!-- Description of the server. -->
+    <description>Server description text</description>
+    <!-- Experience bonus in percents. (0 - inf.) -->
+    <exp_bonus>0</exp_bonus>
+    <!-- Framerate for processing physics and networking (recommended for singleplayer is 60, for multiplayer is 40) -->
+    <fps>60</fps>
+    <!-- How often physics updates sent to clients (in singleplayer it's forced to 60, for multiplayer 20-30) -->
+    <fps_network_physics_update>30</fps_network_physics_update>
+    <!-- How often ship params (like shield charge) should be updated (for 60 FPS default value is 10) -->
+    <fps_update_ship_params>10</fps_update_ship_params>
+    <!-- Galaxy size modifier (0-255). Current formula for star systems count: 50 + 50*(galaxy_size/255) -->
+    <galaxy_size>128</galaxy_size>
+    <!-- Name of the server. -->
+    <name>New game server</name>
+    <players_max_count>32</players_max_count>
+    <!-- Is PvP enabled at all. (0/1) -->
+    <pvp>1</pvp>
+    <!-- Diameter of the player visibility scope. Usually it is 33 in-game units. Bigger value is useless because player display size is usually limited to 25-to-15 in-game units. -->
+    <scope_distance>60</scope_distance>
+    <!-- Display player levels in the online players list (0/1) -->
+    <show_player_levels>1</show_player_levels>
+    <!-- Custom server welcome message - it will be displayed to the player on connection (leave it empty if you don't want any welcome messages to be displayed) -->
+    <welcome_message></welcome_message>
+    <!-- Is whitelist enabled? (0/1) -->
+    <white_list_enabled>0</white_list_enabled>
+    <!-- How many seconds the server could spend on the frame update (if it takes more, it will be aborted. This is maybe a script/mod issue (infinite loop or too slow code). If not, please report about such cases to the developers!) -->
+    <world_update_timeout_seconds>9</world_update_timeout_seconds>
+  </server>
+</settings>

@@ -1,0 +1,16 @@
+﻿$default_no_topics:         "There is nothing to talk about now.",
+                            "There is nothing to talk about right now."
+
+$default_has_topics:        "So, what will it be?",
+                            "So, what would you like to talk about?",
+                            "Oh, hey there.",
+                            "Do you need anything?",
+                            "Can I help you?",
+                            "Is there anything you need?",
+                            "Is there anything I can help you with?",
+                            "Have I seen you before somewhere?",
+                            "Want to talk?",
+                            "I'm always up for a good chat."
+
+$terminal_no_topics:        Terminal is offline.
+$terminal_has_topics:       Awaiting input.

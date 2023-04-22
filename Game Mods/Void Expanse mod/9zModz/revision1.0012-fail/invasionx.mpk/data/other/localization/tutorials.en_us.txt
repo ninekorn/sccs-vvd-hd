@@ -1,0 +1,120 @@
+﻿$welcome_title:                 Welcome to VoidExpanse
+$welcome_text:                  "Welcome, pilot! Before you begin there are a few things that need to be mentioned.
+                                
+                                If you are playing for the first time, it is absolutely essential for you to pay attention to these tutorial screens.
+                                
+                                This game has quite a few unique features and if you don't learn how to use them, or even about their existence in the first place, you won't be able to enjoy this game to the fullest! So, lean back, enjoy, and pay attention to the tutorial screens! :)"
+
+$movement_title:                Moving your ship
+$movement_text:                 "Your ship is equipped with several thruster engines allowing you not only to move forward, backwards, and steer, but also to shift laterally by pressing special keys.
+                                
+                                If you haven't changed the control scheme the default keys for movement are [W][A][S][D] for main controls plus [Q][E] for lateral shifting.
+                                
+                                But most important, and by important I mean PRETTY DAMN IMPORTANT is the cruise mode. It allows your ship to move very fast when you are traveling long distances. It is activated by [C]. Make sure you remember this key!"
+
+$inventory_space_title:         Inventory screen
+$inventory_space_text:          "Here you can see the inventory screen. You can examine different modules installed on your ship and see what you have in cargo.
+                                
+                                However, since you are not on a station, you won't be able to equip anything at the moment (you can't really hotswap a new engine, right?). There is one exception, consumables. These you can equip at any time. You can also jettison or destroy any of the items you are carrying if you wish."
+
+$inventory_station_title:       Hangar
+$inventory_station_text:        "Here you can see your hangar screen. You can equip or remove any ship modules here.
+                                As you probably noticed all modules are divided into several groups:
+                                
+                                * Weapons - Naturally, weapons are essential for your survival. But unlike other ship modules, weapons aren't so simple. First, they are separated by class: energy, ballistic, missile, etc. And by size. Pay attention to the illustration on the left. You cannot put a weapon of energy class into a ballistic slot, you need the weapon class to match. However in cases of size you CAN put smaller weapons in bigger slots.
+                                
+                                * Primary parts - these are your ship's primary systems such as engines and are mandatory, i.e. must always be equipped.
+                                
+                                * Consumables - are not required, but are extremely useful as they allow you to repair your ship, replenish energy, restock ammo, and such.
+                                
+                                * Devices - different equipment to perform certain tasks, such as mining asteroids. It would be a good idea to get a few of these.
+                                
+                                Additionally, some equipment may require certain skills to use, but most do not."
+
+$overview_station_title:        Space station
+$overview_station_text:         "Great, you've just docked to a space station. Here you can do many things. In particular on this screen you can refuel or repair your ship or undock back into space.
+                                
+                                But your first mission is to talk to a One-Eyed Joe. If you haven't read your quest journal yet it might be a good time to do so now. After that, visit the Decks section and look for him. He will be happy to explain more to you. Make sure to listen to him carefully. He could teach you many useful things."
+
+$decks_station_title:           Decks
+$decks_station_text:            "Here you can meet different people who are currently on this station. You can click on their portraits to talk to them, ask about the world, or most importantly, take missions from them.
+                                
+                                Not everyone will be ready to give you a task, but there are many different people in this world who would be interested in your help.
+                                
+                                You should also pay attention to their faction. It is displayed as a small icon on their portrait. Different factions will treat you differently and each of them have their own agendas. So stay sharp!"
+
+$minimap_space_title:           Minimap
+$minimap_space_text:            "You will be using your radar a lot in VoidExpanse. Honestly, it's pretty self explanatory, but it wouldn't hurt to learn what different markings mean right?
+                                
+                                As you can see on the illustration, there are a number of different objects on your radar. These are:
+                                
+                                1. Your currently active mission. It will be shown only if there is a mission in the system you are currently in, otherwise use the star map to see any other missions.
+                                
+                                2. Enemies (red circle), asteroids (brown triangle) and other objects (gray triangle).
+                                
+                                3. Jumpgates and stations. These are shown as square marks.
+                                
+                                4. And finally, this is the range of your radar. It shows how much of the surrounding area is displayed here. It does not take into account your radar military properties though."
+
+$store_station_title:           Station store
+$store_station_text:            "This is the station store.
+                                
+                                Different stations will have different items available in stock. For example, military stations offer you the best selection of military gear, while outposts (like the one you are on now) have a good selection of ships. The selection of items is also influenced by the tech level of the star system. A higher tech level will result in better items being available for sale.
+                                
+                                To buy anything simply drag the item from the store either to your storage grid or directly to your inventory. Ships must be stored in the storage area. You can't really put a ship inside another ship, can you?
+                                
+                                You could also hold [Shift] and then right-click any item for insta-transaction or [Ctrl] to choose the amount to buy or sell."
+
+$quest_log_title:               Quest log
+$quest_log_text:                "Here you can examine all of your currently active quests as well as histories for completed or failed quests.
+                                
+                                When you talk to someone and accept a mission it will appear in the list and any further progress on that mission will be added here in the form of a log. You can always open this screen to review the current objective for any particular mission you have."
+
+$system_map_title:              System map
+$system_map_text:               "Here you can see the star system you are currently in. There are number of different objects in each star system, but what you are mostly interested in are stations, asteroid belts and any quest locations.
+                                
+                                To make navigation inside the star system easier, you could add nav points and these will display on your minimap. To do so simply click anywhere on the map and then press \"SAVE NAV POINT\" button. You can also use any of the navpoints as a target for your autopilot.
+                                
+                                Autopilot is a great way to navigate inside the system, but be careful. Autopilot isn't smart enough to avoid pirates and you could find yourself surrounded by a bunch of thugs in no time. So always pay attention to where you're going."
+
+$galaxy_map_title:              Galaxy map
+$galaxy_map_text:               "As you probably noticed already the world of VoidExpanse is comprised of star systems connected by jumpgates. There are a number of stars you can visit, each with their own properties, stations and inhabitants. Additionally, different star systems could have special anomalies like gas clouds or artifacts such as mine fields left from the great war. There is always something new to discover.
+                                
+                                You should also pay attention to the tech level (cog icon) and danger level (swords icon). The higher they are the higher the items and enemies respectively will be. So, plan your course accordingly.
+                                
+                                Finally, you can see a colored outline on some systems. These indicate the faction territories. There are a number of factions in the world of VoidExpanse and not all of them will be welcoming towards you."
+
+$factions_title:                Factions
+$factions_text:                 "There are a number of different factions in the world of VoidExpanse. Some are peaceful, while others will attack you on sight.
+                                
+                                On this screen you can examine different factions and see their standings towards you and each other. To switch to a different center view, just click on any of the factions to see their relationships with each other.
+                                
+                                You can join many of these factions, but not all of them will be equally welcoming to you and it might require more effort on your part if you want to join them."
+
+$character_title:               Character
+$character_text:                "On this screen you can examine your character's skills and effects. On the left you can see your current character level, experience points, and the effects of the skills your character has. These effects could be anything from increased maneuvering to the ability to pilot heavy cruisers.
+                                
+                                On the right you can see all available skills that your character could possess separated into several categories: piloting, combat, engineering, industry and social. Each of these categories contain one of several diverse skill trees. You might want to spend some time examining them to decide where you would like your character to progress.
+                                
+                                However, the most important category is probably the piloting tree. Getting access to bigger ships requires you to have piloting proficiency with a particular hull class (light frigates, heavy frigates, cruisers, etc.)."
+
+$missiles_title:                Missile weapons
+$missiles_text:                 "You just equipped your first missile weapon. There are a few things you should remember about this kind of weapon.
+                                
+                                There are two major groups of missile weapons: unguided and guided, and the way you use them is very different.
+                                
+                                First are unguided missiles or rockets. These work fairly similar to ballistic weapons. You just shoot them and they fly in a straight line (usually). Nothing special there.
+                                
+                                However, to use guided missiles you need to first acquire a target lock for your missile to track its target. To do so, press [R] while your crosshair is over an enemy ship to mark it as a target. It will take some time depending on the quality of your radar, but eventually you will acquire a missile lock. Then you can shoot your guided missile weapon and it will track the target."
+
+$trading_title:                 Trading
+$trading_text:                  "You just sold your first item to the store.
+                                
+                                Essentially all items are divided into two major categories: items (1) and goods/ore (2). Depending on its type you might even received some experience.
+                                
+                                Items are always sold for a price that benefits the store, but you can improve it in your favor with special skills.
+                                
+                                Goods and ore, on the other hand, can be traded to earn cash and experience depending on how much profit you make from each transaction.
+                                
+                                Try it and see what happens! You might also try looking for some profitable trade routes to turn into your main source of income, but don't forget to buy a proper ship with large cargo holds!"
+

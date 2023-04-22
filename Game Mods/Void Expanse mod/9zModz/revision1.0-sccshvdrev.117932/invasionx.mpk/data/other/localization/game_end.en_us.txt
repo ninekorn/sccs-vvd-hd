@@ -1,0 +1,44 @@
+﻿$order_text:          "As the remaining Xengatarn ships are destroyed by the Order forces all around the Far Colonies, you contemplate what has transpired in this short time of your involvement.
+                      
+                      This war, that has torn the Far Colonies away from Federation space, has finally come to an end thanks to the actions of one brave hero.
+                      
+                      It is, indeed, a grand day for humanity and peace across the galaxy.
+                      
+                      It will still be a few years until the words of your success reach Federation space and a new jumpgate connection is established reuniting the people. But it is nothing compared to a new hope for millions of people living in this region of space.
+                      
+                      The Xengatarn have been defeated, destroyed, and wiped out of the galaxy!
+                      
+                      Who knows why they became aggressive and attacked our colonies starting this long and bloody war, but it's hardly an important question now.
+                      
+                      Humanity once again reigns in its nonpareil glory and the Xengatarn incident will be but a footnote in the grand history of humankind!
+                      
+                      However, deep down inside you feel that something... something is still missing..."
+
+$fanatics_text:       "As you finally destroy the transmitter you notice a sudden change... all the Xengatarn ships suddenly turn around and escape. Your forces decide not to pursue them. 
+                      
+                      After a few weeks, a reconnaissance report is delivered to you. It states that all Xengatarn fleets have retreated to their home planet, and many of their ships now lie in orbit abandoned with no indications of any crew being present. No further hostile actions are being detected.
+                      
+                      The war is over.
+                      
+                      All member of the Fanatics faction have also regained their minds and senses from this terrible nightmare that lasted a very long time.
+                      
+                      But the question remains - who built these mind controlling devices? And why?
+                      
+                      It is a question that we must answer. But can we? Only time will tell. But that is another story, written by different people."
+
+$freedom_text:        "While you wait as the last civilian ship passes through the jumpgate, you recall all the events that have happened in the Far Colonies in this short time of your involvement.
+                      
+                      A lot has changed in the Far Colonies. A lot has changed because of the actions of one brave individual.
+                      
+                      Many are still fighting, but your escape has given the Federation a reason to establish a new connection with VoidExpanse, to finally end this war once and for all, and save millions of people still stranded on the other side. Humanity has to face their enemy and finally put an end to what has transpired in the Far Colonies. Will the Federation listen to their plea or prefer not to take any risks? Only time will tell.
+                      
+                      But that is another story, written by different people. And you... you have finally found some peace here in the Federation core territories.
+                      
+                      However, deep down inside you feel that something... something is still missing..."
+
+$solo_text:           "You and Presley activate the jumpgate transporting yourself back to the safety of the Federation core systems, leaving everybody you knew behind with no chances of ever finding another opportunity to save themselves.
+                      
+                      Your lives are saved, but you can't say the same about lives of millions of people still fighting an impossible war with the Xengatarn in the Far Colonies.
+                      
+                      You will have to live the rest of your life bearing the consequences of your decision..."
+

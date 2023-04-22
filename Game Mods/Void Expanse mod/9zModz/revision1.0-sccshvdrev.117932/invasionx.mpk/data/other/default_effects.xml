@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>default_effects</id>
+	</header>
+
+	<data>
+		<effects>
+			<!-- basic engine values -->
+			<effect>
+				<effect_type>speed_cruising_special</effect_type>
+				<effect_base>2</effect_base>
+			</effect>
+			<effect>
+				<effect_type>speed_strafe_special</effect_type>
+				<effect_base>0.8</effect_base>
+			</effect>
+			<effect>
+				<effect_type>speed_reverse_special</effect_type>
+				<effect_base>0.5</effect_base>
+			</effect>
+			<effect>
+				<effect_type>deceleration_special</effect_type>
+				<effect_base>1</effect_base>
+			</effect>
+			<effect>
+				<effect_type>movement_modifier_no_energy_special</effect_type>
+				<effect_base>0.4</effect_base>
+			</effect>
+			<effect>
+				<effect_type>warp_recharge_value</effect_type>
+				<effect_base>500</effect_base>
+			</effect>
+			<effect>
+				<effect_type>warp_distance_value</effect_type>
+				<effect_base>3</effect_base>
+			</effect>
+			<effect>
+				<effect_type>energy_consumption_warp_value</effect_type>
+				<effect_base>50</effect_base>
+			</effect>
+			
+			<!-- basic hull values -->
+			<effect>
+				<effect_type>radar_targeting_defense_value</effect_type>
+				<effect_base>1000</effect_base>
+			</effect>
+			<effect>
+				<effect_type>inventory_capacity_value</effect_type>
+				<effect_base>20</effect_base>
+			</effect>
+			
+			<!-- mining default values -->
+			<effect>
+				<effect_type>mining_amount_value</effect_type>
+				<effect_base>1</effect_base>
+			</effect>
+			<effect>
+				<effect_type>mining_range_value</effect_type>
+				<effect_base>1</effect_base>
+			</effect>
+			<effect>
+				<effect_type>mining_speed_value</effect_type>
+				<effect_base>1</effect_base>
+			</effect>
+			
+			<!-- other default values -->
+			<effect>
+				<effect_type>hacking_ability</effect_type>
+				<effect_base>1</effect_base>
+			</effect>
+			<effect>
+				<effect_type>manufacturing_resources_value</effect_type>
+				<effect_base>1</effect_base>
+			</effect>
+			
+		</effects>
+	</data>
+</root>

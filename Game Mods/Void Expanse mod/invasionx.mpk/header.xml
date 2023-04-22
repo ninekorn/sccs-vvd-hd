@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<root>
+  <game>VoidExpanse</game>
+  <id>invasionx</id>
+  <title>invasion xengatarn</title>
+  <author>Ninekorn</author>
+  <description>Station Interiors are now included.
+Destroyable ship parts on enemy deaths. You can now salvage those destroyed ship parts.
+Ability to spawn both Combat and Repair Drones and Mining Drones
+Including the Galaxy Market.
+You can access the Galaxy Market and spawn drones from the OnBoard Ship Computer that you can get at any stations.
+
+https://youtu.be/5K_Uw8NCfBg
+https://youtu.be/LAFuRnoIj_U
+https://youtu.be/thQ1AA6Yq7A
+https://youtu.be/50pEKG8--yM
+
+There is still a bug with serialization of the savegame and it is a needle in a haystack to find it. I will keep working on it. But for the moment, if the game crashes at save, you will need to reload the server and use your latest save.
+Also, i forgot to put a custom icon for the new Salvaging device.
+
+Edit 2020-08-15 fixes:
+Removed a unused item.
+Added icon for the salvaging device and made it available through the shop.
+fixed rc drones not working.</description>
+  <version>0.0.0</version>
+  <min_game_version>0.0.0</min_game_version>
+  <required_for_loading_savegame>1</required_for_loading_savegame>
+  <updated>15-08-2020</updated>
+  <modtype>2</modtype>
+  <tags>Gameplay,Hulls,Items</tags>
+</root>

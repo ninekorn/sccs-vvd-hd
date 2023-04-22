@@ -1,0 +1,1 @@
+﻿$voices_default_folder_path: voice_01_ru

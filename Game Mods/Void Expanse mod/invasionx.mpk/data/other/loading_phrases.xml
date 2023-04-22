@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>loading_phrases</id>
+	</header>
+
+	<data>
+		<phrases>
+			$phrases
+		</phrases>
+	</data>
+</root>

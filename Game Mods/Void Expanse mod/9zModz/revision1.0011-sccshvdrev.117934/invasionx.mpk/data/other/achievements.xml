@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>achievements</id>
+	</header>
+
+	<data>
+
+		<achievement>
+			<id>complete_fanatics</id>
+			<title>$complete_fanatics_title</title>
+			<description>$complete_fanatics_description</description>
+			<image_unlocked>achievements/complete_fanatics.png</image_unlocked>
+			<image_locked>achievements/complete_fanatics_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>complete_freedom</id>
+			<title>$complete_freedom_title</title>
+			<description>$complete_freedom_description</description>
+			<image_unlocked>achievements/complete_freedom.png</image_unlocked>
+			<image_locked>achievements/complete_freedom_bw.png</image_locked>
+		</achievement>
+				
+		<achievement>
+			<id>complete_hardcore</id>
+			<title>$complete_hardcore_title</title>
+			<description>$complete_hardcore_description</description>
+			<image_unlocked>achievements/complete_hardcore.png</image_unlocked>
+			<image_locked>achievements/complete_hardcore_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>complete_joe_quest</id>
+			<title>$complete_joe_quest_title</title>
+			<description>$complete_joe_quest_description</description>
+			<image_unlocked>achievements/complete_joe_quest.png</image_unlocked>
+			<image_locked>achievements/complete_joe_quest_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>complete_order</id>
+			<title>$complete_order_title</title>
+			<description>$complete_order_description</description>
+			<image_unlocked>achievements/complete_order.png</image_unlocked>
+			<image_locked>achievements/complete_order_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>complete_solo</id>
+			<title>$complete_solo_title</title>
+			<description>$complete_solo_description</description>
+			<image_unlocked>achievements/complete_solo.png</image_unlocked>
+			<image_locked>achievements/complete_solo_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>complete_tutorial</id>
+			<title>$complete_tutorial_title</title>
+			<description>$complete_tutorial_description</description>
+			<image_unlocked>achievements/complete_tutorial.png</image_unlocked>
+			<image_locked>achievements/complete_tutorial_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>deal_5000_damage</id>
+			<title>$deal_5000_damage_title</title>
+			<description>$deal_5000_damage_description</description>
+			<image_unlocked>achievements/deal_5000_damage.png</image_unlocked>
+			<image_locked>achievements/deal_5000_damage_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>die_10_times</id>
+			<title>$die_10_times_title</title>
+			<description>$die_10_times_description</description>
+			<image_unlocked>achievements/die_10_times.png</image_unlocked>
+			<image_locked>achievements/die_10_times_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>have_99999_money</id>
+			<title>$have_99999_money_title</title>
+			<description>$have_99999_money_description</description>
+			<image_unlocked>achievements/have_99999_money.png</image_unlocked>
+			<image_locked>achievements/have_99999_money_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>join_fanatics</id>
+			<title>$join_fanatics_title</title>
+			<description>$join_fanatics_description</description>
+			<image_unlocked>achievements/join_fanatics.png</image_unlocked>
+			<image_locked>achievements/join_fanatics_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>join_freedom</id>
+			<title>$join_freedom_title</title>
+			<description>$join_freedom_description</description>
+			<image_unlocked>achievements/join_freedom.png</image_unlocked>
+			<image_locked>achievements/join_freedom_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>join_order</id>
+			<title>$join_order_title</title>
+			<description>$join_order_description</description>
+			<image_unlocked>achievements/join_order.png</image_unlocked>
+			<image_locked>achievements/join_order_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>kill_1000_ships</id>
+			<title>$kill_1000_ships_title</title>
+			<description>$kill_1000_ships_description</description>
+			<image_unlocked>achievements/kill_1000_ships.png</image_unlocked>
+			<image_locked>achievements/kill_1000_ships_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>kill_enemy_75_levels_higher</id>
+			<title>$kill_enemy_75_levels_higher_title</title>
+			<description>$kill_enemy_75_levels_higher_description</description>
+			<image_unlocked>achievements/kill_enemy_75_levels_higher.png</image_unlocked>
+			<image_locked>achievements/kill_enemy_75_levels_higher_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>kill_enemy_with_low_hp</id>
+			<title>$kill_enemy_with_low_hp_title</title>
+			<description>$kill_enemy_with_low_hp_description</description>
+			<image_unlocked>achievements/kill_enemy_with_low_hp.png</image_unlocked>
+			<image_locked>achievements/kill_enemy_with_low_hp_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>kill_friendly_npc</id>
+			<title>$kill_friendly_npc_title</title>
+			<description>$kill_friendly_npc_description</description>
+			<image_unlocked>achievements/kill_friendly_npc.png</image_unlocked>
+			<image_locked>achievements/kill_friendly_npc_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>kill_player</id>
+			<title>$kill_player_title</title>
+			<description>$kill_player_description</description>
+			<image_unlocked>achievements/kill_player.png</image_unlocked>
+			<image_locked>achievements/kill_player_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>kill_xengatarn</id>
+			<title>$kill_xengatarn_title</title>
+			<description>$kill_xengatarn_description</description>
+			<image_unlocked>achievements/kill_xengatarn.png</image_unlocked>
+			<image_locked>achievements/kill_xengatarn_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>leave_starting_system</id>
+			<title>$leave_starting_system_title</title>
+			<description>$leave_starting_system_description</description>
+			<image_unlocked>achievements/leave_starting_system.png</image_unlocked>
+			<image_locked>achievements/leave_starting_system_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>loot_crate</id>
+			<title>$loot_crate_title</title>
+			<description>$loot_crate_description</description>
+			<image_unlocked>achievements/loot_crate.png</image_unlocked>
+			<image_locked>achievements/loot_crate_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>mine_asteroids</id>
+			<title>$mine_asteroids_title</title>
+			<description>$mine_asteroids_description</description>
+			<image_unlocked>achievements/mine_asteroids.png</image_unlocked>
+			<image_locked>achievements/mine_asteroids_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>play_24_hours</id>
+			<title>$play_24_hours_title</title>
+			<description>$play_24_hours_description</description>
+			<image_unlocked>achievements/play_24_hours.png</image_unlocked>
+			<image_locked>achievements/play_24_hours_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>play_multiplayer</id>
+			<title>$play_multiplayer_title</title>
+			<description>$play_multiplayer_description</description>
+			<image_unlocked>achievements/play_multiplayer.png</image_unlocked>
+			<image_locked>achievements/play_multiplayer_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>play_singleplayer</id>
+			<title>$play_singleplayer_title</title>
+			<description>$play_singleplayer_description</description>
+			<image_unlocked>achievements/play_singleplayer.png</image_unlocked>
+			<image_locked>achievements/play_singleplayer_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>play_with_10_people</id>
+			<title>$play_with_10_people_title</title>
+			<description>$play_with_10_people_description</description>
+			<image_unlocked>achievements/play_with_10_people.png</image_unlocked>
+			<image_locked>achievements/play_with_10_people_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>player_level_05</id>
+			<title>$player_level_05_title</title>
+			<description>$player_level_05_description</description>
+			<image_unlocked>achievements/player_level_05.png</image_unlocked>
+			<image_locked>achievements/player_level_05_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>player_level_15</id>
+			<title>$player_level_15_title</title>
+			<description>$player_level_15_description</description>
+			<image_unlocked>achievements/player_level_15.png</image_unlocked>
+			<image_locked>achievements/player_level_15_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>player_level_30</id>
+			<title>$player_level_30_title</title>
+			<description>$player_level_30_description</description>
+			<image_unlocked>achievements/player_level_30.png</image_unlocked>
+			<image_locked>achievements/player_level_30_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>player_level_45</id>
+			<title>$player_level_45_title</title>
+			<description>$player_level_45_description</description>
+			<image_unlocked>achievements/player_level_45.png</image_unlocked>
+			<image_locked>achievements/player_level_45_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>player_level_90</id>
+			<title>$player_level_90_title</title>
+			<description>$player_level_90_description</description>
+			<image_unlocked>achievements/player_level_90.png</image_unlocked>
+			<image_locked>achievements/player_level_90_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>visit_capital_system</id>
+			<title>$visit_capital_system_title</title>
+			<description>$visit_capital_system_description</description>
+			<image_unlocked>achievements/visit_capital_system.png</image_unlocked>
+			<image_locked>achievements/visit_capital_system_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>hack_1</id>
+			<title>$hack_1_title</title>
+			<description>$hack_1_description</description>
+			<image_unlocked>achievements/hack_1.png</image_unlocked>
+			<image_locked>achievements/hack_1_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>hack_2</id>
+			<title>$hack_2_title</title>
+			<description>$hack_2_description</description>
+			<image_unlocked>achievements/hack_2.png</image_unlocked>
+			<image_locked>achievements/hack_2_bw.png</image_locked>
+		</achievement>
+		
+		<achievement>
+			<id>hack_3</id>
+			<title>$hack_3_title</title>
+			<description>$hack_3_description</description>
+			<image_unlocked>achievements/hack_3.png</image_unlocked>
+			<image_locked>achievements/hack_3_bw.png</image_locked>
+		</achievement>
+	
+	</data>
+</root>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>radar</id>
+	</header>
+
+	<data>
+		<colors>
+			<current_player_ship>1;1;1;0.75</current_player_ship>
+			<other_player_ship>1;0.25;1;0.75</other_player_ship>
+			<party_member>0.25;1;0.25;0.75</party_member>
+			
+			<friendly_ship>0.25;1;0.25;0.75</friendly_ship>
+			<neutral_ship>0.25;0.25;1;0.75</neutral_ship>
+			<enemy_ship>1;0.25;0.25;0.75</enemy_ship>
+			
+			<star>1;1;0.25;0.75</star>
+			<planet>0.25;0.65;1;0.75</planet>
+			<asteroid>0.7;0.4;0.15;0.75</asteroid>
+			
+			<space_station_friendly>0.25;1;0.25;0.75</space_station_friendly>
+			<space_station_enemy>1;0.25;0.25;0.75</space_station_enemy>
+			<jumpgate>0.6;0.8;1;0.75</jumpgate>
+			
+			<hive>1;0.25;0.25;0.75</hive>
+			
+			<questmark>1;1;0;0.75</questmark>
+			<questarrow>1;1;0;0.65</questarrow>
+			
+			<crate>1;1;0.25;0.75</crate>
+			
+			<navpointmark>0;1;0.4;0.75</navpointmark>
+			<navpointarrow>0;1;0.4;0.5</navpointarrow>
+			
+			<utility>1;1;0.25;0.75</utility>
+			
+			<unknown>0.85;0.85;0.85;0.75</unknown>			
+		</colors>
+	</data>
+</root>

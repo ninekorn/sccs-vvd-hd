@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<header>
+		<id>backgrounddeco</id>
+		<title>(Unused)</title>
+		<description></description>
+		<enabled>1</enabled>
+	</header>
+
+	<gfx>
+		<model>decorations/backgrounddeco.obj</model>
+		<textures>
+			<diffuse>decorations/backgrounddeco/backgrounddeco-pink.png</diffuse>
+			<specular>decorations/backgrounddeco/backgrounddeco-pink.png</specular>
+			<normal>decorations/backgrounddeco/backgrounddeco-pink.png</normal>
+			
+		</textures>
+		<scale>1</scale>
+		<rotation>0</rotation>
+	</gfx>
+</root>

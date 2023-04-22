@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+	<header>
+		<id>tutorials</id>
+	</header>
+
+	<data>
+		<tutorials>
+		
+			<element>
+				<id>welcome</id>
+				<media>tutorials/welcome.jpg</media>
+				<title>$welcome_title</title>
+				<text>$welcome_text</text>
+			</element>
+		
+			<element>
+				<id>movement</id>
+				<media>tutorials/movement.jpg</media>
+				<title>$movement_title</title>
+				<text>$movement_text</text>
+			</element>
+			
+			<element>
+				<id>inventory_space</id>
+				<media>tutorials/inventory_space.jpg</media>
+				<title>$inventory_space_title</title>
+				<text>$inventory_space_text</text>
+			</element>
+
+			<element>
+				<id>inventory_station</id>
+				<media>tutorials/inventory_station.jpg</media>
+				<title>$inventory_station_title</title>
+				<text>$inventory_station_text</text>
+			</element>
+			
+			<element>
+				<id>overview_station</id>
+				<media>tutorials/overview_station.jpg</media>
+				<title>$overview_station_title</title>
+				<text>$overview_station_text</text>
+			</element>
+			
+			<element>
+				<id>decks_station</id>
+				<media>tutorials/decks_station.jpg</media>
+				<title>$decks_station_title</title>
+				<text>$decks_station_text</text>
+			</element>
+			
+			<element>
+				<id>minimap_space</id>
+				<media>tutorials/minimap_space.jpg</media>
+				<title>$minimap_space_title</title>
+				<text>$minimap_space_text</text>
+			</element>
+			
+			<element>
+				<id>store_station</id>
+				<media>tutorials/store_station.jpg</media>
+				<title>$store_station_title</title>
+				<text>$store_station_text</text>
+			</element>
+			
+			<element>
+				<id>quest_log</id>
+				<media>tutorials/quest_log.jpg</media>
+				<title>$quest_log_title</title>
+				<text>$quest_log_text</text>
+			</element>
+			
+			<element>
+				<id>system_map</id>
+				<media>tutorials/system_map.jpg</media>
+				<title>$system_map_title</title>
+				<text>$system_map_text</text>
+			</element>
+			
+			<element>
+				<id>galaxy_map</id>
+				<media>tutorials/galaxy_map.jpg</media>
+				<title>$galaxy_map_title</title>
+				<text>$galaxy_map_text</text>
+			</element>
+			
+			<element>
+				<id>factions</id>
+				<media>tutorials/factions.jpg</media>
+				<title>$factions_title</title>
+				<text>$factions_text</text>
+			</element>
+			
+			<element>
+				<id>character</id>
+				<media>tutorials/character.jpg</media>
+				<title>$character_title</title>
+				<text>$character_text</text>
+			</element>
+			
+			<element>
+				<id>missiles</id>
+				<media>tutorials/missiles.jpg</media>
+				<title>$missiles_title</title>
+				<text>$missiles_text</text>
+			</element>
+			
+			<element>
+				<id>trading</id>
+				<media>tutorials/trading.jpg</media>
+				<title>$trading_title</title>
+				<text>$trading_text</text>
+			</element>
+			
+		</tutorials>
+	</data>
+</root>

@@ -1,0 +1,13 @@
+﻿$quests_title:           Quests
+$services_title:         Services
+$order_title:            Orders
+$personal_title:         Personal
+$advice_title:           Advice
+$factions_title:         Factions
+$races_title:            Races
+$locations_title:        Locations
+$technology_title:       Technology
+$industry_title:         Industry
+$business_title:         Business
+$history_title:          History
+$people_title:           People
