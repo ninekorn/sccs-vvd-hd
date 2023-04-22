@@ -6,9 +6,10 @@ But my development for trying to fix the virtual desktop screencapture image whe
 
 The voxel human ik rig arms are pointing where the mouse cursor is on the virtual desktop. This was a benchmark test and it was lagging with just that many rigs.
 
-<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-22%20110431.jpg" border="0">
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-19%20194657.jpg" border="0">
 
 Final Results. Only using 2 ik rig bottom left and right:
 
-<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-19%20194657.jpg" border="0">
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-22%20110431.jpg" border="0">
+
 
