@@ -1,7 +1,7 @@
 [![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs-vvd-hd/total.svg)]() 
 [![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs-vvd-hd)]()
 
-UPLOADED UNDER APACHE 2.0 LICENSE and all of the other licenses included in the folder Licenses.
+UPLOADED UNDER APACHE 2.0 LICENSE and all of the other licenses included in the folder Licenses. This does not change that my earlier revisions were not under a main Apache 2.0 License but were under MIT license and the other licenses included in the folder Licenses of my old repository sccs-heightmaps-virtualdesktop-SharpDX11.1. But this repository is different in terms that I want the Apache 2.0 License to englobe the rest. The idea of putting these series of softwares/codes/references together and using ProtectMyWork i think was a better way to protect the project. 
 
 # sccs-vvd-hd
 Re-Release of my sccs-heightmaps-virtualdesktop-SharpDX11.1 repository from where i had left off... My repository sccs-heightmaps-virtualdesktop-SharpDX11.1 and 2 other repos, were filled with garbage cookies leftovers maybe like spywares/adwares/viruses/malware and i felt it was the time to finally restart from scratch as i do not have any sofware that "cleans" steganography from my files at my disposition. I am trying to clean the best way as i go and will try and release my softwares without those goddamn maleficent cookie leftovers or copy paste steganography from using as reference code on the internet?
