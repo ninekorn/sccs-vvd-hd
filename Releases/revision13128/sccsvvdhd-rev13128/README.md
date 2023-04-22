@@ -18,5 +18,7 @@ Also, i have cleaned a little bit the console debug, and it is more precise to k
 
 I modified a little bit my perceptron code development using the broloff perceptron, in order to re-use my old code of vecto2.dot instead of vector3.dot and also now the rotation of the stick only happens on the yaw and pitch as i never fixed it to work on 3 axis, but at least, when the user is standing in the front of the screen and moves backwards away from the screen, the stick/pencil doesn't go crazy in a rotation frenzy anymore.
 
+Something didn't feel right with my vertex shader z position displacement as some rows were missing from the virtual desktop initial zero on the z axis, and we could see the missing rows way back as if they were sent to infinity... I think i fixed it but i am unsure as the last row at the bottom was also giving me issues until somehow it stopped after a few modifications and a solution rebuild. 
+
 
 
