@@ -1,7 +1,7 @@
 [![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs-vvd-hd/total.svg)]() 
 [![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs-vvd-hd)]()
 
-UPLOADED UNDER APACHE 2.0 LICENSE and all of the other licenses included in the folder Licenses.
+UPLOADED UNDER APACHE 2.0 LICENSE and all of the other licenses included in the folder Licenses. This does not change that my earlier revisions were not under a main Apache 2.0 License but were under MIT license and the other licenses included in the folder Licenses of my old repository sccs-heightmaps-virtualdesktop-SharpDX11.1. But this repository is different in terms that I want the Apache 2.0 License to englobe the rest. The idea of putting these series of softwares/codes/references together and using the Apache 2.0 License and using ProtectMyWork i think is a better way to protect the project. 
 
 # sccs-vvd-hd
 Re-Release of my sccs-heightmaps-virtualdesktop-SharpDX11.1 repository from where i had left off... My repository sccs-heightmaps-virtualdesktop-SharpDX11.1 and 2 other repos, were filled with garbage cookies leftovers maybe like spywares/adwares/viruses/malware and i felt it was the time to finally restart from scratch as i do not have any sofware that "cleans" steganography from my files at my disposition. I am trying to clean the best way as i go and will try and release my softwares without those goddamn maleficent cookie leftovers or copy paste steganography from using as reference code on the internet?
@@ -34,4 +34,9 @@ EDIT2023AVRIL17 - I released/uploaded my solution REV1312. Now i am naming my so
 ########RELEASE-REV1312#######
 ########RELEASE-REV1312#######
 ########RELEASE-REV1312#######
+
+EDIT-2023april21: AVIRA ANTIVIRUS DETECTION? why? where? what? so i sent my files to avira but will have to uninstall avira if i want to keep on programming. I advised them that i don't know where in the heck there could be a virus in my compiled exe, as this is what avira detected tonight around 20h56 21april2023 HEUR/APC. Please be
+careful with my software. Otherwise, as i said before, it might be a binary signing files that i should do and that i don't do? So i restored the quarantined .exe back into my computer as whatever i am coding in my scripts isn't a virus and i need to keep on developing. maybe i should do a cleaning of the pinvoke functions "dllimport" user32.dll and the others of that kind, because people can use hooking functions maybe to hook to all of those functions that i don't use and are remnants of code i had intended to use as reference and sometimes i just end up not even using those user32.dll calls in program.cs/form.cs/scgraphicssec.cs/scupdate.cs/scdirectx.cs . Many of those functions, i don't use them as i have no purpose for them. Maybe removing a couple of these functions could eliminate a false positive if this is what is causing those detections?...
+
+
 
