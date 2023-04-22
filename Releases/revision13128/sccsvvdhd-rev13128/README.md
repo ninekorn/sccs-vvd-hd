@@ -12,7 +12,7 @@ Final Results. Only using 2 ik rig bottom left and right pointing their arms whe
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-22%20110431.jpg" border="0">
 
-I will work on trying to incorporate a slider to increase the size of the voxel human ik rig "dashboard figurines" soon:
+I will work on trying to incorporate a slider to increase the size of the voxel human ik rig "dashboard figurines" soon. In the screenshot below, the changes are discreet but it is visible that the voxel assets and voxel ik rig are bigger than the last screenshot:
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-22%20130846.jpg" border="0">
 
 
