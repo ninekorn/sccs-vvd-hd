@@ -23,20 +23,3 @@ https://www.microsoft.com/en-us/wdsi/submission/70925aec-07f1-4f36-b73e-99b9a829
 https://www.microsoft.com/en-us/wdsi/submission/ba49e49d-4c97-4265-b858-4daf4fea9636
 
 https://www.microsoft.com/en-us/wdsi/submission/930977cd-8c0e-48b1-bfcf-572caf1cb567 //Client Detection none - Cloud detection Trojan:Win32/Phonzy.A!ml - uncompiled
-
-
-########RELEASE-REV1312#######
-########RELEASE-REV1312#######
-########RELEASE-REV1312#######
-
-EDIT2023AVRIL17 - I released/uploaded my solution REV1312. Now i am naming my solutions sccsvvdhd instead of sccsr14forms or sccsr15-16-17 etc... but naming my folders with revision numbers will happen again when i make backups of my solution and release/upload them as i did in this current repository with my first release. I wanted to remake from scratch my solutions WinRT.GraphicsCapture and Win32.Shared and Win32.DWMSharedSurface before releasing and so i did. I freshly "rewrote the scripts from c# by using my sccsscriptrewrite utility solution", where i don't even know if rewritting the scripts from c# is giving errors if a stenography virus or bullshit is attached so instead of using File.Copy, i instead retrieve the string, and soon i will try and write a .txt file and save and then reopen the file and retrieve the string again and then rewrite to .cs extension, as i want to see if i can clean viruses/spywares/malwares/adwares/steganography if any, was attached to any of my code. I also remade my main solution and rewrote in c# the scripts of my main solution. While remaking my solution using visual studio 2022, things to note, you have to create it in netframework 4.7.2 and edit the csproj project file and add UseWPF true and LangVersion 10.0 and I rebuilt those 3 screencapture solutions from Mika's sandbox using visual studio 2022 and the framework 4.7.2 for those as using the framework 4.8 or net6.0 wasn't working.
-
-########RELEASE-REV1312#######
-########RELEASE-REV1312#######
-########RELEASE-REV1312#######
-
-EDIT-2023april21: AVIRA ANTIVIRUS DETECTION? why? where? what? so i sent my files to avira but will have to uninstall avira if i want to keep on programming. I advised them that i don't know where in the heck there could be a virus in my compiled exe, as this is what avira detected tonight around 20h56 21april2023 HEUR/APC. Please be
-careful with my software. Otherwise, as i said before, it might be a binary signing files that i should do and that i don't do? So i restored the quarantined .exe back into my computer as whatever i am coding in my scripts isn't a virus and i need to keep on developing. maybe i should do a cleaning of the pinvoke functions "dllimport" user32.dll and the others of that kind, because people can use hooking functions maybe to hook to all of those functions that i don't use and are remnants of code i had intended to use as reference and sometimes i just end up not even using those user32.dll calls in program.cs/form.cs/scgraphicssec.cs/scupdate.cs/scdirectx.cs . Many of those functions, i don't use them as i have no purpose for them. Maybe removing a couple of these functions could eliminate a false positive if this is what is causing those detections?...
-
-
-
