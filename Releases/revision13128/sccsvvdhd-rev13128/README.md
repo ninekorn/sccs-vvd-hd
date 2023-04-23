@@ -24,6 +24,9 @@ I modified a little bit my perceptron code development using the broloff percept
 
 Something didn't feel right with my vertex shader z position displacement as some rows were missing from the virtual desktop initial zero on the z axis, and we could see the missing rows way back as if they were sent to infinity... I think i fixed it but i am unsure as the last row at the bottom was also giving me issues until somehow it stopped after a few modifications and a solution rebuild. 
 
+Yes, i know, the voxel human ik rig have no heads for the moment. In release 1.3131 they got their heads back. But i won't release that revision yet as it costs me protectmywork tokens to release a revision everytime so i am working on more bug fixes or/and additions before spending a token.
+
+steve chassé 9
 
 
 
