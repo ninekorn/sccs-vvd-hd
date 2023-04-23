@@ -19,3 +19,5 @@ In order to change the angle of the voxel virtual desktop at loadup, you have to
        Line2266   var pitch = (float)(Math.PI * (9) / 180.0f); //here i changed it to 9 degrees and didn't need to move the origin position of the camera 
        Line2267   var yaw = (float)(Math.PI * (0) / 180.0f);
        Line2268   var roll = (float)(Math.PI * (0) / 180.0f);
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-23%20192918.jpg" border="0">
