@@ -21,3 +21,5 @@ In order to change the angle of the voxel virtual desktop at loadup, you have to
        Line2268   var roll = (float)(Math.PI * (0) / 180.0f);
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-23%20192918.jpg" border="0">
+
+Edit-2023april23: Same solution, no avira antivirus detection today? maybe their antivirus/malware database got updated after i sent them an email/message about the HEUR/APC detection?...
