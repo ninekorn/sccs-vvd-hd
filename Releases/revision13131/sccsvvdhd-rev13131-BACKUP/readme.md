@@ -14,7 +14,7 @@ remnants of code i had intended to use as reference and sometimes i just end up 
 program.cs/form.cs/scgraphicssec.cs/scupdate.cs/scdirectx.cs . Many of those functions, i don't use them as i have no purpose for them. Maybe removing a 
 couple of these functions could eliminate a false positive if this is what is causing those detections?...
 
-In order to change the angle of the voxel virtual desktop at loadup, you have to modify the following lines:
+In order to change the angle of the voxel virtual desktop at loadup, you have to modify the following lines in the script scgraphicssec.cs:
 
        Line2266   var pitch = (float)(Math.PI * (9) / 180.0f); //here i changed it to 9 degrees and didn't need to move the origin position of the camera 
        Line2267   var yaw = (float)(Math.PI * (0) / 180.0f);
