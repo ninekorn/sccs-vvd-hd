@@ -29,13 +29,4 @@ Yes, i know, the voxel human ik rig have no heads for the moment. In release 1.3
 steve chassé 9
 
 
-New revision that i will release under Apache 2.0:
-
-https://www.microsoft.com/en-us/wdsi/submission/70925aec-07f1-4f36-b73e-99b9a829edd4
-
-https://www.microsoft.com/en-us/wdsi/submission/ba49e49d-4c97-4265-b858-4daf4fea9636
-
-https://www.microsoft.com/en-us/wdsi/submission/930977cd-8c0e-48b1-bfcf-572caf1cb567 //Client Detection none - Cloud detection Trojan:Win32/Phonzy.A!ml - uncompiled
-
-
 
