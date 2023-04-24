@@ -4,4 +4,4 @@ pressing the menu F9 to go fullscreen was making the captured application go to 
 
 steve chassé 
 
-NOTE: in pushed my last update under revision 13133 but it was a mistake. the correct revision for the push at 09h13am eastern time was for revision 13132. 
+NOTE: i pushed my last update under revision 13133 but it was a mistake on the revision number as i was pushing through for 13132. the correct revision for the push at 09h13am eastern time was for revision 13132. 
