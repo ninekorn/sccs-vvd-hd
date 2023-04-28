@@ -47,7 +47,7 @@ But with each monitor resolution you can select 5 different resolution, but that
 
 I apologize for my last update as even the "low voxel res" and "high voxel res" weren't working anymore. so update 13133 wasn't that decent but at least it gave a little bit of resolutions.
 
-Currently, it is not possible to have access to monitor resolutions other than the current monitor resolutions, so while you would be let's say in the monitor resolution 1920w 1080h, then the voxel resolutions available to you would be 5 * 2 = 10 resolutions possible.
+Currently, it is not possible to have access to monitor resolutions other than the current monitor resolutions in my program, meaning that if your monitor is currently at a resolution of 1920 by 1080, you cannot select to view the options #1 to #5 of a monitor of a resolution of 640 by 480, what you will see are the options #1 to #5 for the monitor resolution 1920 by 1080 since that's what your monitor is. But also remember that in order to have a real voxel HD display, you need to enable "Full voxel res" instead of "half voxel res".
 
 steve c
 
