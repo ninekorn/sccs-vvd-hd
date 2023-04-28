@@ -5,19 +5,33 @@ update - revision 13134 - full resolution - uncalibrated.
 Hey everyone. My earlier resolution development / update revision 13133 was pure garbage as the only way possible to have a working resolution was to put the monitor at the resolution prior to selecting it inside of the program. I made changes so that at least 5 resolutions are available for each type of monitor resolutions. So currently my monitor goes from 800w600h to max1920w1080h so i could setup pretty much every resolutions inbetween including the min and max for a total of 15 resolutions, 
 
 1920 x 1080
+
 1760 x 990
+
 1680 x 1050
+
 1600 x 900
+
 1440 x 900
+
 1366 x 768
+
 1280 x 1024
+
 1280 x 960
+
 1280 x 800
+
 1280 x 720
+
 1152 x 864
+
 1128 x 634
+
 1024 x 768
+
 832 x 624
+
 800 x 600
 
 640 x 480 - WIP - i don't have a monitor yet accepting that resolution. so i will find a monitor test subject first.
