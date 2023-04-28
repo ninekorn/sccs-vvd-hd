@@ -1,7 +1,10 @@
-# revision 13132
+#revision 13134
 
-pressing the menu F9 to go fullscreen was making the captured application go to 1920w x 1080h, regardless of the resolution of the desktop monitor captured. So i added some code in program.cs that uses the device of scdirectx.cs to get the desktopbounds right when scgraphicssec.cs is created, and that way, inside of my script Form.cs, i was able to use program.cs desktopboundswidth and desktopboundsheight in order to properly make the captured program be at the current resolution of the monitor captured. The rest is pretty much the same as my revision 13131.
+update - revision 13134 - full resolution - uncalibrated
+Hey everyone. My earlier resolution development / update revision 13133 was pure garbage as the only way possible to have a working resolution was to put the monitor at the resolution prior to selecting it inside of the program. I made changes so that at least 5 resolutions are available for each type of monitor resolutions. So currently my monitor goes from 800w600h to max1920w1080h so i could setup pretty much every resolutions inbetween including the min and max for a total of 15 resolutions, but with each monitor resolution you can select 5 different resolution, but that is not all, since i have also left enabled the "low voxel res" and "high voxel res" options, now named "half voxel res" and "full voxel res", so it's 15 monitor resolutions with 5 choices each (less voxels per resolution type and different ratios per resolution alternative from 1 to 5), and a full voxel and half voxel mode. That brings a total of 15*5*2 voxel resolutions, or 150 voxel resolutions total. But there is so much tweaking left to do, that probably only half of those resolutions are correctly-ish calibrated where the heightmaps values are fitting the screencapture image behind. So i will keep working on this.
 
-steve chassé 
+I apologize for my last update as even the "low voxel res" and "high voxel res" weren't working anymore. so update 13133 wasn't that decent but at least it gave a little bit of resolutions.
 
-NOTE: i pushed my last update under revision 13133 but it was a mistake on the revision number as i was pushing through for 13132. the correct revision for the push at 09h13am eastern time was for revision 13132. I am not even started on 13133 yet at 09h25am eastern time here.
+Currently, it is not possible to have access to monitor resolutions other than the current monitor resolutions, so while you would be let's say in the monitor resolution 1920w 1080h, then the voxel resolutions available to you would be 5 * 2 = 10 resolutions possible.
+
+steve c
