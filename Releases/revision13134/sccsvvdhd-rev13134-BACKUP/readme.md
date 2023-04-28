@@ -2,7 +2,9 @@
 
 update - revision 13134 - full resolution - uncalibrated.
 
-Hey everyone. My earlier resolution development / update revision 13133 was pure garbage as the only way possible to have a working resolution was to put the monitor at the resolution prior to selecting it inside of the program. I made changes so that at least 5 resolutions are available for each type of monitor resolutions. So currently my monitor goes from min 800w600h to max 1920w1080h so i could setup pretty much every resolutions inbetween including the min and max for a total of 15 resolutions that are on my monitor:
+Hey everyone. My earlier resolution development / update revision 13133 was pure garbage as the only way possible to have a working resolution was to put the monitor at the resolution prior to selecting it inside of the program. I made changes so that at least 5 resolutions are available for each type of monitor resolutions. So currently my monitor goes from min 800w600h to max 1920w1080h so i was able to develop some lines of code to adapt to different monitor resolutions, including the min and max of my monitor for a total of 15 resolutions that are on my monitor.
+
+Next to the resolutions of my monitor below are the new "resolution option" info on how i have scripted new resolution options, where 5 choices of resolution are available for the user to choose from (apart from the "half voxel res" option and "full voxel res" option). The resolutions below are also the resolutions that my program is now able to detect and assign an appropriate number of voxel instances and voxel bytes that matches the resolution of the monitor. (there is calibration/tweaking left to do)
 
 1920 x 1080 <= voxel resolution #1
 
