@@ -38,7 +38,12 @@ Next to the resolutions of my monitor below are the new "resolution option" info
 
 640 x 480 - WIP - i don't have a monitor yet accepting that resolution. so i will find a monitor test subject first and then i will be able to try and calibrate.
 
-Note: I use the monitor resolution as the base for reducing/dividing it to obtain an approximate comparable number of voxel instances in width and height to cover the area of voxel bytes for the entire voxel virtual desktop image).
+Note: 
+
+1. I use the monitor resolution as the base for reducing/dividing it to obtain an approximate comparable number of voxel instances in width and height to cover the area of voxel bytes for the entire voxel virtual desktop image).
+2. All resolutions below a width of 1920 and a height of 1080 are using as the 5 base resolutions, the same thing as if the monitor was 1920 in width by 1080 in height.
+
+
 
 But with each monitor resolution you can select 5 different resolution, but that is not all, since i have also left enabled the "low voxel res" and "high voxel res" options, now named "half voxel res" and "full voxel res", so it's 15 monitor resolutions with 5 choices each (less voxels per resolution type and different ratios per resolution alternative from 1 to 5), and a full voxel and half voxel mode. That brings a total of 15*5*2 voxel resolutions, or 150 voxel resolutions total. But there is so much tweaking left to do, that probably only half of those resolutions are correctly-ish calibrated where the heightmaps values are fitting the screencapture image behind. So i will keep working on this.
 
