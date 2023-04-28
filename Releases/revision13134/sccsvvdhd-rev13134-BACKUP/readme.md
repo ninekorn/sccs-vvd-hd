@@ -4,39 +4,39 @@ update - revision 13134 - full resolution - uncalibrated.
 
 Hey everyone. My earlier resolution development / update revision 13133 was pure garbage as the only way possible to have a working resolution was to put the monitor at the resolution prior to selecting it inside of the program. I made changes so that at least 5 resolutions are available for each type of monitor resolutions. So currently my monitor goes from min 800w600h to max 1920w1080h so i was able to develop some lines of code to adapt to different monitor resolutions, including the min and max of my monitor for a total of 15 resolutions that are on my monitor.
 
-Next to the resolutions of my monitor below are the new "resolution option" info on how i have scripted new resolution options, where 5 choices of resolution are available for the user to choose from (apart from the "half voxel res" option and "full voxel res" option). The resolutions below are also the resolutions that my program is now able to detect and assign an appropriate number of voxel instances and voxel bytes that matches the resolution of the monitor. (there is calibration/tweaking left to do)
+Next to the resolutions of my monitor below are the new "resolution options" info on how i have scripted new resolution options, where 5 choices of resolution are available for the user to choose from (apart from the "half voxel res" option and "full voxel res" option). The resolutions below are also the resolutions that my program is now able to detect and assign an appropriate number of voxel instances and voxel bytes that matches the resolution of the monitor. (there is calibration/tweaking left to do).
 
-1920 x 1080 <= voxel resolution #1
+ratio 16/9 - of a 1920 x 1080 resolution <= voxel resolution #1
 
-1760 x 990
+ratio //// of a 1760 x 990 resolution 
 
-1680 x 1050
+ratio //// - of a 1680 x 1050 resolution 
 
-1600 x 900 <= voxel resolution #2 
+ratio 16/9 - of a 1600 x 900 resolution <= voxel resolution #2 
 
-1440 x 900 <= voxel resolution #3
+ratio //// - of a 1440 x 900 resolution <= voxel resolution #3
 
-1366 x 768
+ratio //// - of a 1366 x 768 resolution 
 
-1280 x 1024
+ratio //// - of a 1280 x 1024 resolution 
 
-1280 x 960
+ratio //// - of a 1280 x 960 resolution 
 
-1280 x 800
+ratio //// - of a 1280 x 800 resolution 
 
-1280 x 720 <= voxel resolution #4 
+ratio //// - of a 1280 x 720 resolution  <= voxel resolution #4 
 
-1152 x 864
+ratio //// - of a 1152 x 864 resolution 
 
-1128 x 634
+ratio //// - of a 1128 x 634 resolution 
 
-1024 x 768
+ratio //// - of a 1024 x 768 resolution 
 
-832 x 624
+ratio //// - of a 832 x 624 resolution 
 
-800 x 600 <= voxel resolution #5
+ratio 4/3 - of a 800 x 600 resolution  <= voxel resolution #5
 
-640 x 480 - WIP - i don't have a monitor yet accepting that resolution. so i will find a monitor test subject first and then i will be able to try and calibrate.
+ratio //// - of a 640 x 480 resolution  - WIP - i don't have a monitor yet accepting that resolution. so i will find a monitor test subject first and then i will be able to try and calibrate.
 
 Note: 
 
