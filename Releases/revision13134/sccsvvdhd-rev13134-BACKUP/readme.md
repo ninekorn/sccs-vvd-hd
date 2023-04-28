@@ -4,15 +4,15 @@ update - revision 13134 - full resolution - uncalibrated.
 
 Hey everyone. My earlier resolution development / update revision 13133 was pure garbage as the only way possible to have a working resolution was to put the monitor at the resolution prior to selecting it inside of the program. I made changes so that at least 5 resolutions are available for each type of monitor resolutions. So currently my monitor goes from min 800w600h to max 1920w1080h so i could setup pretty much every resolutions inbetween including the min and max for a total of 15 resolutions that are on my monitor:
 
-1920 x 1080 <= voxel resolution #1 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
+1920 x 1080 <= voxel resolution #1
 
 1760 x 990
 
 1680 x 1050
 
-1600 x 900 <= voxel resolution #2 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
+1600 x 900 <= voxel resolution #2 
 
-1440 x 900 <= voxel resolution #3 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
+1440 x 900 <= voxel resolution #3
 
 1366 x 768
 
@@ -22,7 +22,7 @@ Hey everyone. My earlier resolution development / update revision 13133 was pure
 
 1280 x 800
 
-1280 x 720 <= voxel resolution #4 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
+1280 x 720 <= voxel resolution #4 
 
 1152 x 864
 
@@ -32,9 +32,11 @@ Hey everyone. My earlier resolution development / update revision 13133 was pure
 
 832 x 624
 
-800 x 600 <= voxel resolution #5 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
+800 x 600 <= voxel resolution #5
 
 640 x 480 - WIP - i don't have a monitor yet accepting that resolution. so i will find a monitor test subject first and then i will be able to try and calibrate.
+
+Note: I use the monitor resolution as the base for reducing/dividing it to obtain an approximate comparable number of voxel instances in width and height to cover the area of voxel bytes for the entire voxel virtual desktop image).
 
 But with each monitor resolution you can select 5 different resolution, but that is not all, since i have also left enabled the "low voxel res" and "high voxel res" options, now named "half voxel res" and "full voxel res", so it's 15 monitor resolutions with 5 choices each (less voxels per resolution type and different ratios per resolution alternative from 1 to 5), and a full voxel and half voxel mode. That brings a total of 15*5*2 voxel resolutions, or 150 voxel resolutions total. But there is so much tweaking left to do, that probably only half of those resolutions are correctly-ish calibrated where the heightmaps values are fitting the screencapture image behind. So i will keep working on this.
 
@@ -44,4 +46,4 @@ Currently, it is not possible to have access to monitor resolutions other than t
 
 steve c
 
-Note: I bet building a program without the need for calibration is entirely possible. I just couldn't figure it all out during development and that's why i am stuck with having to manipulate by hand so many lines of code just to make it work for so many different resolutions. So please note that this is WIP, but a prelude to what is coming, which is "calibrated resolutions", where i will try and calibrate the resolutions the best that i can.
+P.S. I bet building a program without the need for calibration is entirely possible. I just couldn't figure it all out during development and that's why i am stuck with having to manipulate by hand so many lines of code just to make it work for so many different resolutions. So please note that this is WIP, but a prelude to what is coming, which is "calibrated resolutions", where i will try and calibrate the resolutions the best that i can.
