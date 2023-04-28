@@ -14,7 +14,7 @@ ratio //// - of a 1680 x 1050 resolution
 
 ratio 16/9 - of a 1600 x 900 resolution <= voxel resolution #2 
 
-ratio //// - of a 1440 x 900 resolution <= voxel resolution #3
+ratio 8/5 - of a 1440 x 900 resolution <= voxel resolution #3
 
 ratio //// - of a 1366 x 768 resolution 
 
@@ -24,7 +24,7 @@ ratio //// - of a 1280 x 960 resolution
 
 ratio //// - of a 1280 x 800 resolution 
 
-ratio //// - of a 1280 x 720 resolution  <= voxel resolution #4 
+ratio 16/9 - of a 1280 x 720 resolution  <= voxel resolution #4 
 
 ratio //// - of a 1152 x 864 resolution 
 
