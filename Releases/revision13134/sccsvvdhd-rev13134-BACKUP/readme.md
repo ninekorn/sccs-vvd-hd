@@ -34,7 +34,7 @@ ratio //// - of a 1024 x 768 resolution
 
 ratio //// - of a 832 x 624 resolution 
 
-ratio 4/3 - of a 800 x 600 resolution  <= voxel resolution #5
+ratio 4/3 - of a 800 x 600 resolution  <= voxel resolution #5 (i'm not sure here, i think i based it off 640x480)
 
 ratio //// - of a 640 x 480 resolution  - WIP - i don't have a monitor yet accepting that resolution. so i will find a monitor test subject first and then i will be able to try and calibrate.
 
