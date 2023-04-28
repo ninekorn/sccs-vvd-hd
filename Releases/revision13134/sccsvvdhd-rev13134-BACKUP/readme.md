@@ -4,15 +4,15 @@ update - revision 13134 - full resolution - uncalibrated.
 
 Hey everyone. My earlier resolution development / update revision 13133 was pure garbage as the only way possible to have a working resolution was to put the monitor at the resolution prior to selecting it inside of the program. I made changes so that at least 5 resolutions are available for each type of monitor resolutions. So currently my monitor goes from min 800w600h to max 1920w1080h so i could setup pretty much every resolutions inbetween including the min and max for a total of 15 resolutions that are on my monitor:
 
-1920 x 1080
+1920 x 1080 <= voxel resolution #1 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
 
 1760 x 990
 
 1680 x 1050
 
-1600 x 900
+1600 x 900 <= voxel resolution #2 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
 
-1440 x 900
+1440 x 900 <= voxel resolution #3 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
 
 1366 x 768
 
@@ -22,7 +22,7 @@ Hey everyone. My earlier resolution development / update revision 13133 was pure
 
 1280 x 800
 
-1280 x 720
+1280 x 720 <= voxel resolution #4 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
 
 1152 x 864
 
@@ -32,7 +32,7 @@ Hey everyone. My earlier resolution development / update revision 13133 was pure
 
 832 x 624
 
-800 x 600
+800 x 600 <= voxel resolution #5 (where i use 1920x1080 and reduce it in order to have an approximate number of instances in width and height to cover the area).
 
 640 x 480 - WIP - i don't have a monitor yet accepting that resolution. so i will find a monitor test subject first and then i will be able to try and calibrate.
 
