@@ -4,5 +4,7 @@ hey everyone, i was able to calibrate approx 75 resolutions on 150. It's all of 
 
 I am unsure if i will start the "full voxel resolution" calibration today the 30th of april 2023, as it really was a marathon just to calibrate the first 75 resolutions in two days. I thought, this revision 13135 would be adding a tons of monitor "compatibility", for low voxel resolution so i thought to release it now. My last revision 13134 was only calibrated for monitors of resolutions 1920 by 1080 and to prepare for the calibration for the rest of the resolutions of this revision 13135, for the low voxel resolution option. If you want HD voxel resolutions again, you will have to wait for the next calibration update, or you can try and calibrate trial and error like i am doing mostly in the scripts scgraphicssec.cs and scupdate.cs.
 
+Oh, and sometimes i couldn't make the same ratios comparable from resolution to resolution, as i just wasn't inputting the correct values to calibrate and i had to modify the ratio of number of instances in width and height in order to at least have 5 "low voxel" resolutions for each monitor resolution.
+
 steve chassé 
 
