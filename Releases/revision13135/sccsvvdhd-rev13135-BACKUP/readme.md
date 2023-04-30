@@ -1,7 +1,6 @@
-# revision 13132
+# revision 13135 - calibration update - halfway there
 
-pressing the menu F9 to go fullscreen was making the captured application go to 1920w x 1080h, regardless of the resolution of the desktop monitor captured. So i added some code in program.cs that uses the device of scdirectx.cs to get the desktopbounds right when scgraphicssec.cs is created, and that way, inside of my script Form.cs, i was able to use program.cs desktopboundswidth and desktopboundsheight in order to properly make the captured program be at the current resolution of the monitor captured. The rest is pretty much the same as my revision 13131.
+hey everyone, i was able to calibrate approx 75 resolutions on 150. It's all of the low voxel definition resolutions that i worked on but out the 75 resolutions i calibrated, i will review 13 of those as i am unsure, and wrote next to the resolutions "to review" in the script scgraphicssec.cs. So currently, you should only use the "half voxel res" as i didn't calibrate the "full voxel res" yet, where the voxel HD resolutions are. So currently, the engine runs smooth on multiple resolutions where the screencapture and the voxels are "calibrated" correctly positioned meaning the holes of the heightmaps are where the color values are on the displayed image. I am unsure if i will start the "full voxel resolution" calibration today the 30th of april 2023, as it really was a marathon just to calibrate the first 75 resolutions in two days.
 
 steve chassé 
 
-NOTE: i pushed my last update under revision 13133 but it was a mistake on the revision number as i was pushing through for 13132. the correct revision for the push at 09h13am eastern time was for revision 13132. I am not even started on 13133 yet at 09h25am eastern time here.
