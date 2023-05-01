@@ -1,4 +1,5 @@
-[![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs-vvd-hd/total.svg)]() 
+[![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs-vvd-hd/total.svg)]()  <= don't "trust" the download number. I've still got users who are cloning my program. check the screenshots at the bottom of this page for some of the proof of interest from the online community.
+
 [![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs-vvd-hd)]()
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres1-19201080.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/revision13135screenshot.jpg" border="0">
@@ -49,5 +50,29 @@ https://www.patreon.com/SteveChasse
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres5-19201080.jpg" border="0">
 
 Not sure that my ratios are correctly fitting the description of the ratios that i put in my script.
+
+
+
+
+#GITHUB DOWNLOAD screenshots. 
+
+I cannot find the proper icon in order to be able to display to people the number of clones of my earlier repositories, so sometimes i take screenshots but not all of the time. Sometimes i streamed my github cloning page instead. Down below are different repositories of mine and their clones.
+
+<img WIDTH=150 src="https://github.com/ninekorn/gif-resources/blob/main/githubdownload00.png" border="0"><img WIDTH=150 src="https://github.com/ninekorn/gif-resources/blob/main/githubdownload01.png" border="0"><img WIDTH=150 src="https://github.com/ninekorn/gif-resources/blob/main/githubdownload02.png" border="0"><img WIDTH=150 src="https://github.com/ninekorn/gif-resources/blob/main/githubdownloads0.jpg" border="0">
+<img WIDTH=150 src="https://github.com/ninekorn/gif-resources/blob/main/githubdownloads1.jpg" border="0"><img WIDTH=150 src="https://github.com/ninekorn/gif-resources/blob/main/githubproofofdownloadssccsunityvoxels.png" border="0"><img WIDTH=150 src="https://github.com/ninekorn/gif-resources/blob/main/githubproofofdownloadssccsunityvoxels0.jpg" border="0"><img WIDTH=150 src="https://github.com/ninekorn/gif-resources/blob/main/githubproofofdownloadssccsunityvoxels1.jpg" border="0"><img WIDTH=150 src="https://github.com/ninekorn/gif-resources/blob/main/githubproofofdownloadssccsunityvoxels2.jpg" border="0">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
