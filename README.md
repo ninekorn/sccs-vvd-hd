@@ -1,3 +1,5 @@
+This is a repository for the continuation of my work, on my voxel virtual desktop. Earlier i was hosting/uploading it under MIT licensed (in addition to the other licenses in the license folder) in the repository sccs-heightmaps-virtualdesktop-SharpDX11.1 which i have closed because i became tired of "false positive" trojan horses and other spywares and malwares that are detected by Microsoft's Defender submission page. Also avira and probably other antivirus/antispywares were finding supposed viruses/spywares/malwares in my code somewhere where there is nothing on the screen. How is this even possible to open a basic shader with 25 lines of code and have a virus in it? steganography? or false positives since a shader let's say of the same code inside of a virus, was already sorted by the microsoft defender database, and it is tagging my shaders as viruses/spywares/malwares because at microsoft defender they don't do their jobs properly and they tag everything as viruses/malwares forcing the developer to purchase additional licenses, in this case code signing certificates, that we have to purchase in order for our code to be "tagged" non-virus/non-spyware/non-malware/non-trojan in the viruses database worldwide. Talk about a cheap way to make some money, when all they could do is investigate my code and they would find that i am only building a nice platform for voxelizing surfaces, digital surfaces where a texture2d and the bytes contained within the image in order to display it onscreen in voxels is what i do.
+
 [![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs-vvd-hd/total.svg)]() 
 [![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs-vvd-hd)]()
 
@@ -17,3 +19,5 @@ Last revision that i had released under MIT:
 https://www.microsoft.com/en-us/wdsi/submission/d5de0d70-55ab-4bb6-af8c-213cf4b9b442
 
 https://www.microsoft.com/en-us/wdsi/submission/47b8a5b1-6678-4220-9d4b-0bf002ee2024
+
+
