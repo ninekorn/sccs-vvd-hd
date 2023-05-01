@@ -6,6 +6,44 @@ I am unsure if i will start the "full voxel resolution" calibration today the 30
 
 Oh, and sometimes i couldn't make the same ratios comparable from resolution to resolution, as i just wasn't inputting the correct values to calibrate and i had to modify the ratio of number of instances in width and height in order to at least have 5 "low voxel" resolutions for each monitor resolution.
 
+Also keep in mind that, this current revision 13135 gives you 5 voxel resolutions which means the performance also is affected so the program might run better for you depending on your computer specs as, going full voxel mode (which isn't working yet for any resolutions except the 1920*1080 where 4 are setup the rest i will work on it soon). So this revision brings in some sort "performance adjustments" where you can choose a different resolution of 16/9 if your windows resolution is a 1920*1080. If your current windows resolution is lower than 1920*1080, than only the lower voxel resolution mode will work, the high voxel resolution isn't calibrated yet for those resolutions.
+
+As i explained in my revision 13134 readme file, the current resolutions that i worked on, are the following: 
+
+ratio 16/9 - of a 1920 x 1080 resolution <= voxel resolution #1
+
+ratio //// of a 1760 x 990 resolution
+
+ratio //// - of a 1680 x 1050 resolution
+
+ratio 16/9 - of a 1600 x 900 resolution <= voxel resolution #2
+
+ratio 8/5 - of a 1440 x 900 resolution <= voxel resolution #3
+
+ratio //// - of a 1366 x 768 resolution
+
+ratio //// - of a 1280 x 1024 resolution
+
+ratio //// - of a 1280 x 960 resolution
+
+ratio //// - of a 1280 x 800 resolution
+
+ratio 16/9 - of a 1280 x 720 resolution <= voxel resolution #4
+
+ratio //// - of a 1152 x 864 resolution
+
+ratio //// - of a 1128 x 634 resolution
+
+ratio //// - of a 1024 x 768 resolution
+
+ratio //// - of a 832 x 624 resolution
+
+ratio 4/3 - of a 800 x 600 resolution <= voxel resolution #5 (i'm not sure here, i think i based it off 640x480)
+
+ratio //// - of a 640 x 480 resolution
+
+I tried to follow the desktop monitor resolution ratio for increasing/decreasing the amount of instances in width and height but i wasn't always successful for every desktop monitor resolution. 
+
 steve chassé 
 
 **Here are the screenshots of the results for a monitor resolution of 1920x1080 in the low voxel mode option:**
@@ -29,4 +67,7 @@ steve chassé
 40 instances in width * 30 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres5-19201080.jpg" border="0">
+
+Not sure that my ratios are correctly fitting the resolution, but at least i was able to calibrate most of the 75 low voxel resolutions. 
+
 
