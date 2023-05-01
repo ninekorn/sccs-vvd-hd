@@ -8,3 +8,27 @@ Oh, and sometimes i couldn't make the same ratios comparable from resolution to 
 
 steve chassé 
 
+Screenshots:
+
+Monitor Desktop resolution of 1920x1080. Low voxel resolution:
+
+128 instances in width * 72 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres1-19201080.jpg" border="0">
+
+113 instances in width * 57 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres2-19201080.jpg" border="0">
+
+101 instances in width * 57 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres3-19201080.jpg" border="0">
+
+80 instances in width * 47 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres4-19201080.jpg" border="0">
+
+40 instances in width * 30 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres5-19201080.jpg" border="0">
+
