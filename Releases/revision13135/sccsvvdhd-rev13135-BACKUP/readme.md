@@ -8,9 +8,7 @@ Oh, and sometimes i couldn't make the same ratios comparable from resolution to 
 
 steve chassé 
 
-Screenshots:
-
-Monitor Desktop resolution of 1920x1080. Low voxel resolution:
+**Here are the screenshots of the results for a monitor resolution of 1920x1080 in the low voxel mode option:**
 
 128 instances in width * 72 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
 
