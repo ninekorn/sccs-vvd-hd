@@ -1,8 +1,6 @@
 [![Github All Releases](https://img.shields.io/github/downloads/ninekorn/sccs-vvd-hd/total.svg)]() 
 [![Github All Releases](https://img.shields.io/github/license/ninekorn/sccs-vvd-hd)]()
 
-<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-23%20185017.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-23%20071034.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-04-23%20192918.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres1-19201080.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres2-19201080.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres3-19201080.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres4-19201080.jpg" border="0"><img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres5-19201080.jpg" border="0">
-
 UPLOADED UNDER APACHE 2.0 LICENSE and all of the other licenses included in the folder Licenses. This does not change that my earlier revisions were not under a main Apache 2.0 License but were under MIT license and the other licenses included in the folder Licenses of my old repository sccs-heightmaps-virtualdesktop-SharpDX11.1. But this repository is different in terms that I want the Apache 2.0 License to englobe the rest. The idea of putting these series of softwares/codes/references together and using the Apache 2.0 License and using ProtectMyWork i think is a better way to protect the project.
 
 # sccs-vvd-hd
@@ -23,5 +21,31 @@ https://www.microsoft.com/en-us/wdsi/submission/47b8a5b1-6678-4220-9d4b-0bf002ee
 
 https://www.patreon.com/SteveChasse
 
+
+#CURRENT STATUS: revision 13135 screenshots:
+
+**screenshots of the results for a windows resolution of 1920x1080 in the low voxel mode option:**
+
+128 instances in width * 72 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres1-19201080.jpg" border="0">
+
+113 instances in width * 57 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres2-19201080.jpg" border="0">
+
+101 instances in width * 57 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres3-19201080.jpg" border="0">
+
+80 instances in width * 47 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres4-19201080.jpg" border="0">
+
+40 instances in width * 30 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
+
+<img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres5-19201080.jpg" border="0">
+
+Not sure that my ratios are correctly fitting the description of the ratios that i put in my script.
 
 
