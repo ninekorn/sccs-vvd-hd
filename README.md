@@ -25,7 +25,7 @@ https://www.microsoft.com/en-us/wdsi/submission/47b8a5b1-6678-4220-9d4b-0bf002ee
 https://www.patreon.com/SteveChasse
 
 
-#CURRENT STATUS: revision 13135 screenshots:
+#current revision 13135 screenshots:
 
 **screenshots of the results for a windows resolution of 1920x1080 in the low voxel mode option:**
 
