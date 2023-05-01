@@ -44,7 +44,7 @@ I tried to follow the desktop monitor resolution ratio for increasing/decreasing
 
 steve chassé 
 
-**Here are the screenshots of the results for a monitor resolution of 1920x1080 in the low voxel mode option:**
+**Here are the screenshots of the results for a windows resolution of 1920x1080 in the low voxel mode option:**
 
 128 instances in width * 72 instances in height * 8 voxel bytes per instances in width * 8 voxel bytes per instances in height:
 
