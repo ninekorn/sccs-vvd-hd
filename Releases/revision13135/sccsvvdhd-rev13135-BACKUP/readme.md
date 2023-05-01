@@ -66,6 +66,6 @@ steve chassé
 
 <img WIDTH=250 src="https://github.com/ninekorn/gif-resources/blob/main/voxelres5-19201080.jpg" border="0">
 
-Not sure that my ratios are correctly fitting the resolution, but at least i was able to calibrate most of the 75 low voxel resolutions. 
+Not sure that my ratios are correctly fitting the description of the ratios that i put in my script, but at least i was able to calibrate most of the 75 low voxel resolutions. 
 
 
