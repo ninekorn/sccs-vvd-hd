@@ -40,8 +40,6 @@ ratio //// - of a 832 x 624 resolution
 
 ratio 4/3 - of a 800 x 600 resolution <= voxel resolution #5 (i'm not sure here, i think i based it off 640x480)
 
-ratio //// - of a 640 x 480 resolution
-
 I tried to follow the desktop monitor resolution ratio for increasing/decreasing the amount of instances in width and height but i wasn't always successful for every desktop monitor resolution. 
 
 steve chassé 
