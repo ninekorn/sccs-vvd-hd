@@ -1,0 +1,1735 @@
+//////////////////////
+////   GLOBALS
+//////////////////////
+Texture2D shaderTexture;
+SamplerState SampleType;
+
+
+//https://gamedev.stackexchange.com/questions/32681/random-number-hlsl
+float rand_1_05(in float2 uv)
+{
+    float2 noise = (frac(sin(dot(uv ,float2(12.9898,78.233)*2.0)) * 43758.5453));
+    return abs(noise.x + noise.y) * 0.5;
+}
+
+float2 rand_2_10(in float2 uv) {
+    float noiseX = (frac(sin(dot(uv, float2(12.9898,78.233) * 2.0)) * 43758.5453));
+    float noiseY = sqrt(1 - noiseX * noiseX);
+    return float2(noiseX, noiseY);
+}
+
+float2 rand_2_0004(in float2 uv)
+{
+    float noiseX = (frac(sin(dot(uv, float2(12.9898,78.233)      )) * 43758.5453));
+    float noiseY = (frac(sin(dot(uv, float2(12.9898,78.233) * 2.0)) * 43758.5453));
+    return float2(noiseX, noiseY) * 0.004;
+}
+
+// Source
+// http://www.gamedev.net/topic/592001-random-number-generation-based-on-time-in-hlsl/
+// Supposebly from the NVidia Direct3D10 SDK
+// Slightly modified for my purposes
+#define RANDOM_IA 16807
+#define RANDOM_IM 2147483647
+#define RANDOM_AM (1.0f/float(RANDOM_IM))
+#define RANDOM_IQ 127773u
+#define RANDOM_IR 2836
+#define RANDOM_MASK 123459876
+
+struct NumberGenerator {
+    int seed; // Used to generate values.
+
+    // Returns the current random float.
+    float GetCurrentFloat() {
+        Cycle();
+        return RANDOM_AM * seed;
+    }
+
+    // Returns the current random int.
+    int GetCurrentInt() {
+        Cycle();
+        return seed;
+    }
+
+    // Generates the next number in the sequence.
+    void Cycle() {  
+        seed ^= RANDOM_MASK;
+        int k = seed / RANDOM_IQ;
+        seed = RANDOM_IA * (seed - k * RANDOM_IQ ) - RANDOM_IR * k;
+
+        if (seed < 0 ) 
+            seed += RANDOM_IM;
+
+        seed ^= RANDOM_MASK;
+    }
+
+    // Cycles the generator based on the input count. Useful for generating a thread unique seed.
+    // PERFORMANCE - O(N)
+    void Cycle(const uint _count) {
+        for (uint i = 0; i < _count; ++i)
+            Cycle();
+    }
+
+    // Returns a random float within the input range.
+    float GetRandomFloat(const float low, const float high) {
+        float v = GetCurrentFloat();
+        return low * ( 1.0f - v ) + high * v;
+    }
+
+    // Sets the seed
+    void SetSeed(const uint value) {
+        seed = int(value);
+        Cycle();
+    }
+};
+
+
+SamplerState textureSampler
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Wrap;
+    AddressV = Wrap;
+	AddressW = Wrap;
+};
+
+
+/*cbuffer LightBuffer
+{
+	float4 ambientColor;
+	float4 diffuseColor;
+	float3 lightDirection;
+	float specularPower;
+	float4 specularColor;
+};*/
+
+/*cbuffer LightBuffer :register(b1)
+{
+	float4 ambientColor;
+	float4 diffuseColor;
+	float4 specularColor;
+	float3 lightDirection;
+	float padding0;
+	float3 lightPosition;
+	float lightextras.y;
+};*/
+  
+
+cbuffer LightBuffer //:register(b1)
+{
+	float4 ambientColor;
+	float4 diffuseColor;
+	float4 specularColor;
+	float4 lightDirection;
+	float4 lightPosition;
+	float4 lightextras; // z for grid types // 
+	float4 gridcolor;
+	float4 cursorcolor;
+
+
+
+	//float padding0;
+	//float3 lightPosition;
+	//float lightextras.y;
+};
+
+
+
+/*
+cbuffer OVRDir :register(b2)
+{
+	float4 ovrdirf;
+	float4 ovrdiru;
+	float4 ovrdirr;
+	float4 ovrpos;
+};*/
+
+
+
+//////////////////////
+////   TYPES
+//////////////////////
+struct PixelInputType
+{
+	float4 position : SV_POSITION;
+	float4 color : COLOR0; //byte map index xyz and w for typeofface 0 to 5
+	float3 normal : NORMAL0;
+	float paddingvert0 : PSIZE0;	//instance width
+	float2 tex : TEXCOORD0;
+	float paddingvert1 : PSIZE1;	//instance height
+	float paddingvert2 : PSIZE2;	//instance depth
+	float4 instancePosition : POSITION1;
+	
+	
+	
+	/*float4 instanceRadRotFORWARD : POSITION2;
+	float4 instanceRadRotRIGHT : POSITION3;
+	float4 instanceRadRotUP : POSITION4;*/
+
+
+	/*float4 mapmatrix0 : POSITION5;
+	float4 mapmatrix1 : POSITION6;
+	float4 mapmatrix2 : POSITION7;
+	float4 mapmatrix3 : POSITION8;
+	float4 mapmatrix4 : POSITION9;
+	float4 mapmatrix5 : POSITION10;
+	float4 mapmatrix6 : POSITION11;
+	float4 mapmatrix7 : POSITION12;
+	float4 mapmatrix8 : POSITION13;
+	float4 mapmatrix9 : POSITION14;
+	float4 mapmatrix10 : POSITION15;
+	float4 mapmatrix11 : POSITION16;
+	float4 mapmatrix12 : POSITION17;
+	float4 mapmatrix13 : POSITION18;
+	float4 mapmatrix14 : POSITION19;
+	float4 mapmatrix15 : POSITION20;*/
+
+	/*float4 heightmapmat0 : POSITION21;
+	float4 heightmapmat1 : POSITION22;
+	float4 heightmapmat2 : POSITION23;
+	float4 heightmapmat3 : POSITION24;*/
+
+	/*int one : PSIZE3;	
+	int oneTwo : PSIZE4;
+	int two : PSIZE5;	
+	int twoTwo : PSIZE6;	
+	int three : PSIZE7;	
+	int threeTwo : PSIZE8;	
+	int four : PSIZE9;	
+	int fourTwo : PSIZE10;*/
+	int xindex : PSIZE3;	
+	int yindex : PSIZE4;
+};
+
+//float _lastDOTProdAngleWithHypAndOpp = -1;
+static const float PI = 3.1415926535897932384626433832795f;
+static const float3 world_forward = float3(0,0,1);
+static const float3 world_backward = float3(0,0,-1);
+static const float3 world_right = float3(1,0,0);
+static const float3 world_left = float3(-1,0,0);
+static const float3 world_up = float3(0,1,0);
+static const float3 world_down = float3(0,-1,0);
+
+
+
+
+static float dstX= 0;
+static float dstY= 0;
+static float dstZ = 0;
+static float dstX_vs_dstZ = 0;
+static float dstX_vs_dstY = 0;
+static float dstY_vs_dstZ = 0;
+
+
+
+float trying_ellipsoid_with_sc_sebastian_lague_check_distanceconvertedto3dkinda(float3 nodeA, float3 nodeB)
+{
+    //SEBASTIEN LAGUE 2D BLUEPRINT FOR NODE DIAGONAL OR NOT DISTANCE.
+    /*var dstX = Math.Abs((nodeA.X) - (nodeB.X));
+    var dstZ = abs((nodeA.y) - (nodeB.y));
+
+    if (dstX > dstZ)
+    {
+        return 14 * dstZ + 10 * (dstX - dstZ);
+    }
+    return 14 * dstX + 10 * (dstZ - dstX);*/
+
+
+    dstX = abs((nodeA.x) - (nodeB.x));
+    dstY = abs((nodeA.y) - (nodeB.y));
+    dstZ = abs((nodeA.z) - (nodeB.z));
+
+    dstX_vs_dstZ = 0;
+    dstX_vs_dstY = 0;
+
+    if (dstX > dstZ)
+    {
+        dstX_vs_dstZ = 14 * dstZ + 10 * (dstX - dstZ);
+    }
+    else
+    {
+        dstX_vs_dstZ = 14 * dstX + 10 * (dstZ - dstX);
+    }
+
+    if (dstX > dstY)
+    {
+        dstX_vs_dstY = 14 * dstY + 10 * (dstX - dstY);
+    }
+    else
+    {
+        dstX_vs_dstY = 14 * dstX + 10 * (dstY - dstX);
+    }
+
+    /*if (dstX_vs_dstY > dstX_vs_dstZ)
+    {
+        return dstX_vs_dstY;
+    }
+    else
+    {
+        return dstX_vs_dstZ;
+    }*/
+
+    return dstX_vs_dstY + dstX_vs_dstZ;
+}
+
+
+
+
+
+
+
+float sc_check_distance_node_3d_geometry(float3 nodeA, float3 nodeB, float minx, float miny, float minz, float maxx, float maxy, float maxz) 
+{
+	//STEVE CHASS� 3D blueprint for sphere type and a ton more. based on 2d version of Sebastian Lague. but my version is not perfect. i don't know yet what else to put in there.
+	//the solution was easier than i thought and it came to me quite fast after fearing for months i'd never be able to quickly get this function written. This function is also a
+	//main part of the upgrade that i want to implement to the Jitter physics engine for spatial awareness. In the jitter physics engine, it seems as if every frame that the objects
+	//are enabled and non-static, jitter checks ALL bounding boxes for collisions between all of them. So of course at some point, the more objects in the scene, the more bounding
+	//boxes it has to check for each individual objects. for instance, lets say there is 1000 objects in the scene, so index 0 to index 999, if object 0 checks against ALL other
+	//998 objects, it's a huge waste of performance. But there are collision "islands" in the jitter physics engine but those i believe are chosen only when bounding boxes are 
+	//officially declared as colliding. so i want to see if i can use a fast distance checker (which i didnt test yet against Math.Sqrt or the very fast quake sqrt). But all of
+	//the things i learned in doing chunks are also going to be needed for when im going to start developing things around and inside of the Jitter Physics Engine. So prior upgrading the physics
+	//engine jitter for my engine sccoresystems, i can only have 4000 max objects and it would lag the scene. but the tests are not carved on rock yet because, 
+	//1. im not loading the dll how i should maybe
+	//2. maybe because multiple instances of the physics engine like i am loading them isn't the proper way to do it? in monogame, to load different scene instances, they use 
+	//   Activator.CreateInstance and i was unable to use that anywhere back then. I might try again at some point... But right now i am using an interface. In sccsv10
+	//
+
+
+	dstX = abs((nodeA.x) - (nodeB.x));
+	dstY = abs((nodeA.y) - (nodeB.y));
+	dstZ = abs((nodeA.z) - (nodeB.z));
+
+	dstX_vs_dstZ = 0;
+	dstX_vs_dstY = 0;
+	dstY_vs_dstZ = 0;
+
+	if (dstX > dstZ)
+	{
+		dstX_vs_dstZ = maxx * dstZ + minx * (dstX - dstZ);
+	}
+	else
+	{
+		dstX_vs_dstZ = maxx * dstX + minx * (dstZ - dstX);
+	}
+
+	if (dstX > dstY)
+	{
+		dstX_vs_dstY = maxy * dstY + miny * (dstX - dstY);
+	}
+	else
+	{
+		dstX_vs_dstY = maxy * dstX + miny * (dstY - dstX);
+	}
+
+	if (dstY > dstZ)
+	{
+		dstY_vs_dstZ = maxz * dstZ + minz * (dstY - dstZ);
+	}
+	else
+	{
+		dstY_vs_dstZ = maxz * dstY + minz * (dstZ - dstY);
+	}
+	return dstX_vs_dstY + dstX_vs_dstZ + dstY_vs_dstZ;
+}
+
+static float4 the_color = float4(1.0f,1.0f,1.0f,1.0f);// float4(0.95f,0.95f,0.95f,1);
+
+static int tinyChunkWidth = 8;
+static int tinyChunkHeight = 8;
+static int tinyChunkDepth = 1;
+
+
+static float4 gridcolorred = float4(1,0,0,1);
+static float4 gridcolorgreen = float4(0.45f,1,0.45f,1);
+static float4 gridcolorblue = float4(0,0,1,1);
+static float4 gridcolorgray = float4(0.15f,0.15f,0.15f,1);
+static float4 gridcolorblack = float4(0.0f,0.0f,0.0f,1);
+static float4 gridcolorwhite = float4(1.0f,1.0f,1.0f,1);
+
+static float4 cursorcolorred = float4(1,0.45f,0.45f,1);
+static float4 cursorcolorgreen = float4(0.45f,1,0.45f,1);
+static float4 cursorcolorblue = float4(0.45f,0.45f,1,1);
+static float4 cursorcolorgray = float4(0.15f,0.15f,0.15f,1);
+static float4 cursorcolorblack = float4(0.0f,0.0f,0.0f,1);
+static float4 cursorcolorwhite = float4(1.0f,1.0f,1.0f,1);
+
+
+
+//////////////////////
+////   Pixel Shader
+/////////////////////
+float4 TexturePixelShader(PixelInputType input) : SV_TARGET
+{
+
+	//float4 textureColor;
+	//float3 lightDir;
+	float lightIntensity;
+	float4 color;
+	float3 reflection;
+	float4 specular;
+
+	// Sample the pixel color from the texture using the sampler at this texture coordinate location.
+	//textureColor = shaderTexture.Sample(SampleType, input.tex);
+
+	float4 somecolor =float4(1.0f,1.0f,1.0f,1.0f);// float4(0.95f,0.95f,0.95f,1.0f);
+	
+
+	int x = int(input.color.x);
+	int y = int(input.color.y);
+	int z = int(input.color.z);
+
+	//facetype 0 to 5 for 6 faces of the voxel. each pixel has a voxel data that it receives
+	int facetype = int(input.color.w);
+	
+	
+	//instances in width
+	int instancesw = int(input.paddingvert0); // 256 // 240 // 320 // 480 // 128 //120
+
+	//instances in height
+	int instancesh = int(input.paddingvert1); // 128 // 135 // 180 // 270 // 72 //68
+
+	//projection setting
+	int instancesd = int(input.paddingvert2); 
+
+
+
+
+	int cursortypeoption = int(cursorcolor.w);
+	int gridtypeoption = int(gridcolor.w);
+
+	//float4 chosengridcolor = float4(0,0,0,1.0f);
+	float4 chosengridcolor = float4((gridcolor.x/255),(gridcolor.y/255),(gridcolor.z/255),1.0f);
+
+
+	//option 
+	int sccsvvdhdgrayscaleorcolored = int(round(lightextras.w));
+	//option
+
+	//option 
+	float theperlinvalue = round(lightextras.w);
+	//option
+
+
+	//cpu perlin decimal seed
+	float lightextrasrandomval = lightextras.w - trunc(lightextras.w);
+	//cpu perlin decimal seed
+
+	//slider value light intensity
+	float lightintensityslidervalue = lightextras.y;
+	//slider value light intensity
+
+	//slider value screencapturebrightnesss
+	float screencapturebrightnessslidervalue = lightextras.x;
+	//slider value screencapturebrightnesss
+	
+	float4 thenormalscolor = float4(0.15f,0.15f,0.15f,1.0f);
+
+
+
+
+
+		
+	/*
+	float3 inputPos;
+	inputPos.x = input.position.x + input.instancePosition.x;// + thenormalscolor.x;
+	inputPos.y = input.position.y + input.instancePosition.y;// + thenormalscolor.y;
+	inputPos.z = input.position.z + input.instancePosition.z;// + thenormalscolor.z;
+
+	//float distTot = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 0.1f, 0.1f, 0.1f, 1, 1, 1);
+	//float distTot = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 9, 9, 9, 9, 9, 9);
+	//float distTot = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 3, 3, 3, 3, 3, 3);
+	//float distTot = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 1, 1, 1, 1, 1, 1);
+	//float distTot = sqrt(((lightPosition.x - inputPos.x)*(lightPosition.x - inputPos.x)) + ((lightPosition.y - inputPos.y)*(lightPosition.y - inputPos.y)) + ((lightPosition.z - inputPos.z)*(lightPosition.z - inputPos.z)));
+
+	float distTot = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 1.0f, 1.0f, 1.0f, 1.4f, 1.4f, 1.4f);
+	//float distTot = trying_ellipsoid_with_sc_sebastian_lague_check_distanceconvertedto3dkinda(lightPosition,inputPos);
+
+	if(distTot < 1050.0f)
+	{
+		return thenormalscolor;
+	}
+	else
+	{
+		return float4(0.15f,0.95f,0.15f,1.0f);
+	}*/
+
+
+
+
+
+
+
+
+
+	//SETTING A DIFFERENT SHADE OF THE SAME COLOR FOR THE NORMALS
+	//SETTING A DIFFERENT SHADE OF THE SAME COLOR FOR THE NORMALS
+	//float4 thenormalscolor = float4(0.25f,0.25f,0.25f,1.0f);
+
+	/*if(input.normal.x == 1.0)
+	{
+		thenormalscolor *= 0.550f;//float4(0.15,0.95,0.15,1);
+	}	
+	if(input.normal.x == -1.0)
+	{
+		thenormalscolor *=  0.560f;//float4(0.15,0.95,0.15,1); // 0.145f
+	}	
+	if(input.normal.y == 1.0)
+	{
+		thenormalscolor*=  0.530f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.y == -1.0)
+	{
+		thenormalscolor*=  0.540f;//float4(0.15,0.95,0.15,1); // 0.135f
+	}
+	if(input.normal.z == 1.0)
+	{
+		thenormalscolor *=  0.570f;//float4(0.15,0.95,0.15,1);
+	}	
+	if(input.normal.z == -1.0)
+	{
+		thenormalscolor *=  0.580f;//float4(0.15,0.95,0.15,1);
+	}*/
+
+
+	/*if(input.normal.x == 1.0)
+	{
+		thenormalscolor *= 0.550f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.x == -1.0)
+	{
+		thenormalscolor *=  0.560f;//float4(0.15,0.95,0.15,1); // 0.145f
+	}
+	
+	if(input.normal.y == 1.0)
+	{
+		thenormalscolor*=  0.530f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.y == -1.0)
+	{
+		thenormalscolor*=  0.540f;//float4(0.15,0.95,0.15,1); // 0.135f
+	}
+	if(input.normal.z == 1.0)
+	{
+		thenormalscolor *=  0.570f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.z == -1.0)
+	{
+		thenormalscolor *=  0.580f;//float4(0.15,0.95,0.15,1);
+	}*/
+
+
+
+	if(input.normal.x == 1.0)
+	{
+		thenormalscolor *= 0.555f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.x == -1.0)
+	{
+		thenormalscolor *=  0.145f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.y == 1.0)
+	{
+		thenormalscolor*=  0.475f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.y == -1.0)
+	{
+		thenormalscolor*=  0.135f;//float4(0.15,0.95,0.15,1);
+	}
+	if(input.normal.z == 1.0)
+	{
+		thenormalscolor *=  0.765f;//float4(0.15,0.95,0.15,1);
+	}
+	
+	if(input.normal.z == -1.0)
+	{
+		thenormalscolor *=  0.35f;//float4(0.15,0.95,0.15,1);
+	}
+
+
+
+	//SETTING A DIFFERENT SHADE OF THE SAME COLOR FOR THE NORMALS
+	//SETTING A DIFFERENT SHADE OF THE SAME COLOR FOR THE NORMALS
+
+
+
+
+	if(sccsvvdhdgrayscaleorcolored == 2)
+	{
+		thenormalscolor += (screencapturebrightnessslidervalue * 0.00025f);
+	}
+	else
+	{
+		thenormalscolor *= (screencapturebrightnessslidervalue * 0.1f); // 0.1f
+
+	}
+
+
+
+
+
+
+
+
+	//SAMPLING THE TEXTURE. MEANING EXTRACTING THE COLOR AT THE UV VECTOR2 LOCATION
+	float4 textureColor = shaderTexture.Sample(SampleType, input.tex);
+	
+
+
+
+
+
+	//CPU PERLIN VALUE APPLIED TO PIXELS
+	//CPU PERLIN VALUE APPLIED TO PIXELS
+	//CPU PERLIN VALUE APPLIED TO PIXELS
+	float2 thefloat2colorx;
+	float2 thefloat2colory;
+	float2 thefloat2colorz ;
+	float someuvx;
+	float someuvy;
+	float someuvz;
+
+	float mulindex = 0.000054321f; //0.000025f
+	//internaldiffuse = float4(0.5f,0.5f,0.5f,1.0f);
+	float4 internaldiffuse = float4(1.0f,1.0f,1.0f,1.0f);
+
+	if(sccsvvdhdgrayscaleorcolored == 0 || sccsvvdhdgrayscaleorcolored == 1 || sccsvvdhdgrayscaleorcolored == 2)
+	{
+		 thefloat2colorx = float2(x* mulindex,y* mulindex);
+		 thefloat2colory = float2(y* mulindex,z* mulindex);
+		 thefloat2colorz = float2(x* mulindex,z* mulindex);
+
+		 someuvx = rand_1_05(thefloat2colorx);
+		 someuvy = rand_1_05(thefloat2colory);
+		 someuvz = rand_1_05(thefloat2colorz);
+
+		//float norm = (someuvx + someuvy + someuvz) / 3;
+
+		float4 pixelcolorrand = textureColor;//float4(0,0,0,1.0f);
+		pixelcolorrand.x += (someuvx * mulindex * lightextrasrandomval);
+		pixelcolorrand.y += (someuvy * mulindex * lightextrasrandomval);
+		pixelcolorrand.z += (someuvz * mulindex * lightextrasrandomval);
+
+		pixelcolorrand = saturate(pixelcolorrand);
+
+		textureColor.xyz += ((internaldiffuse.xyz * pixelcolorrand.xyz * 0.015f) / 2); //0.95f
+	
+		//RANDOM PERLIN VALUE APPLIED TO PIXELS
+		//RANDOM PERLIN VALUE APPLIED TO PIXELS
+		//RANDOM PERLIN VALUE APPLIED TO PIXELS
+	}
+	//CPU PERLIN VALUE APPLIED TO PIXELS
+	//CPU PERLIN VALUE APPLIED TO PIXELS
+	//CPU PERLIN VALUE APPLIED TO PIXELS
+
+
+
+
+
+
+	
+	//SCREENCAPTURE 2DTEXTURE TO UV ON VOXEL INSTANCES DIVISIONS
+	//SCREENCAPTURE 2DTEXTURE TO UV ON VOXEL INSTANCES DIVISIONS
+	//SCREENCAPTURE 2DTEXTURE TO UV ON VOXEL INSTANCES DIVISIONS
+	
+	float screensinw = (round(input.paddingvert0) * 2);
+	float screensinh = round((input.paddingvert0 - floor(input.paddingvert0)) * 10 * 2);
+
+	int screenperw = 2;//int(input.paddingvert0); // 256 // 240 // 320 // 480
+	int screenperh = 2;//int(input.paddingvert1); // 128 // 135 // 180 // 270
+	int screenperdepth = 1;//int(input.paddingvert2);
+
+	//10 instances width
+	//10 instances height
+	//1 instance depth
+
+	//4 bytes width
+	//4 bytes height
+	//4 bytes depth
+
+	//4 or 8 multiplier
+	int oriscreenx = instancesw * 8; //80 when using 20 width instances in SC_GlobalsChunkKeyboard //// 192 <=> 768 
+ 	int oriscreeny = instancesh * 8; //40 when using 10 height instances in SC_GlobalsChunkKeyboard //// 108 <=> 432
+	//*2 when more screens in scgraphicssec.cs
+
+	float xdivisionnormalizedtoproportionsofonemax = 1/oriscreenx; //80 when using 20 width instances in SC_GlobalsChunkKeyboard //// 192 <=> 768
+
+	float2 inputtexture = input.tex;
+
+	input.xindex = (instancesw) - 1 - input.xindex;
+
+	//xindex == index of uv texture from left to right or right to left.
+	//yindex == index of uv texture from top to bottom or bottom to top
+
+
+
+
+
+
+
+
+
+
+	if(tinyChunkWidth == 8)
+	{
+		if(sccsvvdhdgrayscaleorcolored == 0)
+		{
+			if(facetype == 0) // 0 == front face?
+			{
+				inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));
+				float2 inputtextureY = input.tex;
+				inputtexture.x = (inputtexture.x + (xdivisionnormalizedtoproportionsofonemax * (input.xindex)));
+				inputtexture.x = ((inputtexture.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+				inputtexture.y = ((inputtexture.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+				//inputtexture.x *=-1;
+				input.tex = inputtexture;
+
+				textureColor = shaderTexture.Sample(SampleType, input.tex);
+			}
+			else
+			{
+				if(facetype == 1) //top face
+				{
+					//textureColor = thenormalscolor;
+
+					//DRAW TEXTURES ON SIDES
+					/*inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));
+					float2 inputtextureY = input.tex;
+					inputtexture.x = (inputtexture.x + (xdivisionnormalizedtoproportionsofonemax * (input.xindex)));
+					inputtexture.x = ((inputtexture.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (z))));
+					inputtexture.y = ((inputtexture.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+					//inputtexture.x *=-1;
+					//inputtexture.y *=-1;
+					input.tex = inputtexture;
+					textureColor = shaderTexture.Sample(SampleType, input.tex);*/
+					//DRAW TEXTURES ON SIDES
+
+					/*inputtexture = input.tex;
+					//inputtexture.x = (inputtexture.x + (xdivisionnormalizedtoproportionsofonemax * (input.xindex)));
+					inputtexture.x = ((inputtexture.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					inputtexture.y = ((inputtexture.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight - 1 - y))));
+					inputtexture.y *=-1;
+					textureColor = shaderTexture.Sample(SampleType, inputtexture);*/
+
+
+					inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));
+					float2 inputtextureY = input.tex;
+					inputtexture.x = (inputtexture.x + (xdivisionnormalizedtoproportionsofonemax * (input.xindex)));
+					inputtexture.x = ((inputtexture.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					inputtexture.y = ((inputtexture.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight - 1 - y))));
+					//inputtexture.x *=-1;
+					//inputtexture.y *=-1;
+					input.tex = inputtexture;
+
+					textureColor = shaderTexture.Sample(SampleType, input.tex);
+
+
+
+				}
+				else if(facetype == 2) //left FACE
+				{
+					
+					inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));	
+					
+					float flipuvx = inputtexture.x;
+					float flipuvy = inputtexture.y;
+
+					inputtexture.x = flipuvy;
+					inputtexture.y = flipuvx;
+
+					inputtexture.x *=-1;
+
+
+					//inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));
+					float2 inputtextureY = input.tex;
+					inputtexture.x = (inputtexture.x + (xdivisionnormalizedtoproportionsofonemax * (input.xindex)));
+					inputtexture.x = ((inputtexture.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					inputtexture.y = ((inputtexture.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (y)))); //tinyChunkHeight - 1 - 
+					
+					//inputtexture.x *=-1;
+					//inputtexture.y *=-1;
+					input.tex = inputtexture;
+
+					textureColor = shaderTexture.Sample(SampleType, input.tex);
+				}
+				else if(facetype == 3) //right FACE
+				{
+					inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));
+					
+					float flipuvx = inputtexture.x;
+					float flipuvy = inputtexture.y;
+
+					//inputtexture.x = flipuvy;
+					//inputtexture.y = flipuvx;
+
+					inputtexture.y *=-1;
+
+
+					//inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));
+					float2 inputtextureY = input.tex;
+					inputtexture.x = (inputtexture.x + (xdivisionnormalizedtoproportionsofonemax * (input.xindex)));
+					inputtexture.x = ((inputtexture.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					inputtexture.y = ((inputtexture.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (y)))); //tinyChunkHeight - 1 - 
+					
+					//inputtexture.x *=-1;
+					//inputtexture.y *=-1;
+
+
+
+					input.tex = inputtexture;
+
+					textureColor = shaderTexture.Sample(SampleType, input.tex);
+				}
+				else if(facetype == 4) //back FACE
+				{
+					
+				}
+				else if(facetype == 5) //bottom FACE
+				{
+					inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));
+					
+					float flipuvx = inputtexture.x;
+					float flipuvy = inputtexture.y;
+
+					inputtexture.x = flipuvy;
+					inputtexture.y = flipuvx;
+
+					inputtexture.x *=-1;
+					inputtexture.y *=-1;
+
+
+					//inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));
+					float2 inputtextureY = input.tex;
+					inputtexture.x = (inputtexture.x + (xdivisionnormalizedtoproportionsofonemax * (input.xindex)));
+					inputtexture.x = ((inputtexture.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+					inputtexture.y = ((inputtexture.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (y)))); //tinyChunkHeight - 1 - 
+					
+					//inputtexture.x *=-1;
+					//inputtexture.y *=-1;
+
+
+					input.tex = inputtexture;
+
+					textureColor = shaderTexture.Sample(SampleType, input.tex);
+				}
+			}
+		}
+		else if(sccsvvdhdgrayscaleorcolored == 1)
+		{
+			if(facetype == 0) // 0 == front face?
+			{
+				inputtexture = (inputtexture/ float2(oriscreenx,oriscreeny));
+				float2 inputtextureY = input.tex;
+				inputtexture.x = (inputtexture.x + (xdivisionnormalizedtoproportionsofonemax * (input.xindex)));
+				inputtexture.x = ((inputtexture.x) + (((1.0f/float(oriscreenx)) * 1) * ((input.xindex * tinyChunkWidth) + (x))));
+				inputtexture.y = ((inputtexture.y) + (((1.0f/float(oriscreeny)) * 1) * ((input.yindex * tinyChunkHeight) + (tinyChunkHeight-1- y))));
+				//inputtexture.x *=-1;
+				input.tex = inputtexture;
+
+				textureColor = shaderTexture.Sample(SampleType, input.tex);
+			}
+			else
+			{
+				//textureColor = float4(0,0.95f,0,1.0f);
+				textureColor = thenormalscolor;
+			}
+		}
+		else if(sccsvvdhdgrayscaleorcolored == 2)
+		{
+			textureColor = thenormalscolor;
+		}
+	}
+
+
+
+	//SCREENCAPTURE 2DTEXTURE TO UV ON VOXEL INSTANCES DIVISIONS
+	//SCREENCAPTURE 2DTEXTURE TO UV ON VOXEL INSTANCES DIVISIONS
+	//SCREENCAPTURE 2DTEXTURE TO UV ON VOXEL INSTANCES DIVISIONS
+
+	
+
+
+
+
+
+	//DISTANCE INSTANCE OF VOXEL TO LIGHT POSITION TESTS
+	//DISTANCE INSTANCE OF VOXEL TO LIGHT POSITION TESTS
+	float3 altlightposition = lightPosition;
+	float3 altlightdirection = lightDirection;
+	float3 inputPos = float3(0,0,0);//input.instancePosition.xyz;
+	//inputPos.x = (input.position.x) + input.instancePosition.x;// + thenormalscolor.x;
+	//inputPos.y = (input.position.y) + input.instancePosition.y;// + thenormalscolor.y;
+	//inputPos.z = (input.position.z) + input.instancePosition.z;// + thenormalscolor.z;
+	inputPos = input.instancePosition.xyz;
+	float offsetposy = 0.0f;
+	float thedisttotalt = sqrt(((altlightposition.x - inputPos.x)*(altlightposition.x - inputPos.x)) + (((altlightposition.y - inputPos.y)*(altlightposition.y - inputPos.y)) + offsetposy) + ((altlightposition.z - inputPos.z)*(altlightposition.z - inputPos.z)));	
+	float3 altinputPos = inputPos;
+	altinputPos.y += offsetposy;
+	float distTot = sc_check_distance_node_3d_geometry(altlightposition, inputPos,0.1f,0.1f,0.1f,0.14f,0.14f,0.14f);
+	//float distTot = sc_check_distance_node_3d_geometry(altlightposition, inputPos,10.0f,10.0f,10.0f,14.0f,14.0f,14.0f);
+	//float distTot = sc_check_distance_node_3d_geometry(altlightposition, inputPos,1.0f,1.0f,1.0f,1.4f,1.4f,1.4f);
+	//float distTot = sqrt(((altlightposition.x - inputPos.x)*(altlightposition.x - inputPos.x)) + (((altlightposition.y - inputPos.y)*(altlightposition.y - inputPos.y)) + offsetposy) + ((altlightposition.z - inputPos.z)*(altlightposition.z - inputPos.z)));
+	/*if(distTot < 0.005f)
+	{
+		return thenormalscolor;
+	}
+	else
+	{
+		return float4(0.15f,0.95f,0.15f,1.0f);
+	}*/
+	//DISTANCE INSTANCE OF VOXEL TO LIGHT POSITION TESTS
+	//DISTANCE INSTANCE OF VOXEL TO LIGHT POSITION TESTS
+	//DISTANCE INSTANCE OF VOXEL TO LIGHT POSITION TESTS
+
+
+	float4 modColor = thenormalscolor;//float4(0.75f,0.75f,0.75f,1.0f);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//PREPARING THE SHADE OF GREY of THE NORMALS TO BE AFFECTED BY THE LIGHT
+	//PREPARING THE SHADE OF GREY of THE NORMALS TO BE AFFECTED BY THE LIGHT
+	//PREPARING THE SHADE OF GREY of THE NORMALS TO BE AFFECTED BY THE LIGHT
+
+	//float4 cursorcolorondistance = float4(0.75f,0.75f,0.75f,1.0f);
+	//float4 cursorcolorondistance = float4(0.0f,0.0f,0.0f,1.0f);
+	float4 cursorcolorondistance = float4(0.15f,0.15f,0.15f,1.0f);
+
+	float3 inputPos2;// = float3();
+
+	inputPos2.x = input.position.x + input.instancePosition.x;// + thenormalscolor.x;
+	inputPos2.y = input.position.y + input.instancePosition.y;// + thenormalscolor.y;
+	inputPos2.z = input.position.z + input.instancePosition.z;// + thenormalscolor.z;
+
+	float3 dirLightToFace = altlightposition - inputPos2;
+	dirLightToFace /= distTot;
+	
+	float3 lightDir = -altlightdirection;
+
+	float someOtherDot = dot(dirLightToFace, lightDir);
+	//float DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, lightDir));
+	float DOTProdAngleWithHypAndOpp = saturate(dot(input.normal, dirLightToFace));
+	someOtherDot =  (DOTProdAngleWithHypAndOpp + someOtherDot) * 0.5f;
+
+	float someTester2 = 0.0f;
+
+	//lightintensityslidervalue *= 0.1f;
+
+	if(sccsvvdhdgrayscaleorcolored == 0)
+	{
+		someTester2 = lightintensityslidervalue - (distTot);
+	}
+	else if(sccsvvdhdgrayscaleorcolored == 1)
+	{
+		someTester2 = lightintensityslidervalue - (distTot);
+	}
+	else if(sccsvvdhdgrayscaleorcolored == 2)
+	{
+		someTester2 = lightintensityslidervalue - (thedisttotalt);
+	}
+	
+	float distMod2 = someTester2;
+	distMod2 *= 0.01f; //0.01f	
+
+
+	//float distTot3 = sc_check_distance_node_3d_geometry(lightPosition, inputPos, 9, 9, 9, 9, 9, 9);
+	float distTot3 = sc_check_distance_node_3d_geometry(lightPosition, inputPos,0.1f,0.1f,0.1f,0.14f,0.14f,0.14f);
+
+
+
+
+	float someTester = lightintensityslidervalue - (distTot3);
+	float distMod = someTester;
+	distMod *= 0.01f; //0.01f
+	
+	if(sccsvvdhdgrayscaleorcolored == 0 || sccsvvdhdgrayscaleorcolored == 1 || sccsvvdhdgrayscaleorcolored == 2) //GRAYSCALE
+	{
+
+		//modColor = float4(0.75f,0.75f,0.75f,1.0f);
+		modColor = float4(0.25f,0.25f,0.25f,1.0f);
+
+		if(sccsvvdhdgrayscaleorcolored == 2)
+		{
+			modColor = float4(0.10f,0.10f,0.10f,1.0f);
+		}
+
+
+
+		mulindex = 0.0054321f; //0.000025f
+
+
+		if(distTot <= 0.005f)
+		{
+			//modColor +=cursorcolor;
+			modColor.x -= (((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod2 * 0.01f))) * 1.0f);
+			modColor.y -= (((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod2 * 0.01f))) * 1.0f);
+			modColor.z -= (((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod2 * 0.01f))) * 1.0f);
+
+			/*float2 thefloat2colorx = float2(x* mulindex,y* mulindex);
+			float2 thefloat2colory = float2(y* mulindex,z* mulindex);
+			float2 thefloat2colorz = float2(x* mulindex,z* mulindex);
+
+			float someuvx = rand_1_05(thefloat2colorx);
+			float someuvy = rand_1_05(thefloat2colory);
+			float someuvz = rand_1_05(thefloat2colorz);
+			float norm = (someuvx + someuvy + someuvz) / 3;
+
+			modColor.x -= (norm * mulindex);
+			modColor.y -= (norm * mulindex);
+			modColor.z -= (norm * mulindex);*/
+			
+			/*
+			x += (1/((lightintensityslidervalue - trunc(lightintensityslidervalue)) * 0.1f)* 0.0001f);
+			y += (1/((lightintensityslidervalue - trunc(lightintensityslidervalue)) * 0.1f)* 0.0001f);
+			z += (1/((lightintensityslidervalue - trunc(lightintensityslidervalue)) * 0.1f)* 0.0001f);
+			*/
+
+			int xi = x + ((lightintensityslidervalue) * 0.1f * 0.01f);
+			int yi = y + ((lightintensityslidervalue) * 0.1f * 0.01f);
+			int zi = z + ((lightintensityslidervalue) * 0.1f * 0.01f);
+			
+			modColor.x -= ((xi + inputPos.x + input.position.x) * mulindex);
+			modColor.y -= ((yi + inputPos.y + input.position.y) * mulindex);
+			modColor.z -= ((zi + inputPos.z + input.position.z) * mulindex);
+
+			/*
+			cursorcolorondistance = cursorcolor;
+			cursorcolorondistance.x -= ((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod * 0.01f)));
+			cursorcolorondistance.y -= ((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod * 0.01f)));
+			cursorcolorondistance.z -= ((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod * 0.01f)));
+			int xii = x + ((lightintensityslidervalue) * 0.1f * 0.1f);
+			int yii = y + ((lightintensityslidervalue) * 0.1f * 0.1f);
+			int zii = z + ((lightintensityslidervalue) * 0.1f * 0.1f);	
+			cursorcolorondistance.x += ((xii + inputPos.x + input.position.x) * mulindex);
+			cursorcolorondistance.y += ((yii + inputPos.y + input.position.y) * mulindex);
+			cursorcolorondistance.z += ((zii + inputPos.z + input.position.z) * mulindex);
+			cursorcolorondistance.x = 1 - cursorcolorondistance.x;
+			cursorcolorondistance.y = 1 - cursorcolorondistance.y;
+			cursorcolorondistance.z = 1 - cursorcolorondistance.z;
+			*/
+
+			//modColor.xyz += (cursorcolorondistance.xyz * 0.051f);
+			
+			modColor.x = 1 - modColor.x;
+			modColor.y = 1 - modColor.y;
+			modColor.z = 1 - modColor.z;
+			
+			//modColor = saturate(modColor);
+
+			//modColor += cursorcolor;
+			//modColor = saturate(modColor);
+
+			//if(modColor.y > 255)
+			//{
+			//	modColor.y = 255;
+			//}
+			//else if(modColor.y < 0)
+			//{
+			//	modColor.y = 0;
+			///}
+
+			//modColor.xyz += (cursorcolor.xyz * 0.1f);
+
+		}
+		else
+		{
+			//modColor +=cursorcolor;
+			modColor.x -= ((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod2 * 0.01f)) * 1.0f);
+			modColor.y -= ((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod2 * 0.01f)) * 1.0f);
+			modColor.z -= ((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod2 * 0.01f)) * 1.0f);
+
+			//modColor.x -= (x * 0.05f);
+			//modColor.y -= (y * 0.05f);
+			//modColor.z -= (z * 0.05f);
+
+			/*float2 thefloat2colorx = float2(x* mulindex,y* mulindex);
+			float2 thefloat2colory = float2(y* mulindex,z* mulindex);
+			float2 thefloat2colorz = float2(x* mulindex,z* mulindex);
+
+			float someuvx = rand_1_05(thefloat2colorx);
+			float someuvy = rand_1_05(thefloat2colory);
+			float someuvz = rand_1_05(thefloat2colorz);
+			float norm = (someuvx + someuvy + someuvz) / 3;
+
+			modColor.x -= (norm * mulindex);
+			modColor.y -= (norm * mulindex);
+			modColor.z -= (norm * mulindex);*/
+
+			/*
+			x += (1/((lightintensityslidervalue - trunc(lightintensityslidervalue)) * 0.1f)* 0.0001f);
+			y += (1/((lightintensityslidervalue - trunc(lightintensityslidervalue)) * 0.1f)* 0.0001f);
+			z += (1/((lightintensityslidervalue - trunc(lightintensityslidervalue)) * 0.1f)* 0.0001f);	*/
+			
+			int xi = x - ((lightintensityslidervalue) * 0.1f * 0.01f);
+			int yi = y - ((lightintensityslidervalue) * 0.1f * 0.01f);
+			int zi = z - ((lightintensityslidervalue) * 0.1f * 0.01f);
+			
+			modColor.x -= ((xi + inputPos.x + input.position.x) * mulindex);
+			modColor.y -= ((yi + inputPos.y + input.position.y) * mulindex);
+			modColor.z -= ((zi + inputPos.z + input.position.z) * mulindex);
+			
+
+			/*
+			cursorcolorondistance = cursorcolor;
+			cursorcolorondistance.x -= ((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod2 * 0.01f)));
+			cursorcolorondistance.y -= ((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod2 * 0.01f)));
+			cursorcolorondistance.z -= ((0.5f) * (someOtherDot * 0.01f) * (1 / (distMod2 * 0.01f)));
+
+			int xii = x + ((lightintensityslidervalue) * 0.1f * 0.1f);
+			int yii = y + ((lightintensityslidervalue) * 0.1f * 0.1f);
+			int zii = z + ((lightintensityslidervalue) * 0.1f * 0.1f);
+			
+			cursorcolorondistance.x -= ((xii + inputPos.x + input.position.x) * mulindex);
+			cursorcolorondistance.y -= ((yii + inputPos.y + input.position.y) * mulindex);
+			cursorcolorondistance.z -= ((zii + inputPos.z + input.position.z) * mulindex);*/
+			
+			/*cursorcolorondistance.x = 1 - cursorcolorondistance.x;
+			cursorcolorondistance.y = 1 - cursorcolorondistance.y;
+			cursorcolorondistance.z = 1 - cursorcolorondistance.z;*/
+
+			//modColor.xyz = (cursorcolorondistance.xyz * 0.051f);
+
+			modColor.x = 1 - modColor.x;
+			modColor.y = 1 - modColor.y;
+			modColor.z = 1 - modColor.z;
+
+
+
+
+
+
+
+
+
+
+
+
+
+			//modColor.xyz += (cursorcolorondistance.xyz * 0.0001f);
+
+
+			//cursorcolorondistance.xyz += modColor.xyz;
+
+			//(modColor.y > 255)
+			//{
+			//	modColor.y = 255;
+			//}
+			//else if(modColor.y < 0)
+			//{
+			//	modColor.y = 0;
+			//}
+
+		}
+
+		
+	
+		if(distTot <= 0.005f)
+		{
+			//cursorcolorondistance += (float4((cursorcolor.x/255),(cursorcolor.y/255),(cursorcolor.z/255),1.0f) * (someOtherDot)) * distMod;
+			//cursorcolorondistance = saturate(cursorcolorondistance);
+			//cursorcolorondistance.xyz = thenormalscolor.xyz * cursorcolorondistance.xyz * 10.5f; //0.95f	
+			//modColor.xyz += (cursorcolor.xyz * (someOtherDot)*distMod * 1.0f * 0.0001f);
+		}
+		else
+		{
+			//cursorcolorondistance += (float4((cursorcolor.x/255),(cursorcolor.y/255),(cursorcolor.z/255),1.0f) * (someOtherDot)) * distMod;
+			//cursorcolorondistance = saturate(cursorcolorondistance);
+			//cursorcolorondistance.xyz = thenormalscolor.xyz * cursorcolorondistance.xyz * 10.5f; //0.95f
+		}
+
+	}
+	//PREPARING THE SHADE OF GREY of THE NORMALS TO BE AFFECTED BY THE LIGHT
+	//PREPARING THE SHADE OF GREY of THE NORMALS TO BE AFFECTED BY THE LIGHT
+	//PREPARING THE SHADE OF GREY of THE NORMALS TO BE AFFECTED BY THE LIGHT
+
+
+	
+
+
+
+	/*cursorcolorondistance += cursorcolor;
+	cursorcolorondistance += (float4((cursorcolor.x/255),(cursorcolor.y/255),(cursorcolor.z/255),1.0f) * (someOtherDot)) * distMod2;
+	cursorcolorondistance = saturate(cursorcolorondistance);
+	cursorcolorondistance.xyz = thenormalscolor.xyz * cursorcolorondistance.xyz * 10.5f; //0.95f	
+
+	//modColor *= cursorcolorondistance;*/
+
+
+
+
+	/*
+	float normalizedbetweenzeroandonehundredx = 1/textureColor.x;
+	float normalizedbetweenzeroandonehundredy = 1/textureColor.y;
+	float normalizedbetweenzeroandonehundredz = 1/textureColor.z;
+	*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//GRID PARAMETERS
+	//GRID PARAMETERS
+	//GRID PARAMETERS
+	/*
+	if(cursortypeoption == 2 || cursortypeoption == 6)
+	{
+		textureColor = somemoddedinputcolor;
+	}*/
+
+	
+
+	color = ambientColor;
+	// Calculate the amount of the light on this pixel.
+	lightIntensity = saturate(dot(input.normal.xyz, lightDir));
+
+	// Determine the final diffuse color based on the diffuse color and the amount of the light intensity.
+	color += (diffuseColor * lightIntensity);
+		
+	// Saturate the ambient and diffuse color.
+	color = saturate(color);
+	//lightIntensity = 1.0f;
+	// Calculate the reflection vector based on the light intensity, normal vector, and light direction.
+	reflection = normalize(2 * lightIntensity * input.normal.xyz - lightDir);
+
+	// Determine the amount of the specular light based on the reflection vector, viewing direction, and specular power.
+	specular = pow(saturate(dot(reflection, lightDirection.xyz)) * distTot, lightextras.x); //input..viewDirection
+	specular = saturate(color + specular);
+
+	//textureColor =textureColor;
+	//textureColor = textureColor * cursorcolorondistance * specular; // * cursorcolorred.xyz
+
+	//textureColor += cursorcolorondistance;
+
+
+	
+
+
+
+	
+	float4 newmodColor = float4(0.75f,0.75f,0.75f,1.0f);
+
+	float4 gridcolor = float4(0.0f,0.0f,0.0f,1.0f);// float4(0.75f,0.75f,0.75f,1.0f);
+
+	if(gridtypeoption == 0)
+	{
+		//textureColor = textureColor;
+	}
+
+	if(gridtypeoption != 0 && facetype == 0)
+	{
+
+		//specular = float4(0.5f,0.5f,0.5f,1.0f);
+		specular = float4(0.15f,0.15f,0.15f,1.0f);
+		//specular = float4(1,1,1,1);
+		newmodColor = (textureColor);
+		//newmodColor.xyz *= 0.1f;
+
+		//gridcolor = float4(0.75f,0.75f,0.75f,1.0f);
+		//gridcolor = float4(0.15f,0.15f,0.15f,1.0f);
+		//gridcolor = float4(0.0f,0.0f,0.0f,1.0f);
+
+		//gridcolor += chosengridcolor;
+		gridcolor = (chosengridcolor + thenormalscolor);
+		//gridcolor = (chosengridcolor);
+
+		if(gridtypeoption == 1)
+		{
+			//GRID LOZANGE FEATURE
+			if(input.color.x == 0 && input.color.y == 3)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.x == 1 && input.color.y == 2)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.x == 2 && input.color.y == 1)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.x == 3 && input.color.y == 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+
+			else if(input.color.x == 4 && input.color.y == 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.x == 5 && input.color.y == 1)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.x == 6 && input.color.y == 2)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+				else if(input.color.x == 7 && input.color.y == 3)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+
+			else if(input.color.x == 7 && input.color.y == 4)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.x == 6 && input.color.y == 5)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.x == 5 && input.color.y == 6)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.x == 4 && input.color.y == 7)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+
+			else if(input.color.x == 3 && input.color.y == 7)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.x == 2 && input.color.y == 6)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.x == 1 && input.color.y == 5)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.x == 0 && input.color.y == 4)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else
+			{
+				gridcolor = float4(0.0f,0.0f,0.0f,1.0f);// +=( newmodColor * specular) ;
+			}
+			//GRID LOZANGE FEATURE
+		}
+		else if(gridtypeoption == 2)
+		{
+		
+			//grid square SLIM LEFT
+			if(input.color.x == 0 && input.color.y >= 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.y == 0 && input.color.x >= 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else
+			{
+				gridcolor = float4(0.0f,0.0f,0.0f,1.0f);// +=( newmodColor * specular) ;
+			}
+			//grid square SLIM LEFT
+		}
+		else if(gridtypeoption == 3)
+		{
+			//grid square SLIM RIGHT
+			if(input.color.x == tinyChunkWidth -1 && input.color.y >= 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.x >= 0 && input.color.y == tinyChunkHeight -1)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else
+			{
+				gridcolor = float4(0.0f,0.0f,0.0f,1.0f);// +=( newmodColor * specular) ;
+			}
+			//grid square SLIM RIGHT
+		}
+		else if(gridtypeoption == 4)
+		{
+			//grid square feature LARGE
+			if(input.color.x == 0 && input.color.y >= 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.y == 0 && input.color.x >= 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.x == tinyChunkWidth -1 && input.color.y >= 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.x >= 0 && input.color.y == tinyChunkHeight -1)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else
+			{
+					gridcolor = float4(0.0f,0.0f,0.0f,1.0f);// +=( newmodColor * specular) ;
+			}
+			//grid square feature LARGE
+		}
+		else if(gridtypeoption == 5)
+		{
+			//grid dotted corners feature
+			if(input.color.x == 0 && input.color.y == 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.y == 0 && input.color.x == tinyChunkWidth-1)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.x == 0 && input.color.y == tinyChunkHeight-1)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.x == tinyChunkWidth-1 && input.color.y == tinyChunkHeight -1)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else
+			{
+					gridcolor = float4(0.0f,0.0f,0.0f,1.0f);// +=( newmodColor * specular) ;
+			}
+			//grid dotted corners feature
+		}
+		else if(gridtypeoption == 6)
+		{
+			//grid dotted middle feature
+			if(input.color.x == 3 && input.color.y == 3)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else if(input.color.y == 4 && input.color.x == 4)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.x == 3 && input.color.y == 4)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor) ; //somemoddedinputcolor
+			}
+			else if(input.color.x ==4 && input.color.y == 3)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else
+			{
+					gridcolor = float4(0.0f,0.0f,0.0f,1.0f);// +=( newmodColor * specular) ;
+			}
+			//grid dotted middle feature
+		}
+		else if(gridtypeoption == 7)
+		{
+			//grid dotted middle feature
+			if(input.color.x == 0 && input.color.y == 0)
+			{
+				gridcolor += (newmodColor * specular * chosengridcolor); //somemoddedinputcolor
+			}
+			else
+			{
+				gridcolor = float4(0.0f,0.0f,0.0f,1.0f);// +=( newmodColor * specular) ;
+			}
+			//grid dotted middle feature
+		}
+
+
+		if(sccsvvdhdgrayscaleorcolored == 2)
+		{
+			//gridcolor.xyz *= 10.1f;
+		}
+		else
+		{
+			gridcolor.xyz *= 10.1f;
+		}
+
+
+
+		gridcolor = saturate(gridcolor);
+
+
+
+		if(gridtypeoption == 1 || gridtypeoption == 2 || gridtypeoption == 3 || gridtypeoption == 4 || gridtypeoption == 5 || gridtypeoption == 6 || gridtypeoption == 7)
+		{
+			if(sccsvvdhdgrayscaleorcolored == 2)
+			{
+				thenormalscolor += gridcolor;
+			}
+			
+
+			textureColor += (gridcolor);
+
+		}
+		
+	}
+	//GRID PARAMETERS
+	//GRID PARAMETERS
+	//GRID PARAMETERS
+
+
+
+
+
+	//textureColor += cursorcolor;
+
+
+	
+
+
+	if(sccsvvdhdgrayscaleorcolored == 2)
+	{
+		textureColor = thenormalscolor;
+	
+	
+
+		//cursor light
+		modColor.xyz *= 0.005f;
+		textureColor += (modColor); 
+		//cursor light
+	}
+	else
+	{
+		thenormalscolor *= 0.5f;
+		textureColor += thenormalscolor;
+
+
+		//cursor light
+		modColor.xyz *= 0.005f;
+		textureColor += (modColor);
+		//cursor light
+
+		
+	}
+
+
+
+
+	/*if(sccsvvdhdgrayscaleorcolored == 2)
+	{
+		thenormalscolor *= 0.05f;
+		textureColor = thenormalscolor + ((modColor * 0.005f));
+		textureColor += (gridcolor * 10.5f);
+
+		//return thenormalscolor += ((modColor * 0.00005f)) ; //+ (gridcolor * 0.05f)
+
+
+	}
+	else
+	{
+		thenormalscolor *= 0.05f;
+		textureColor += ((thenormalscolor + ((modColor * 0.008005f))));
+		textureColor += (gridcolor * 10.5f);
+
+
+		//return textureColor; // + (gridcolor * 0.05f)
+	}*/
+
+
+
+
+
+	return textureColor; //textureColor ;//color;// textureColor;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*float xn = noise(x* 0.05f);
+float yn = noise(y* 0.05f);
+float zn = noise(z* 0.05f);*/
+
+/*
+modColor.x -= (xn * mulindex);
+modColor.y -= (yn * mulindex);
+modColor.z -= (zn * mulindex);*/	
+/*modColor.x -= (x * mulindex);
+modColor.y -= (y * mulindex);
+modColor.z -= (z * mulindex);*/
+
+/*float2 thefloat2colorx = float2(x* mulindex,y* mulindex);
+float2 thefloat2colory = float2(y* mulindex,z* mulindex);
+float2 thefloat2colorz = float2(x* mulindex,z* mulindex);
+
+float someuvx = rand_1_05(thefloat2colorx);
+float someuvy = rand_2_10(thefloat2colory);
+float someuvz = rand_2_0004(thefloat2colorz);
+
+float norm = (someuvx + someuvy + someuvz) / 3;
+
+modColor.x -= (norm * mulindex);
+modColor.y -= (norm * mulindex);
+modColor.z -= (norm * mulindex);*/
+
+
+/*float someuv2x = rand_2_0004(thefloat2colorx);
+float someuv2y = rand_1_05(thefloat2colory);
+float someuv2z = rand_2_10(thefloat2colorz);
+
+float norm2 = (someuv2x + someuv2y + someuv2z) / 3;
+
+modColor.x += (norm2 * mulindex);
+modColor.y -= (norm2 * mulindex);
+modColor.z += (norm2 * mulindex);
+
+float someuv3x = rand_2_10(thefloat2colorx);
+float someuv3y = rand_2_0004(thefloat2colory);
+float someuv3z = rand_1_05(thefloat2colorz);
+
+float norm3 = (someuv3x + someuv3y + someuv3z) / 3;
+
+modColor.x -= (norm3 * mulindex);
+modColor.y += (norm3 * mulindex);
+modColor.z -= (norm3 * mulindex);*/
+
+
+
+
+
+//NumberGenerator numgen = new NumberGenerator();
+//float2 thefloat2color = float2(textureColor.y,0.5);
+//float someuv = rand_1_05(thefloat2color);
+//swaptextureColorfinal.x = 0.0;
+//swaptextureColorfinal.y = someuv;//numgen.GetCurrentFloat();
+//float somesnoise = snoise(textureColor.xy) * 1.5f;
+//modColor = modColor * somesnoise;
+//textureColor.xy = textureColor.xy * somesnoise;
+
+//textureColor.x *= 0.1f * input.color.x;
+//textureColor.y *= 0.1f * input.color.y;
+//textureColor.z *= 0.1f * input.color.z;
+/*float xn = noise(textureColor.x);
+float yn = noise(textureColor.y);
+float zn = noise(textureColor.z);
+
+textureColor.x = xn;
+textureColor.y = yn;
+textureColor.z = zn;*/
+
+//textureColor = snoise(textureColor.xyz) * textureColor;
+
+
+
+
+
+
+
+		
+/*if(modColor.y > 255)
+{
+	modColor.y = 255;
+}*/
+
+
+
+
+
+//modColor += float4(0.15f,0.95f,0.15f,1.0f);
+//modColor *= 0.5f;//float4(0.15f,0.95f,0.15f,1.0f);
+				
+/*float normalizeddistance = 0.0f;
+
+if(distMod2 < 1.0f)
+{
+	normalizeddistance = 1 / distMod2;
+}
+else if(distMod2 >= 1.0f && distMod2 < 10.0f)
+{
+	normalizeddistance = 10 / distMod2;
+	//normalizeddistance = 1 / distMod2;
+}
+else if(distMod2 >= 10.0f)
+{
+	normalizeddistance = 1000 / distMod2;
+	//normalizeddistance = 1 / distMod2;
+}*/
+
+
+/*if()
+{
+
+}*/
+
+//float thedotvertical = dot(float3(0.0f,1.0f,0.0f), lightDir);
+//float thedotvertical = dot(float3(0.0f,1.0f,0.0f), lightDir);
+
+//modColor.y -= (thedotvertical * 0.0095f);
+
+
+//modColor -= (float4((cursorcolor.x/255),(cursorcolor.y/255),(cursorcolor.z/255),1.0f) * (someOtherDot)) * distMod2;
+/*modColor = saturate(modColor);
+modColor.xyz = internaldiffuse.xyz * modColor.xyz * 1.5f; //0.95f	
+*/
+/*modColor -= (float4((cursorcolor.x/255),(cursorcolor.y/255),(cursorcolor.z/255),1.0f) * (someOtherDot)) * distMod2;
+modColor = saturate(modColor);
+*/
+
+
+//modColor.xyz = internaldiffuse.xyz * modColor.xyz * 1.5f; //0.95f		//*1.5f		
+
+/*
+modColor.x -= (xn * mulindex);
+modColor.y -= (yn * mulindex);
+modColor.z -= (zn * mulindex);*/
+
+/*
+float xn = noise(thefloat2colorx);
+float yn = noise(thefloat2colory);
+float zn = noise(thefloat2colorz);*/
+
+/*modColor.x -= (x * mulindex);
+modColor.y -= (y * mulindex);
+modColor.z -= (x * y * mulindex);*/
