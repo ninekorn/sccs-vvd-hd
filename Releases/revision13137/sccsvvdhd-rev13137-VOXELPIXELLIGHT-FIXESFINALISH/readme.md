@@ -29,4 +29,6 @@ I have work left to do on the dirty instances rgb option and slider so it isn't 
 
 Also i didn't work on the "high voxel resolution" options yet, i didn't calibrate those yet, except only the 1920x1080 works in that mode with the 1 to 5 resolutions available.
 
+Just like revision 1.3136 and 1.3135 at release, i forgot to change the revision number in the title of the program but don't worry it really is revision 1.3137.
+
 steve chassé aka ninekorn
