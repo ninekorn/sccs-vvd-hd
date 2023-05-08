@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sccsvvdhd", "sccsvvdhd\sccsvvdhd.csproj", "{02C38F1D-2B76-4E7A-AA9B-10DCFE973E48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRT.GraphicsCapture", "..\..\..\Libraries\WinRT.GraphicsCapture\WinRT.GraphicsCapture\WinRT.GraphicsCapture.csproj", "{5F07CD41-842F-479E-9384-45DF7EEFCF1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32.Shared", "..\..\..\Libraries\Win32.Shared\Win32.Shared\Win32.Shared.csproj", "{107D71D3-6FBB-42FE-A7F7-AF4D43FFAD40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32.DwmSharedSurface", "..\..\..\Libraries\Win32.DwmSharedSurface\Win32.DwmSharedSurface\Win32.DwmSharedSurface.csproj", "{CCB2134F-3495-4A0B-8197-8A0E0F4DB89E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jitter_sc", "..\..\..\Libraries\jitter_sc\jitter_sc.csproj", "{86FBB8D6-3FAD-4B18-A239-F12E287FE953}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsInput", "..\..\..\Libraries\inputsimulator\WindowsInput\WindowsInput.csproj", "{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02C38F1D-2B76-4E7A-AA9B-10DCFE973E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C38F1D-2B76-4E7A-AA9B-10DCFE973E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C38F1D-2B76-4E7A-AA9B-10DCFE973E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C38F1D-2B76-4E7A-AA9B-10DCFE973E48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F07CD41-842F-479E-9384-45DF7EEFCF1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F07CD41-842F-479E-9384-45DF7EEFCF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F07CD41-842F-479E-9384-45DF7EEFCF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F07CD41-842F-479E-9384-45DF7EEFCF1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{107D71D3-6FBB-42FE-A7F7-AF4D43FFAD40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{107D71D3-6FBB-42FE-A7F7-AF4D43FFAD40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{107D71D3-6FBB-42FE-A7F7-AF4D43FFAD40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{107D71D3-6FBB-42FE-A7F7-AF4D43FFAD40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB2134F-3495-4A0B-8197-8A0E0F4DB89E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB2134F-3495-4A0B-8197-8A0E0F4DB89E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB2134F-3495-4A0B-8197-8A0E0F4DB89E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB2134F-3495-4A0B-8197-8A0E0F4DB89E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86FBB8D6-3FAD-4B18-A239-F12E287FE953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86FBB8D6-3FAD-4B18-A239-F12E287FE953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86FBB8D6-3FAD-4B18-A239-F12E287FE953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86FBB8D6-3FAD-4B18-A239-F12E287FE953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3549CD6F-80F8-450F-B99E-CF0A736B1F2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A47E03EF-E677-47D8-82BB-FD6ECE6229AF}
+	EndGlobalSection
+EndGlobal

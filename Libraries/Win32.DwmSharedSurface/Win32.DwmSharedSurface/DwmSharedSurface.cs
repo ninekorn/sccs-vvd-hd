@@ -22,11 +22,15 @@ namespace Win32.DwmSharedSurface
 
         public void Dispose()
         {
+            HasClosedCapture = true;
             StopCapture();
+            //HasClosedCapture = false;
+            typeofcapture = 1;
         }
-
+        public int typeofcapture { get; set; }
         public bool IsCapturing { get; private set; }
-
+        //public bool HasClosedCapture { get; set; }
+        public bool HasClosedCapture;//
         public void StartCapture(IntPtr hWnd, Device device, Factory factory)
         {
             var picker = new WindowPicker();
@@ -39,8 +43,11 @@ namespace Win32.DwmSharedSurface
 
         public Texture2D TryGetNextFrameAsTexture2D(Device device)
         {
+            
             if (_hWnd == IntPtr.Zero)
                 return null;
+
+            IsCapturing = true;
 
             NativeMethods.DwmGetDxSharedSurface(_hWnd, out var phSurface, out _, out _, out _, out _);
             if (phSurface == IntPtr.Zero)

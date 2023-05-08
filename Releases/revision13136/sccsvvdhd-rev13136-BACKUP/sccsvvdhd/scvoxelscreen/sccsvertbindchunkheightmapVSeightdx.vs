@@ -1,6 +1,5 @@
 //MADE BY STEVE CHASS� AKA NINEKORN AKA 9
 
-
 cbuffer MatrixBuffer :register(b0)
 {
 	float4x4 world;
@@ -8,18 +7,13 @@ cbuffer MatrixBuffer :register(b0)
 	float4x4 proj;
 };
 
-
 cbuffer OVRDir :register(b2)
 {
 	float4 ovrdirf;
 	float4 ovrdiru;
 	float4 ovrdirr;
 	float4 ovrpos;
-	
 };
-
-
-
 
 //cbuffer MatrixBuffer :register(b1)
 //{
@@ -84,7 +78,6 @@ struct PixelInputType
 	float paddingvert2 : PSIZE2;	//instance depth
 	float4 instancePosition : POSITION1;
 	
-	
 	/*float4 instanceRadRotFORWARD : POSITION2;
 	float4 instanceRadRotRIGHT : POSITION3;
 	float4 instanceRadRotUP : POSITION4;*/
@@ -120,11 +113,6 @@ struct PixelInputType
 	int four : PSIZE9;	
 	int fourTwo : PSIZE10;*/
 
-
-
-
-
-
 	int xindex : PSIZE3;	
 	int yindex : PSIZE4;
 };
@@ -139,7 +127,6 @@ int nthbit(int number,int position)
 {
     return lastbit(number >> position);
 }
-
 
 static int heightmapw = 4;
 static int heightmaph = 4;
@@ -179,8 +166,6 @@ static float diffX;
 static float diffY;
 static float diffZ;
 
-
-
 static const float PI = 3.1415926535897932384626433832795f;
 float DegreeToRadian(float angle)
 {
@@ -191,10 +176,6 @@ float RadianToDegree(float angle)
 {
   return angle * (180.0f / PI);
 }
-
-
-
-
 
 //stackoverflow 14607640
 
@@ -208,7 +189,6 @@ float3 rotateveczaxis (float x, float y, float z,float angle)
 	return float3(somenewx,somenewy,somenewz);
 }
 
-
 float3 rotatevecyaxis (float x, float y, float z,float angle)
 {	
 	angle = DegreeToRadian(angle);
@@ -219,8 +199,6 @@ float3 rotatevecyaxis (float x, float y, float z,float angle)
 	return float3(somenewx,somenewy,somenewz);
 }
 
-
-
 float3 rotatevecxaxis (float x, float y, float z,float angle)
 {	
 	angle = DegreeToRadian(angle);
@@ -230,10 +208,6 @@ float3 rotatevecxaxis (float x, float y, float z,float angle)
 
 	return float3(somenewx,somenewy,somenewz);
 }
-
-
-
-
 
 //public int IsTransparent(int x, int y, int z)
 //{
@@ -954,11 +928,52 @@ PixelInputType TextureVertexShader(VertexInputType input)
 
 
 	int projectionsetting = 0;
-
 	float3 somecamerapos = float3(0,0,0);
-	float4x4 worldswap = world;
 
-	if(round(worldswap._44) == -1.0f) //_m00 to _m33
+
+	float4 theovrposmod = ovrpos;
+	//ovrpos.w = 1;
+
+	//theovrposmod.w = -1;
+
+	if(int(round(theovrposmod.w)) == -1)
+	{
+		float3 postest = input.position.xyz;
+
+		postest += forwardDir.xyz;
+
+		somecamerapos = postest;
+		somecamerapos.x += input.instancePosition.x;
+		somecamerapos.y += input.instancePosition.y;
+		somecamerapos.z += input.instancePosition.z;
+
+		projectionsetting = 0;
+	}
+	else if(int(round(theovrposmod.w)) == 1)
+	{
+		//float3 postest = ovrpos.xyz;//input.position.xyz;
+
+		//postest += forwardDir.xyz;
+
+		somecamerapos = ovrpos.xyz;
+		//somecamerapos.x += input.instancePosition.x;
+		//somecamerapos.y += input.instancePosition.y;
+		//somecamerapos.z += input.instancePosition.z;
+
+
+		projectionsetting = 1;
+	}
+
+
+
+
+
+
+
+	
+	//float4x4 worldswap = world;
+
+	/*if(int(round(worldswap._44)) == -1) //_m00 to _m33
 	{
 
 		float3 postest = input.position.xyz;
@@ -966,40 +981,42 @@ PixelInputType TextureVertexShader(VertexInputType input)
 		postest += forwardDir.xyz;
 
 		somecamerapos = postest;
-
 		somecamerapos.x += input.instancePosition.x;
 		somecamerapos.y += input.instancePosition.y;
 		somecamerapos.z += input.instancePosition.z;
 
-
 		//somecamerapos = mod_input_vertex_pos.xyz;// + (forwardDir.xyz);
-
 		//somecamerapos.z += forwardDir.z;//.xyz;// + (forwardDir.xyz);
-
-
 		//somecamerapos = float3(0,0, 1.0f);
-
 		//somecamerapos = MOVINGPOINT.xyz + input.normal.xyz; //.xyz + forwardDir;//input.normal.xyz;//.z; //float3(0,0, 1.0f);
-
 		//somecamerapos.z = input.normal.z;
-
 		//somecamerapos = MOVINGPOINT.xyz + forwardDir.xyz;
-
 
 		projectionsetting = 0;
 		worldswap._44 = 1.0f;
+
 		//world = worldswap;
 	}
-	else if(round(worldswap._44) == 1.0f) 
+	else if(int(round(worldswap._44)) == 1) 
 	{
-		somecamerapos = float3(0,0, 1.0f);
-		
-		//somecamerapos = MOVINGPOINT.xyz + forwardDir;//ovrpos;
 
+		float3 postest = ovrpos.xyz;// input.position.xyz;
+
+		//postest += forwardDir.xyz;
+
+		somecamerapos = postest;
+		//somecamerapos.x += input.instancePosition.x;
+		//somecamerapos.y += input.instancePosition.y;
+		//somecamerapos.z += input.instancePosition.z;
+
+
+		//somecamerapos = float3(0,0, 1.0f);
+		
+		somecamerapos = MOVINGPOINT.xyz + forwardDir;//ovrpos;
 		//somecamerapos = float3(0,0, 1.0f);
 
 		projectionsetting = 1;
-	}
+	}*/
 
 
 
@@ -1012,456 +1029,692 @@ PixelInputType TextureVertexShader(VertexInputType input)
 	float effectmul = 1.0f;
 
 	
+
+
+	
 	if(projectionsetting == 0)
 	{
 		
-		if(facetype == 0) //frontface
+	//EFFECT ROTATE TOWARDS PLAYER POSITION.
+	if(facetype == 0) //frontface
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
 		{
-			if(isfrontfacelinkedvertex == 1)
+			float3 otherdir = somecamerapos.xyz - (MOVINGPOINT.xyz *-1);  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+
+
+			//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 1.5f);
+			//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 1.5f);
+			//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 1.5f);
+
+
+			if(multowardsrift < 0)
 			{
-				float3 otherdir = somecamerapos.xyz - (MOVINGPOINT.xyz *-1);  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
 
-				/*if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
-				}*/
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
 
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-			}		
-		}
-
-
-		else if(facetype == 1) //top
-		{
-			if(isfrontfacelinkedvertex == 1)
-			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-
-				}
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 			else
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz;
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{				
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 		}
-		else if(facetype == 2) //left
-		{
-			if(isfrontfacelinkedvertex == 1)
-			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
+		
+	}
 
-				}
+	else if(facetype == 1) //top
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 			else
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 		}
-		else if(facetype == 3) //right
+		else
 		{
-			if(isfrontfacelinkedvertex == 1)
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz;
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
 
-				}
+				
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 			else
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 		}
-		else if(facetype == 4) //back
+	}
+	else if(facetype == 2) //left
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
 		{
-			if(isfrontfacelinkedvertex == 1)
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
 
-				}
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 			else
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 		}
-		else if(facetype == 5) //bottom
+		else
 		{
-			if(isfrontfacelinkedvertex == 1)
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
 
-				}
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 			else
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz * -1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 		}
+	}
+	else if(facetype == 3) //right
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+
+						MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+		else
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+	}
+	else if(facetype == 4) //back
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+
+						MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+		else
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+	}
+	else if(facetype == 5) //bottom
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+
+			}
+		}
+		else
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz * -1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+	}
 
 	}
 	else if(projectionsetting == 1)
 	{
 
-		//EFFECT POINT TOWARDS PLAYER POSITION. ISSUE WITH THE PLAYER POSITION NOT UPDATING
-		if(facetype == 0) //frontface
+	//EFFECT ROTATE TOWARDS PLAYER POSITION.
+	if(facetype == 0) //frontface
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
 		{
-			if(isfrontfacelinkedvertex == 1)
-			{
-				float3 otherdir = somecamerapos.xyz - (MOVINGPOINT.xyz *-1);  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
+			float3 otherdir = somecamerapos.xyz - (MOVINGPOINT.xyz *-1);  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
 
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
+
+			//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 1.5f);
+			//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 1.5f);
+			//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 1.5f);
+
+
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
 		
-		}
+	}
 
-		else if(facetype == 1) //top
+	else if(facetype == 1) //top
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
 		{
-			if(isfrontfacelinkedvertex == 1)
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-
-				}
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 			else
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz;
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 		}
-		else if(facetype == 2) //left
+		else
 		{
-			if(isfrontfacelinkedvertex == 1)
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz;
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
 
-				}
+				
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 			else
 			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
 
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-			}
-		}
-		else if(facetype == 3) //right
-		{
-			if(isfrontfacelinkedvertex == 1)
-			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-
-				}
-			}
-			else
-			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-			}
-		}
-		else if(facetype == 4) //back
-		{
-			if(isfrontfacelinkedvertex == 1)
-			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-
-				}
-			}
-			else
-			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-			}
-		}
-		else if(facetype == 5) //bottom
-		{
-			if(isfrontfacelinkedvertex == 1)
-			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-
-				}
-			}
-			else
-			{
-				float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz * -1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
-				float somelength = length(otherdir);
-				otherdir /= somelength;
-				if(multowardsrift < 0)
-				{
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
-				else
-				{
-					//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
-					//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
-
-					MOVINGPOINT.x = MOVINGPOINT.x + (forwardDir.x * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.y = MOVINGPOINT.y + (forwardDir.y * (-multowardsrift) * 0.25f);
-					MOVINGPOINT.z = MOVINGPOINT.z + (forwardDir.z * (-multowardsrift) * 0.25f);
-				}
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
 			}
 		}
 	}
+	else if(facetype == 2) //left
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
 
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
 
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+		else
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
 
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+	}
+	else if(facetype == 3) //right
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+
+						MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+		else
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+	}
+	else if(facetype == 4) //back
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+
+						MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+		else
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+	}
+	else if(facetype == 5) //bottom
+	{
+		if(input.color.w - floor(input.color.w) == 0.1f)
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz *-1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+
+			}
+		}
+		else
+		{
+			float3 otherdir = somecamerapos.xyz - MOVINGPOINT.xyz * -1;  //ovrdirf.xyz * -1;//somecamerapos.xyz - MOVINGPOINT.xyz; 
+			//otherdir.x *=-1;
+			//otherdir.y *=-1;
+			float somelength = length(otherdir);
+			otherdir /= somelength;
+			if(multowardsrift < 0)
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+				//MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * effectmul) ;
+				//MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * effectmul) ;
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+			else
+			{
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * diffZ);
+				//MOVINGPOINT = MOVINGPOINT + (otherdir * (0.05f) * 0.5f);
+
+				MOVINGPOINT.x = MOVINGPOINT.x + (otherdir.x * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.y = MOVINGPOINT.y + (otherdir.y * (-multowardsrift) * 0.25f);
+				MOVINGPOINT.z = MOVINGPOINT.z + (otherdir.z * (-multowardsrift) * 0.25f);
+			}
+		}
+	}
+	}
 
 
 
@@ -1478,14 +1731,14 @@ PixelInputType TextureVertexShader(VertexInputType input)
 	input.position.z = MOVINGPOINT.z;
 
 
-	//output.position = mul(mod_input_vertex_pos, worldswap);
-	output.position = mul(input.position, worldswap);
+	//output.position = mul(mod_input_vertex_pos, world);
+	output.position = mul(input.position, world);
 	output.position = mul(output.position, view);
 	output.position = mul(output.position, proj);
 
 
 
-	//float4x4 worldviewmatrix = mul(worldswap,view);
+	//float4x4 worldviewmatrix = mul(world,view);
 	//float3 positionvs = input.position.xyz + float3(worldviewmatrix._41,worldviewmatrix._42,worldviewmatrix._43);
 	//float3 finalpos = mul(float4(positionvs,1.0), proj);
 	//output.position = float4(finalpos,1.0);
@@ -1527,7 +1780,7 @@ PixelInputType TextureVertexShader(VertexInputType input)
 
 
 	output.normal = input.normal;
-	//output.normal = mul(input.normal, worldswap);
+	//output.normal = mul(input.normal, world);
 	//output.normal = normalize(output.normal);
 
 	output.xindex = input.xindex;

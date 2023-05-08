@@ -27,18 +27,26 @@ namespace WinRT.GraphicsCapture
         private GraphicsCaptureItem _captureItem;
         private GraphicsCaptureSession _captureSession;
 
+        public static bool HasClosedCapture;// { get; private set; }
         //public Form currentform;
+
+        public int typeofcapture { get; set; }
 
         public GraphicsCapture()
         {
             IsCapturing = false;
+            typeofcapture = 0;
         }
 
         public bool IsCapturing { get; private set; }
 
+
+        //public bool HasClosedCapture { get; set; }
+
         public void Dispose()
         {
             StopCapture();
+            Console.WriteLine("GraphicsCapture.cs Line 45 has stopped capture 2.");
         }
 
 
@@ -109,6 +117,16 @@ namespace WinRT.GraphicsCapture
 
         public Texture2D TryGetNextFrameAsTexture2D(Device device)
         {
+
+            if (canclosecapture == 0)
+            {
+                IsCapturing = true;
+
+            }
+            else
+            {
+
+            }
 
 
             frame = _captureFramePool?.TryGetNextFrame();
@@ -312,15 +330,28 @@ namespace WinRT.GraphicsCapture
         private static void Capture_Closed(GraphicsCaptureItem sender, object args)
         {
 
-            Console.WriteLine("The capture was closed");
+            Console.WriteLine("GraphicsCapture.cs Line 315. The capture was closed");
             //throw new NotImplementedException();
 
             //Program.MessageBox((IntPtr)0, "Capture_Closed", "sccsmsg", 0);
+            //IsCapturing = false;
+            //HasClosedCapture = true;
+            HasClosedCapture = true;
+            //IsCapturing = false;
+            //StopCapture();
         }
 
+
+
+
+        public static int canclosecapture = 0;
         private void CaptureItemOnClosed(GraphicsCaptureItem sender, object args)
         {
+            canclosecapture = 1;
+            IsCapturing = false;
             StopCapture();
+            Console.WriteLine("test");
+            
         }
 
 

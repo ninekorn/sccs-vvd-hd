@@ -9,6 +9,10 @@ namespace Win32.Shared.Interfaces
 {
     public interface ICaptureMethod : IDisposable
     {
+
+        //bool HasClosedCapture { get; set; }
+
+        int typeofcapture { get; set; }
         bool IsCapturing { get; }
 
         void StartCapture(IntPtr hWnd, Device device, Factory factory);

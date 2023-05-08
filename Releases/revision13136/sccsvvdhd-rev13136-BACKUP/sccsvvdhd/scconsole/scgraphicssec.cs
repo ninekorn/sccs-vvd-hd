@@ -8860,7 +8860,7 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
                                 somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].proj = _projectionMatrix;
 
 
-
+                                /*
                                 if (sccsvvdhd.Form1.currentform.projectiontypeindex == 0)//sccsvvdhd.Form1.currentform.comboboxcapturelist2.SelectedIndex == 0)
                                 {
                                     somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].world.M44 = -1.0f;
@@ -8869,7 +8869,7 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
                                 {
                                     somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].world.M44 = 1.0f;
                                 }
-
+                                */
                                 //Console.WriteLine(somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfMatrixBuff[0].world.M44);
 
 
@@ -8972,8 +8972,23 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
 
                                             /*somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrpos =
                                                 new Vector4(sccs.scgraphics.scupdate._hmdPoser.X, sccs.scgraphics.scupdate._hmdPoser.Y, sccs.scgraphics.scupdate._hmdPoser.Z, 1)
-                                                + new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1);
+                                                + new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1);*/
+
+
+                                            somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrpos = new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1);
                                             //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrpos = new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1);
+
+
+                                            if (sccsvvdhd.Form1.currentform.projectiontypeindex == 0)//sccsvvdhd.Form1.currentform.comboboxcapturelist2.SelectedIndex == 0)
+                                            {
+                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrpos.W = -1;
+
+                                            }
+                                            else if (sccsvvdhd.Form1.currentform.projectiontypeindex == 1)//sccsvvdhd.Form1.currentform.comboboxcapturelist2.SelectedIndex == 1)
+                                            {
+                                                somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrpos.W = 1;
+                                            }
+
 
 
                                             //Console.WriteLine(new Vector4(sccs.scgraphics.scupdate.OFFSETPOS.X, sccs.scgraphics.scupdate.OFFSETPOS.Y, sccs.scgraphics.scupdate.OFFSETPOS.Z, 1));
@@ -8982,7 +8997,7 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
                                             somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrdirf = sccs.scgraphics.scupdate.dirikvoxelbodyInstanceForward0;
                                             somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrdirr = sccs.scgraphics.scupdate.dirikvoxelbodyInstanceRight0;
                                             somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].someovrdir[0].ovrdiru = sccs.scgraphics.scupdate.dirikvoxelbodyInstanceUp0;
-                                            */
+                                            
 
 
 
