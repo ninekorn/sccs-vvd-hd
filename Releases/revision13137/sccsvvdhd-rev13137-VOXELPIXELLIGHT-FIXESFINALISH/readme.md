@@ -2,6 +2,8 @@
 
 <img src="https://github.com/ninekorn/gif-resources/blob/main/Capture%20d%E2%80%99%C3%A9cran%202023-05-07%20201627.jpg" border="0">
 
+https://youtu.be/DoTWQmmm_-o
+
 i added a per voxel light effect on the light. Gotta go quite close to the voxel virtual desktop to notice or have a big screen.
 
 Now if closing a captured program, the voxel virtual desktop image will also disappear and return to charcoal also losing the heightmaps value. It turns into the idle state that i would call it.
