@@ -65,6 +65,8 @@ namespace sccs
     public class scgraphicssec //: sccs.scgraphics.scupdate//SC_Intermediate_Update
     {
 
+        public int canworkonheightmaps = 0;
+
         public float projectionviewmin = 0.001f;
 
 
@@ -8326,6 +8328,89 @@ namespace sccs
                 Vector4 dirlight = -new Vector4(sc_maths._newgetdirforward(lightrotquat), 1.0f); //new Vector4(0,0,-1.0f, 1.0f);//  new Vector4(sc_maths._newgetdirforward(lightrotquat), 1.0f); // 
 
 
+
+
+
+
+                if (Program.icap != null)
+                {
+                    int typeofcapture = Program.icap.typeofcapture;
+                    int isprogramclosed = 0;
+
+                    if (typeofcapture == 0)
+                    {
+                        var capturetype = (WinRT.GraphicsCapture.GraphicsCapture)Program.icap;
+
+                        if (capturetype != null)
+                        {
+
+                            if (capturetype.IsCapturing)
+                            {
+
+                                //if (canworkonheightmaps == 0)
+                                {
+                                    canworkonheightmaps = 1;
+                                }
+                                //isprogramclosed = 1;
+                                //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].sunlightextras = new Vector4(isprogramclosed, 0, 64, 1);
+
+                            }
+                            else
+                            {
+
+                                //if (canworkonheightmaps == 1)
+                                {
+                                    canworkonheightmaps = 0;
+                                }
+                                //isprogramclosed = 0;
+                                //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].sunlightextras = new Vector4(isprogramclosed, 0, 64, 1);
+
+                            }
+
+                        }
+                        else
+                        {
+                            canworkonheightmaps = 0;
+                            //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].sunlightextras = new Vector4(0, 0, 64, 1);
+
+                        }
+                    }
+                    else if (typeofcapture == 1)
+                    {
+
+                    }
+
+                    if (Program.icap != null)
+                    {
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+                else
+                {
+                    //if (canworkonheightmaps != 0)
+                    {
+                        canworkonheightmaps = 0;
+                    }
+                    //canworkonheightmaps = 0;
+                    //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].lightBuffer[0].sunlightextras = new Vector4(0, 0, 64, 1);
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
                 //VOXEL VIRTUAL DESKTOP
                 //VOXEL VIRTUAL DESKTOP
                 //VOXEL VIRTUAL DESKTOP
@@ -14407,7 +14492,254 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
 
             if (somevoxelvirtualdesktopglobals != null)
             {
-                if (activatevrheightmapfeature == 0)
+
+
+
+
+                //somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].lastinstancesmatrixd[cc].instancematrix.M23
+
+
+
+                if (canworkonheightmaps == 0)
+                {
+                    totalsize = somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInWidth * somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInHeight * somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInDepth;
+
+                    try
+                    {
+                        for (int xxx = 0; xxx < somevoxelvirtualdesktopw; xxx++)
+                        {
+                            for (int yyy = 0; yyy < somevoxelvirtualdesktoph; yyy++)
+                            {
+                                for (int zzz = 0; zzz < somevoxelvirtualdesktopd; zzz++)
+                                {
+                                    //somechunkmesh
+                                    var somevoxelvirtualdesktopindex = xxx + somevoxelvirtualdesktopw * (yyy + somevoxelvirtualdesktoph * zzz);
+
+
+                                    if (somevoxelvirtualdesktop != null && Program.exitedprogram != 1)
+                                    {
+                                        if (somevoxelvirtualdesktop[somevoxelvirtualdesktopindex] != null)
+                                        {
+                                            if (somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh != null)
+                                            {
+
+                                                for (int x = 0; x < somevoxelvirtualdesktopglobals.numberOfObjectInWidth; x++)
+                                                {
+                                                    for (int y = 0; y < somevoxelvirtualdesktopglobals.numberOfObjectInHeight; y++)
+                                                    {
+                                                        for (int z = 0; z < somevoxelvirtualdesktopglobals.numberOfObjectInDepth; z++)
+                                                        {
+                                                            int c = x + somevoxelvirtualdesktopglobals.numberOfObjectInWidth * (y + somevoxelvirtualdesktopglobals.numberOfObjectInHeight * z);
+
+                                                            if (somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c] != null)
+                                                            {
+                                                                if (somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].arrayofzeromeshinstances != null)
+                                                                {
+
+                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].pixelmovedbufferregiona = 0;
+                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].pixelmovedbufferregionb = 0;
+                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].pixelmovedbufferregionc = 0;
+                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].pixelmovedbufferregiond = 0;
+
+                                                                    swtchx = 0;
+                                                                    swtchy = 0;
+                                                                    swtchz = 0;
+
+                                                                    xx = 0;
+                                                                    yy = 0;
+                                                                    zz = 0;
+
+                                                                    for (int t = 0; t < totalsize;)
+                                                                    {
+                                                                        if (t < totalsize)
+                                                                        {
+                                                                            //zi = (depth - 1) - zi;
+                                                                            //var indexx = xx + (somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInWidth) * (yy + (somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInHeight) * zz);
+                                                                            int cc = xx + somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInWidth * (yy + somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInHeight * zz);
+
+                                                                            if (cc < totalsize)
+                                                                            {
+                                                                                if (!float.IsNaN(somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayOfChunkData[c].instancesmatrix[cc].instancematrix.M41))
+                                                                                {
+                                                                                    someemptybytes = 00000000.0f;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M11 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M12 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M13 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M14 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M21 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M22 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M23 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M24 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M31 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M32 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M33 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M34 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M41 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M42 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M43 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M44 = 0;
+
+
+
+
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M11 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M12 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M13 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M14 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M21 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M22 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M23 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M24 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M31 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M32 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M33 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M34 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M41 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M42 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M43 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrix[cc].instancematrix.M44 = 0;
+
+
+
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M11 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M12 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M13 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M14 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M21 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M22 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M23 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M24 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M31 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M32 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M33 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M34 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M41 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M42 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M43 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixb[cc].instancematrix.M44 = 0;
+
+
+
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M11 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M12 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M13 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M14 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M21 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M22 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M23 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M24 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M31 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M32 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M33 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M34 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M41 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M42 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M43 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixc[cc].instancematrix.M44 = 0;
+
+
+
+
+
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M11 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M12 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M13 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M14 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M21 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M22 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M23 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M24 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M31 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M32 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M33 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M34 = 0;
+
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M41 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M42 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M43 = 0;
+                                                                                    somevoxelvirtualdesktop[somevoxelvirtualdesktopindex].arrayofindexzeromesh[c].instancesmatrixd[cc].instancematrix.M44 = 0;
+
+
+
+
+
+
+                                                                                }
+                                                                            }
+
+                                                                            zz++;
+                                                                            if (zz >= (somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInDepth))
+                                                                            {
+                                                                                xx++;
+                                                                                zz = 0;
+                                                                                swtchx = 1;
+                                                                            }
+                                                                            if (xx >= (somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInWidth) && swtchx == 1)
+                                                                            {
+                                                                                //faceStart = 0;
+                                                                                yy++;
+                                                                                xx = 0;
+                                                                                swtchx = 0;
+                                                                                swtchy = 1;
+                                                                            }
+                                                                            if (yy >= (somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInHeight) && swtchy == 1)
+                                                                            {
+                                                                                //yy = -ChunkHeight_L;
+                                                                                swtchy = 0;
+                                                                                swtchx = 0;
+                                                                                swtchz = 1;
+                                                                            }
+                                                                            t++;
+                                                                        }
+                                                                    }
+
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+
+                    swtchx = 0;
+                    swtchy = 0;
+                    swtchz = 0;
+                    xx = 0;
+                    yy = 0;
+                    zz = 0;
+
+                    //canworkonheightmaps = 3;
+                    //activatevrheightmapfeature = 1;
+                }
+                else if (activatevrheightmapfeature == 0)
                 {
                     totalsize = somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInWidth * somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInHeight * somevoxelvirtualdesktopglobals.numberOfInstancesPerObjectInDepth;
 
@@ -14544,7 +14876,6 @@ Program.MessageBox((IntPtr)0, ex.ToString() + "", "Oculus error", 0);
                     xx = 0;
                     yy = 0;
                     zz = 0;
-
 
                     activatevrheightmapfeature = 1;
                 }

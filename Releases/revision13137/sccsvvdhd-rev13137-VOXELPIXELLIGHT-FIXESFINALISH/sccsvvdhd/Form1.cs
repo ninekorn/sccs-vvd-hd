@@ -389,8 +389,8 @@ namespace sccsvvdhd
 
             this.trackBar1.TickFrequency = 25; //150*/
             trackbar = this.trackBar1;
-            trackbar.Minimum = -2500;
-            trackbar.Maximum = 2500;
+            trackbar.Minimum = -25000;
+            trackbar.Maximum = 25000;
             trackbar.Value = -2000; //15
             trackbar.TickFrequency = 1;
 
@@ -1903,16 +1903,16 @@ namespace sccsvvdhd
 
             if (projectiontypeindex == 0)
             {
-                trackbar.Minimum = -2500;
-                trackbar.Maximum = 2500;
+                trackbar.Minimum = -25000; //2500
+                trackbar.Maximum = 25000; //2500
                 //trackbar.Value = -1000;
 
                 trackbar.TickFrequency = 1;
             }
             else if (projectiontypeindex == 1)
             {
-                trackbar.Minimum = -5000;
-                trackbar.Maximum = 2500;
+                trackbar.Minimum = -25000;//5000
+                trackbar.Maximum = 25000;//2500
                 //trackbar.Value = -1000;
 
                 trackbar.TickFrequency = 1;
@@ -2155,6 +2155,8 @@ namespace sccsvvdhd
             lastSelectedTitle = SelectedTitle;
 
             refresh();
+
+            sccs.scgraphicssec.currentscgraphicssec.activatevrheightmapfeature = 1;
         }
 
         //user clicks 'Activate' button
@@ -3868,7 +3870,7 @@ namespace sccsvvdhd
 
             if (this.checkBox2.Checked)
             {
-                label2.Text = "rev.13136 - Made by Steve Chassé's Core Systems voxel virtual desktop high definition ! (sccs-vvd-hd). using sharpdx.directx11. made in C#"; 
+                label2.Text = "rev.13137 - Made by Steve Chassé's Core Systems voxel virtual desktop high definition ! (sccs-vvd-hd). using sharpdx.directx11. made in C#"; 
 
                 /*sccsvvdhd.Form1.thebutton3.Invoke((MethodInvoker)delegate
                 {
