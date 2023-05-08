@@ -18,10 +18,10 @@ The light color picker and grid color picker options are back and working again.
 
 I added a 4rth voxel type, being 5 faces cubes where the vertices don't extend. The current voxel types options are:
 
-0 => front face only
-1 => 5 faces with the front vertex that extend when heightmaps values are positive otherwise cubic voxels when heightmap values are negative.
-2 => the standard virtual desktop of a simple cube with 6 faces and 1 texture. This isn't a voxel virtual desktop.
-3 => the cubic voxels when heightmaps values are positive and negative.
+  0 => front face only
+  1 => 5 faces with the front vertex that extend when heightmaps values are positive otherwise cubic voxels when heightmap values are negative.
+  2 => the standard virtual desktop of a simple cube with 6 faces and 1 texture. This isn't a voxel virtual desktop.
+  3 => the cubic voxels when heightmaps values are positive and negative.
 
 I have work left to do on the dirty instances rgb option and slider so it isn't working correctly currently anymore.
 
